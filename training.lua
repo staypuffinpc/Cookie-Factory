@@ -525,18 +525,19 @@ function scene:enterScene( event )
 	packingFloor = display.newRect(0,600,_W,10)
 	packingFloor:setReferencePoint(display.TopLeftReferencePoint)
 	packingFloor.x = 0
-	packingFloor.y = 600
-	packingFloor:setFillColor(0,255,0)
+	packingFloor.y = 590
+	packingFloor:setFillColor(140)
+	packingFloor.stroke = 0;
 	physics.addBody(packingFloor, "static")
 	cookieGroup:insert(packingFloor)
 	
-
+--[[
 	--for testing purposes, I'm creating a physics body and placing it on the stage to see why kinematic bodies are affected by gravity
 	local testItem = display.newRect(_W/2,_H/2, 100,100)
 	testItem:setFillColor(0,0,255)
 	physics.addBody(testItem,"kinematic")
 	cookieGroup:insert(testItem)
-	
+
 	function testItem:touch(event)
 		--set focus to the currently touched object
 		if event.phase == "began" then		
@@ -554,7 +555,7 @@ function scene:enterScene( event )
 		end
 	end
 	testItem:addEventListener("touch",testItem)
-
+--]]
 	--set up a timer to generate cookies (NOTE: allow users to increase the speed of the cookies across the screen and the rate at which cookies are generated)
 	function generator()
 		-- make sure to move this code to a question controlling 

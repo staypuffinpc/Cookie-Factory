@@ -7,7 +7,7 @@
 
 local scene = storyboard.newScene()
 physics.start()
-physics.setDrawMode("hybrid")
+physics.setDrawMode("normal")
 
 -- include Corona's "widget" library
 local widget = require "widget"

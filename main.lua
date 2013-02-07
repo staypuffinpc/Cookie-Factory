@@ -5,8 +5,10 @@
 -----------------------------------------------------------------------------------------
 _W=display.contentWidth
 _H=display.contentHeight
+_mainFont = "Bell Gothic Std Black"
+_size = 20
 physics = require "physics"
-mainFont = "Bell Gothic Std Black"
+
 -- hide the status bar
 display.setStatusBar( display.HiddenStatusBar )
 

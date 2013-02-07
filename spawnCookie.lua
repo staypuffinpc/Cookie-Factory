@@ -151,32 +151,34 @@ end
 
 
 function onLocalCollision(self, event)
-	local hitX = self.x 
-	local hitY = self.y 
-	local obj1 = self
-	local obj2 = event.other
-	if event.phase == "began" then
-		if ((obj1.units == obj2.units) and (obj1.y > 300) and (obj2.y >300)) then--units are the same
-			--check to see if this is the 10,000 units hitting each other, b/c we don't have a graphic for that
-			if (obj1.value + obj2.value >= 100000) then--too big so exit fcn
-				--TODO: play "bonk!" sound and exit
-				print ("sorry, haven't got anything higher")
+	if self.dragging == 1 then
+		local hitX = self.x 
+		local hitY = self.y 
+		local obj1 = self
+		local obj2 = event.other
+		if event.phase == "began" then
+			if ((obj1.units == obj2.units) and (obj1.y > 300) and (obj2.y >300)) then--units are the same
+				--check to see if this is the 10,000 units hitting each other, b/c we don't have a graphic for that
+				if (obj1.value + obj2.value >= 100000) then--too big so exit fcn
+					--TODO: play "bonk!" sound and exit
+					print ("sorry, haven't got anything higher")
+					return false
+				else
+					--commence transformation
+					print ("obj1:"..obj1.units, "obj2: "..obj2.units)
+					print ("collision began")		
+					local closure = function() return itemHit(hitX,hitY,obj1, obj2) end
+					onLocalCollisionTimer = timer.performWithDelay(100, closure, 1)
+					return true;
+				end
+			else --units are different, so play sound and exit fcn
+				--print ("sorry, these two objects are not from the same mother")
 				return false
-			else
-				--commence transformation
-				print ("obj1:"..obj1.units, "obj2: "..obj2.units)
-				print ("collision began")		
-				local closure = function() return itemHit(hitX,hitY,obj1, obj2) end
-				onLocalCollisionTimer = timer.performWithDelay(100, closure, 1)
-				return true;
 			end
-		else --units are different, so play sound and exit fcn
-			--print ("sorry, these two objects are not from the same mother")
-			return false
 		end
+		
+		return true
 	end
-	
-	return true
 end
 
 
@@ -195,6 +197,13 @@ function spawnCookie(name, value,w,h, units, radius, shape,x,y)
 	local image = display.newImageRect("images/"..name..value..".png",w,h)
 	image.x = 0; image.y = 0;
 	cookie:insert(image)
+	
+	--generate an invisible shape with the same body that is dynamic so that it can interact with sensors at all times
+	local invImg = display.newImageRect("images/"..name..value..".png",w,h)
+	invImg.x, invImg.y = image.x,image.y
+	invImg.alpha = .01
+	cookie:insert(invImg)
+	
 	
 	--cookie badge (needs text and a rounded rectangle grouped together)
 	local badge = display.newGroup()
@@ -225,7 +234,10 @@ function spawnCookie(name, value,w,h, units, radius, shape,x,y)
 	cookie.x = x or(_W+100)
 	cookie.y = y or 240
 	cookie.units = units
+	cookie.dragging = 0
 	physics.addBody(cookie, "dymamic", {radius=radius, shape=shape})
+	--physics.addBody(invImg, "dymamic", {radius=radius, shape=shape})
+	--physics.newJoint("weld", cookie, invImg, image.x, invImg.y)
 	cookie.isFixedRotation = false
 	cookie.linearDamping = 9
 	cookie.collision = onLocalCollision
@@ -252,6 +264,7 @@ function spawnCookie(name, value,w,h, units, radius, shape,x,y)
 			self.isFocus = true
 			self.markX = self.x 
 			self.markY = self.y 
+			self.dragging = 1
 			
 			-- Create a temporary touch joint and store it in the object for later reference
             self.tempJoint = physics.newJoint( "touch", self, event.x, event.y )
@@ -271,11 +284,8 @@ function spawnCookie(name, value,w,h, units, radius, shape,x,y)
 				return true
 			elseif event.phase == "ended"  or event.phase == "cancelled" then
 				self.isBodyActive = false
-				if self.y > 275 and self.y < 600 then
-					self.bodyType = "kinematic"
-				else 
-					self.bodyType = "dynamic"
-				end
+				self.bodyType = "dynamic"
+				self.dragging = 0
 				self.isBodyActive = true
 				--hide the item's value
 				self.dragNumDisp.alpha = 0
@@ -325,6 +335,9 @@ function spawnCookie(name, value,w,h, units, radius, shape,x,y)
 			self.bodyType = "dynamic"
 			self.isBodyActive = true			
 		end
+		if self.y > 275 and cookie.y < 600 then
+			self.rotation = 0
+		end
 		if (cookie.moved ~= "yes") then
 			cookie.x = cookie.x - moveRate
 		end
@@ -342,6 +355,7 @@ function spawnCookie(name, value,w,h, units, radius, shape,x,y)
 	return cookie
 end
 
+--method to destroy all the cookies in generated items array
 function cleanUp()
 	for k, v in pairs(generatedItems) do 
 		print (k)
