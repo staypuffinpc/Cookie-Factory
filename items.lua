@@ -12,16 +12,16 @@ shapes[10000] = {-90,-90,   34,-96,   91,-58,   90,87,   -54, 94,    -90,52}
 shapes[100000] = {-86,-85,   71,-95,   86,-80,   86,85,   -72,95,    -86,79}
 
 dimensions = {}
-dimensions[1] = {w = 108, h = 98}
-dimensions[2] =  {w = 66, h = 82}
-dimensions[3]= {w = 70, h = 100}
-dimensions[4] = {w = 76, h =119}
-dimensions[5] = {w = 80, h =139}
-dimensions[6] = {w = 88, h =158}
-dimensions[7] = {w = 91, h =173}
-dimensions[8] = {w = 97, h =190}
-dimensions[9] = {w = 100, h =210}
-dimensions[10] = {w = 111, h =134}
+dimensions[1] = {w = 48, h = 48}--.
+dimensions[2] =  {w = 50, h = 54}--.92
+dimensions[3]= {w = 54, h = 69}--.78
+dimensions[4] = {w = 58, h =79}--.7
+dimensions[5] = {w = 62, h =99}--.62
+dimensions[6] = {w = 66, h =110}--.59
+dimensions[7] = {w = 70, h =122}--.56
+dimensions[8] = {w = 74, h =138}--.53
+dimensions[9] = {w = 78, h =150}--.5
+dimensions[10] = {w = 110, h =121}
 dimensions[20] = {w = 88, h =101}
 dimensions[30] = {w = 119, h =101}
 dimensions[40] = {w = 148, h =101}
@@ -40,8 +40,8 @@ dimensions[700] = {w = 185, h =112}
 dimensions[800] = {w = 198, h =112}
 dimensions[900] = {w = 198, h =124}
 dimensions[1000] = {w = 207, h =124}
-dimensions[2000] = {w = 207,h = 73.35}
-dimensions[3000] = {w = 207, h =109}
+dimensions[2000] = {w = 250,h = 88.7}--2.82
+dimensions[3000] = {w = 250, h =120}
 dimensions[4000] =  {w = 207, h =111}
 dimensions[5000] = {w = 207, h =147}
 dimensions[6000] = {w = 207, h =148}
@@ -49,7 +49,7 @@ dimensions[7000] = {w = 207, h =184}
 dimensions[8000] = {w = 207, h =183}
 dimensions[9000] = {w = 207, h =218}
 dimensions[10000] = {w = 127, h =134}
-dimensions[20000] = {w = 120, h =75}
+dimensions[20000] = {w = 150, h =93.75}--1.6
 dimensions[30000] = {w = 172, h =79}
 dimensions[40000] = {w = 172, h =128}
 dimensions[50000] = {w = 172, h =131}
@@ -61,10 +61,10 @@ dimensions[90000] = {w = 172, h =190}
 function createItemsForThisLevel(theme)
 	local items = {}
 	items[1] = {name = theme, value = 1, w=48, h=48, units = 1, radius=24}
-	items[10] = {name=theme, value = 10, w=134, h=95, units=10, radius=0, shape= shapes[10]}
-	items[100] = {name=theme, value = 100, w=76,h=67, units=100, radius=0, shape=shapes[100]}
-	items[1000] = {name=theme,value=1000, w=207,h=124, units=1000, radius=0, shape= shapes[1000]}
-	items[10000] = {name=theme,value = 10000, w=127,h= 134, units=10000, radius=0, shape = shapes[10000] }
+	items[10] = {name = theme, value = 10, w=110, h=121, units=10, radius=0, shape= shapes[10]}
+	items[100] = {name = theme, value = 100, w=76,h=67, units=100, radius=0, shape=shapes[100]}
+	items[1000] = {name = theme,value = 1000, w=207,h=124, units=1000, radius=0, shape= shapes[1000]}
+	items[10000] = {name = theme,value = 10000, w=127,h= 134, units=10000, radius=0, shape = shapes[10000] }
 	for i=9,1.9, -1 do 
 		items[i] = {name=theme, value = i, w=dimensions[i].w, h=dimensions[i].h, units=1, radius=0, shape=shapes[10]}
 	end
