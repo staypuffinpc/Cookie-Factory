@@ -37,6 +37,9 @@ function onBtnRelease(event)
 end
 
 function linkToURL(event)
+	webView:request(event.target.url)
+	webView.x=_W/2
+	webView.y=_H/2
 	
 end
 
@@ -105,8 +108,7 @@ function scene:createScene( event )
 	
 	local textgrade4=display.newText("Generalize place value understanding for multi-digit whole numbers. Use place value understanding and properties of operations to perform multi-digit arithmetic.", _W/2-250, _H/2+195, 600, 0, native.systemFontBold, 30)
 
-	webView = native.newWebView( 0, 0, 320, 480 )
-	webView:request( "http://www.coronalabs.com/" )
+	webView = native.newWebView( 0-800, 0-600, 800, 600 )
 	-----------------------------------------------------------------------------
 		
 	--	CREATE display objects and add them to 'group' here.
