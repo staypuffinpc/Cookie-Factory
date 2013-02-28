@@ -108,7 +108,14 @@ function scene:createScene( event )
 	
 	local textgrade4=display.newText("Generalize place value understanding for multi-digit whole numbers. Use place value understanding and properties of operations to perform multi-digit arithmetic.", _W/2-250, _H/2+195, 600, 0, native.systemFontBold, 30)
 
+	local webViewGroup=display.newGroup()
 	webView = native.newWebView( 0-800, 0-600, 800, 600 )
+	webView.strokeWidth=10
+	webView:setStrokeColor(255)
+	
+	
+	webViewGroup:insert(webView)
+	
 	-----------------------------------------------------------------------------
 		
 	--	CREATE display objects and add them to 'group' here.
@@ -122,6 +129,7 @@ function scene:createScene( event )
 	group:insert(coreTitle)
 	group:insert(coreText)
 	group:insert(homeBtn)
+	group:insert(webViewGroup)
 	
 end
 
@@ -155,7 +163,8 @@ end
 -- Called prior to the removal of scene's "view" (display group)
 function scene:destroyScene( event )
 	local group = self.view
-	
+	webView:removeSelf()
+	webView=nil
 	-----------------------------------------------------------------------------
 	
 	--	INSERT code here (e.g. remove listeners, widgets, save state, etc.)
