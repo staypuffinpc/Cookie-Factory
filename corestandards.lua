@@ -11,7 +11,7 @@ local onBtnRelease
 local factoryBG
 local homeBtn
 local linkToURL
-local webView
+local webViewGroup
 
 ----------------------------------------------------------------------------------
 -- 
@@ -38,8 +38,8 @@ end
 
 function linkToURL(event)
 	webView:request(event.target.url)
-	webView.x=_W/2
-	webView.y=_H/2
+	webViewGroup.x=_W/2
+	webViewGroup.y=_H/2
 	
 end
 
@@ -109,7 +109,12 @@ function scene:createScene( event )
 	local textgrade4=display.newText("Generalize place value understanding for multi-digit whole numbers. Use place value understanding and properties of operations to perform multi-digit arithmetic.", _W/2-250, _H/2+195, 600, 0, native.systemFontBold, 30)
 
 	local webViewGroup=display.newGroup()
-	webView = native.newWebView( 0-800, 0-600, 800, 600 )
+	webViewGroup:setReferencePoint( display.CenterReferencePoint)
+	webViewGroup.x, webViewGroup.y= -800, -600
+	
+	webView = native.newWebView( 0, 0, 800, 600 )
+	webView:setReferencePoint( display.TopLeftReferencePoint)
+	webView.x, webView.y=0,0
 	webView.strokeWidth=10
 	webView:setStrokeColor(255)
 	
