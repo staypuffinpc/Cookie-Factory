@@ -3,6 +3,8 @@
 -- main.lua
 --
 -----------------------------------------------------------------------------------------
+require("CHDebugger").start()
+
 _W=display.contentWidth
 _H=display.contentHeight
 _mainFont = "Bell Gothic Std Black"
