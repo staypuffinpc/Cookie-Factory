@@ -86,7 +86,7 @@ function scene:createScene( event )
 	standardsBtn:setReferencePoint( display.CenterReferencePoint )
 	standardsBtn.x = _W*0.5 - 61
 	standardsBtn.y = _H/2 + 90
-	standardsBtn.scene= "delivery"
+	standardsBtn.scene= "corestandards"
 	
 	--create a floor for cookies to bounce against
 	local menuFloor = display.newRect(0,_H+80,_W, 10)
