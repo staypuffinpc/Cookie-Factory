@@ -114,39 +114,87 @@
 		</data>
 		<key>Cookie-Factory.app/Cookie-Factory</key>
 		<data>
-		ueo9WD4g/i9IVWN9lSA6z5gZUwU=
+		4ArhY6leFYKFmjb0hDeFvfCNLp8=
 		</data>
 		<key>Cookie-Factory.app/CoronaSDK3rdPartyLicenses.txt</key>
 		<data>
-		giDpNUyCH9JLcAZfAG+HBdDCSWk=
+		chWB9Mq0ZhpeG30D4FdYhhh7fIs=
 		</data>
-		<key>Cookie-Factory.app/FBDialog.bundle/images/close.png</key>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/Contents/Resources/en.lproj/Localizable.strings</key>
+		<data>
+		v+xHN6oHhoffyKUxoCq3hkAM0vM=
+		</data>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/Contents/Resources/he.lproj/Localizable.strings</key>
+		<data>
+		b6qzYobVUfh6tPUeFvNl7dh1LvM=
+		</data>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/FBDialog/images/close.png</key>
 		<data>
 		lPlIbbW7NpLV1mLzR5iSJbYh4Do=
 		</data>
-		<key>Cookie-Factory.app/FBDialog.bundle/images/close@2x.png</key>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/FBDialog/images/close@2x.png</key>
 		<data>
 		i9lYZZOBgyVfCZZ5Vlclzb5W9II=
 		</data>
-		<key>Cookie-Factory.app/FBDialog.bundle/images/fbicon.png</key>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/FBDialog/images/fbicon.png</key>
 		<data>
 		O10PJ3vPkAdypNUGk3PgmTOlWLg=
 		</data>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/FBFriendPickerView/images/default.png</key>
+		<data>
+		1vfaV+nTXblvPnQYDY/1UyhoKFQ=
+		</data>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/FBLoginView/images/bluetint.png</key>
+		<data>
+		BIWC3V8C5xJu7te1xU/IcKauDMQ=
+		</data>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/FBLoginView/images/f_logo.png</key>
+		<data>
+		q5ZzbSlcisADU6ENVIbAQEQIuh4=
+		</data>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/FBLoginView/images/facebook.png</key>
+		<data>
+		4TuRMiMz+SihJDuSRQKvrw8Ih8k=
+		</data>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/FBLoginView/images/login-button-small-pressed.png</key>
+		<data>
+		9sbso4PNh1Z0KoAHph5XBnaZJkw=
+		</data>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/FBLoginView/images/login-button-small-pressed@2x.png</key>
+		<data>
+		eCfkxy5b02vdCe1QWUAX7AXkaq8=
+		</data>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/FBLoginView/images/login-button-small.png</key>
+		<data>
+		y2rFSNHSEI1JkCyI7lyl9BPX+P8=
+		</data>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/FBLoginView/images/login-button-small@2x.png</key>
+		<data>
+		gu818z8AxfSvFSu75e2x58h0DnQ=
+		</data>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/FBPlacePickerView/images/fb_generic_place.png</key>
+		<data>
+		VHmQbfvjHgmWR9lhhgbss5fm0a0=
+		</data>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/FBProfilePictureView/images/fb_blank_profile_portrait.png</key>
+		<data>
+		9l3Ndw9vAokYwowVel0cnmWI3UQ=
+		</data>
+		<key>Cookie-Factory.app/FacebookSDKResources.bundle/FBProfilePictureView/images/fb_blank_profile_square.png</key>
+		<data>
+		kL+ijjVVseoKHkp+/g6w7snPgsg=
+		</data>
 		<key>Cookie-Factory.app/MainWindow-iPad.nib</key>
 		<data>
-		dmm1aBaeQg4yFoOBL1a12YaDtNk=
+		4RpGz0HA0Nlyoj3+5n+VZyanV4I=
 		</data>
 		<key>Cookie-Factory.app/MainWindow.nib</key>
 		<data>
-		WNS6wSCmFErUmkM914QgbKew55s=
+		04tNSJWl+6nsNRM6avVFdK/FNHg=
 		</data>
 		<key>Cookie-Factory.app/PkgInfo</key>
 		<data>
 		n57qDP4tZfLD1rCS43W0B4LQjzE=
-		</data>
-		<key>Cookie-Factory.app/_CodeSignature/CodeResources</key>
-		<data>
-		qWTRC5T5NmU039Cg4LrRH/IIJKk=
 		</data>
 		<key>Cookie-Factory.app/embedded.mobileprovision</key>
 		<data>
@@ -154,11 +202,15 @@
 		</data>
 		<key>Cookie-Factory.app/resource.car</key>
 		<data>
-		k1CsbXrCaCjb8mBY+6HvJLCCspg=
+		4EMqr/kG1DPHn3+yy67WhKmjBUk=
+		</data>
+		<key>Cookie_W13.ccwork</key>
+		<data>
+		Y38VZVmLOx0WQxTincoQYOh8b34=
 		</data>
 		<key>CoronaSDK3rdPartyLicenses.txt</key>
 		<data>
-		giDpNUyCH9JLcAZfAG+HBdDCSWk=
+		chWB9Mq0ZhpeG30D4FdYhhh7fIs=
 		</data>
 		<key>DataPractice/dataForm.php</key>
 		<data>
@@ -172,21 +224,77 @@
 		<data>
 		jhEAscO1QX7O9hZNyElpDEmBXAE=
 		</data>
-		<key>FBDialog.bundle/images/close.png</key>
+		<key>FacebookSDKResources.bundle/Contents/Resources/en.lproj/Localizable.strings</key>
+		<data>
+		v+xHN6oHhoffyKUxoCq3hkAM0vM=
+		</data>
+		<key>FacebookSDKResources.bundle/Contents/Resources/he.lproj/Localizable.strings</key>
+		<data>
+		b6qzYobVUfh6tPUeFvNl7dh1LvM=
+		</data>
+		<key>FacebookSDKResources.bundle/FBDialog/images/close.png</key>
 		<data>
 		lPlIbbW7NpLV1mLzR5iSJbYh4Do=
 		</data>
-		<key>FBDialog.bundle/images/close@2x.png</key>
+		<key>FacebookSDKResources.bundle/FBDialog/images/close@2x.png</key>
 		<data>
 		i9lYZZOBgyVfCZZ5Vlclzb5W9II=
 		</data>
-		<key>FBDialog.bundle/images/fbicon.png</key>
+		<key>FacebookSDKResources.bundle/FBDialog/images/fbicon.png</key>
 		<data>
 		O10PJ3vPkAdypNUGk3PgmTOlWLg=
+		</data>
+		<key>FacebookSDKResources.bundle/FBFriendPickerView/images/default.png</key>
+		<data>
+		1vfaV+nTXblvPnQYDY/1UyhoKFQ=
+		</data>
+		<key>FacebookSDKResources.bundle/FBLoginView/images/bluetint.png</key>
+		<data>
+		BIWC3V8C5xJu7te1xU/IcKauDMQ=
+		</data>
+		<key>FacebookSDKResources.bundle/FBLoginView/images/f_logo.png</key>
+		<data>
+		q5ZzbSlcisADU6ENVIbAQEQIuh4=
+		</data>
+		<key>FacebookSDKResources.bundle/FBLoginView/images/facebook.png</key>
+		<data>
+		4TuRMiMz+SihJDuSRQKvrw8Ih8k=
+		</data>
+		<key>FacebookSDKResources.bundle/FBLoginView/images/login-button-small-pressed.png</key>
+		<data>
+		9sbso4PNh1Z0KoAHph5XBnaZJkw=
+		</data>
+		<key>FacebookSDKResources.bundle/FBLoginView/images/login-button-small-pressed@2x.png</key>
+		<data>
+		eCfkxy5b02vdCe1QWUAX7AXkaq8=
+		</data>
+		<key>FacebookSDKResources.bundle/FBLoginView/images/login-button-small.png</key>
+		<data>
+		y2rFSNHSEI1JkCyI7lyl9BPX+P8=
+		</data>
+		<key>FacebookSDKResources.bundle/FBLoginView/images/login-button-small@2x.png</key>
+		<data>
+		gu818z8AxfSvFSu75e2x58h0DnQ=
+		</data>
+		<key>FacebookSDKResources.bundle/FBPlacePickerView/images/fb_generic_place.png</key>
+		<data>
+		VHmQbfvjHgmWR9lhhgbss5fm0a0=
+		</data>
+		<key>FacebookSDKResources.bundle/FBProfilePictureView/images/fb_blank_profile_portrait.png</key>
+		<data>
+		9l3Ndw9vAokYwowVel0cnmWI3UQ=
+		</data>
+		<key>FacebookSDKResources.bundle/FBProfilePictureView/images/fb_blank_profile_square.png</key>
+		<data>
+		kL+ijjVVseoKHkp+/g6w7snPgsg=
 		</data>
 		<key>Gothic 45.ttf</key>
 		<data>
 		7RtU6fAUcYdy0u0sReUxXQUkoxw=
+		</data>
+		<key>IPT760W13.mobileprovision</key>
+		<data>
+		RExbORX6cyUKfGW/EBqq0UpkiFY=
 		</data>
 		<key>Icon.png</key>
 		<data>
@@ -198,11 +306,11 @@
 		</data>
 		<key>MainWindow-iPad.nib</key>
 		<data>
-		dmm1aBaeQg4yFoOBL1a12YaDtNk=
+		4RpGz0HA0Nlyoj3+5n+VZyanV4I=
 		</data>
 		<key>MainWindow.nib</key>
 		<data>
-		WNS6wSCmFErUmkM914QgbKew55s=
+		04tNSJWl+6nsNRM6avVFdK/FNHg=
 		</data>
 		<key>MultiTouchTesting/build.settings</key>
 		<data>
@@ -344,6 +452,10 @@
 		<data>
 		qvdHTUXv36X2O9di2BJgvE4iYd0=
 		</data>
+		<key>images/@2x/Palette@2.png</key>
+		<data>
+		qvdHTUXv36X2O9di2BJgvE4iYd0=
+		</data>
 		<key>images/@2x/Splash-background.png</key>
 		<data>
 		p27n8Ln3fzXjmqUFsz9PmwvynA0=
@@ -364,7 +476,15 @@
 		<data>
 		3jC4gtDS4058VjYiq+mugCNUCbQ=
 		</data>
+		<key>images/@2x/TruckBG@2.png</key>
+		<data>
+		3jC4gtDS4058VjYiq+mugCNUCbQ=
+		</data>
 		<key>images/@2x/TruckBlue.png</key>
+		<data>
+		i2dd35b2BUIOX5uT8hFg/7tmqAg=
+		</data>
+		<key>images/@2x/TruckBlue@2.png</key>
 		<data>
 		i2dd35b2BUIOX5uT8hFg/7tmqAg=
 		</data>
@@ -372,7 +492,15 @@
 		<data>
 		ph+3HFdHp71l6J+0V0Cv3vBxZ1I=
 		</data>
+		<key>images/@2x/TruckGreen@2.png</key>
+		<data>
+		ph+3HFdHp71l6J+0V0Cv3vBxZ1I=
+		</data>
 		<key>images/@2x/TruckOrange.png</key>
+		<data>
+		WI6jnZpFQq3E8pjY8l3qRvFTXu4=
+		</data>
+		<key>images/@2x/TruckOrange@2.png</key>
 		<data>
 		WI6jnZpFQq3E8pjY8l3qRvFTXu4=
 		</data>
@@ -380,7 +508,15 @@
 		<data>
 		q1DNgN3Id9xGjOjEFQKFeMTWq9E=
 		</data>
+		<key>images/@2x/TruckRed@2.png</key>
+		<data>
+		q1DNgN3Id9xGjOjEFQKFeMTWq9E=
+		</data>
 		<key>images/@2x/TruckYellow.png</key>
+		<data>
+		YVVWz4sMwajLy3VQL/pky/JXL3g=
+		</data>
+		<key>images/@2x/TruckYellow@2.png</key>
 		<data>
 		YVVWz4sMwajLy3VQL/pky/JXL3g=
 		</data>
@@ -2128,6 +2264,14 @@
 		<data>
 		AA2QRlU19mwEQe7fns/DL6hAcRk=
 		</data>
+		<key>images/chocchip_sheet.png</key>
+		<data>
+		j/4oIPvj73Wm6BDxOe0CA0tj+Xg=
+		</data>
+		<key>images/chocchip_sheet@2x.png</key>
+		<data>
+		KnLV9Lafeusp9zLBqBtriA/nFMQ=
+		</data>
 		<key>images/chocchip_star.png</key>
 		<data>
 		zvFxgoKgGZyV2bdcX4jH01m2eU4=
@@ -2627,6 +2771,722 @@
 		<key>images/mallet@2x.png</key>
 		<data>
 		wKKCfkL4q/BD6cuvQFbToL2SwVk=
+		</data>
+		<key>images/new images/chocchip1.png</key>
+		<data>
+		k62QL/AMriES9kQFHkhOkCPENd8=
+		</data>
+		<key>images/new images/chocchip10.png</key>
+		<data>
+		hpBQxIM3AT3z3wnYGeWUINgwunQ=
+		</data>
+		<key>images/new images/chocchip100.png</key>
+		<data>
+		9ws/8c59g7h3usZTZ5S6nBWuwX8=
+		</data>
+		<key>images/new images/chocchip1000.png</key>
+		<data>
+		liTk5i2RNftqSULWhFOFRXOZdU4=
+		</data>
+		<key>images/new images/chocchip10000.png</key>
+		<data>
+		rFTIP5bkn1+MPBZ0nOZlXJsUdc8=
+		</data>
+		<key>images/new images/chocchip2.png</key>
+		<data>
+		EtFrjvpm8Q+Hd1NQ3pMvxB7NoJA=
+		</data>
+		<key>images/new images/chocchip20.png</key>
+		<data>
+		7Tt1M02/CaMeKgyeVbWi5o0DEyI=
+		</data>
+		<key>images/new images/chocchip200.png</key>
+		<data>
+		yzql5ks2Q/8m7taa/dDh1elCJP0=
+		</data>
+		<key>images/new images/chocchip2000.png</key>
+		<data>
+		N/ykyZPolHWX9Wm/P7HW2HLc6eo=
+		</data>
+		<key>images/new images/chocchip20000.png</key>
+		<data>
+		DFc3vy2qgHtZuVdL4kmlF6ygNro=
+		</data>
+		<key>images/new images/chocchip3.png</key>
+		<data>
+		3lb2IbBId6JvYn5E6XxFKDJj9DM=
+		</data>
+		<key>images/new images/chocchip30.png</key>
+		<data>
+		NUDtlu0lHm+ncXrudUxdnaNEkwo=
+		</data>
+		<key>images/new images/chocchip300.png</key>
+		<data>
+		s/XH7S7ZL9VB83xcMEQFoi9eRsk=
+		</data>
+		<key>images/new images/chocchip3000.png</key>
+		<data>
+		4IVMCq6mnOlrC1aaCy26jyxC0A8=
+		</data>
+		<key>images/new images/chocchip30000.png</key>
+		<data>
+		jSrrnkUyVq7IJGbMFc0M6aULD14=
+		</data>
+		<key>images/new images/chocchip4.png</key>
+		<data>
+		O/+cFxDRdAs9FvC6zQXulZEKHj8=
+		</data>
+		<key>images/new images/chocchip40.png</key>
+		<data>
+		IAiIsB204Rg7WGSEgpeb6ZONXe0=
+		</data>
+		<key>images/new images/chocchip400.png</key>
+		<data>
+		5qCRl47m9iN4xhfsZv9/2vtiDxA=
+		</data>
+		<key>images/new images/chocchip4000.png</key>
+		<data>
+		ctEaB/56Uv3BqhTGzqoRAmzUONc=
+		</data>
+		<key>images/new images/chocchip40000.png</key>
+		<data>
+		cO4XKVfp/h9FRiqEPMkY7PYnRlg=
+		</data>
+		<key>images/new images/chocchip5.png</key>
+		<data>
+		Pk/6cwIBebwwjLbIAZ+AM4Z6W+w=
+		</data>
+		<key>images/new images/chocchip50.png</key>
+		<data>
+		NWwAfI7wc+xjFA4+JJFkgk2PKUQ=
+		</data>
+		<key>images/new images/chocchip500.png</key>
+		<data>
+		3axzsv/rt/lGFJ+RuIWKHHIrr8k=
+		</data>
+		<key>images/new images/chocchip5000.png</key>
+		<data>
+		iisxjWZinikEYMAks34KYXuEjR4=
+		</data>
+		<key>images/new images/chocchip50000.png</key>
+		<data>
+		6hnnZnPTCdFUWVRrisN4N49rl1c=
+		</data>
+		<key>images/new images/chocchip6.png</key>
+		<data>
+		6KYRD3YCQE8wjWjcbxV/cgvbTMU=
+		</data>
+		<key>images/new images/chocchip60.png</key>
+		<data>
+		/zuBQBcK6XOrDQJpxqLKWJooxJM=
+		</data>
+		<key>images/new images/chocchip600.png</key>
+		<data>
+		xu7FS0kGkOPni9WTKSGyN0PUoE8=
+		</data>
+		<key>images/new images/chocchip6000.png</key>
+		<data>
+		sPKjjYxC3dzG/nl5oWoGQoZR2yI=
+		</data>
+		<key>images/new images/chocchip60000.png</key>
+		<data>
+		wCiQGsGnBzpGSuXIqtv1fLkUC8Y=
+		</data>
+		<key>images/new images/chocchip7.png</key>
+		<data>
+		yGIDg+NMR1yGjsP5IogaBMTYaLM=
+		</data>
+		<key>images/new images/chocchip70.png</key>
+		<data>
+		SeBojnktjVDH8GaMtPxPKcMqVG4=
+		</data>
+		<key>images/new images/chocchip700.png</key>
+		<data>
+		mo+Uhv6hQeGvg8mk2DAP77tWjmw=
+		</data>
+		<key>images/new images/chocchip7000.png</key>
+		<data>
+		Uuu9kRBRIo7l6MsYST+J8qWFu+Y=
+		</data>
+		<key>images/new images/chocchip70000.png</key>
+		<data>
+		IfegdpX0BMJqS0ML0OcvbKOJE0g=
+		</data>
+		<key>images/new images/chocchip8.png</key>
+		<data>
+		LY/TlJqaYbWO44F53+oXVvR+/Ew=
+		</data>
+		<key>images/new images/chocchip80.png</key>
+		<data>
+		kNPdC5bnXKDboEd1KPC/T/NL0mU=
+		</data>
+		<key>images/new images/chocchip800.png</key>
+		<data>
+		wx3Hp2ptCWXUNxBahLbdB8+vGDI=
+		</data>
+		<key>images/new images/chocchip8000.png</key>
+		<data>
+		c3i8MP+uPw8ExuTuLC43f53QOrc=
+		</data>
+		<key>images/new images/chocchip80000.png</key>
+		<data>
+		pYDaQZ5oilEF2p53Kukzi+/xwa8=
+		</data>
+		<key>images/new images/chocchip9.png</key>
+		<data>
+		muSpWc/+CX8c1BmtWIJgpAZ0qFQ=
+		</data>
+		<key>images/new images/chocchip90.png</key>
+		<data>
+		A10aNg6etANxR2XPnHayo1JIUt8=
+		</data>
+		<key>images/new images/chocchip900.png</key>
+		<data>
+		TgpLlZH0vKaM+TediSEpAzEF8Pg=
+		</data>
+		<key>images/new images/chocchip9000.png</key>
+		<data>
+		OumO63QIPaVesdB4zbIDTkXtkDM=
+		</data>
+		<key>images/new images/chocchip90000.png</key>
+		<data>
+		EnTOAx18rpNTpTJQzFv0ZQiE/AQ=
+		</data>
+		<key>images/new images/jelly1.png</key>
+		<data>
+		VuwVaEgJHZAuait2fd4Ecgg5fos=
+		</data>
+		<key>images/new images/jelly10.png</key>
+		<data>
+		2Ob/Wq+8sERATdoFW6v/wkgxtmM=
+		</data>
+		<key>images/new images/jelly100.png</key>
+		<data>
+		LR7zKuhat1ZB63UWEpg9NRjDxwE=
+		</data>
+		<key>images/new images/jelly1000.png</key>
+		<data>
+		DCtipJFyi9CcWjeNzG4i8unVgMA=
+		</data>
+		<key>images/new images/jelly10000.png</key>
+		<data>
+		WoFer8k4rTgUKvVzehDytZtH9g8=
+		</data>
+		<key>images/new images/jelly2.png</key>
+		<data>
+		6CQNAt+C7K1StVaIvj0ItPwEXB0=
+		</data>
+		<key>images/new images/jelly20.png</key>
+		<data>
+		sESd+NIi/LIjLjMCp0RDto4Xydw=
+		</data>
+		<key>images/new images/jelly200.png</key>
+		<data>
+		Hmfey9Oz+OfZ18tIxSSvxSJYBUg=
+		</data>
+		<key>images/new images/jelly2000.png</key>
+		<data>
+		cR7ep4NpsdfHbrjMM0FSgVKZnLA=
+		</data>
+		<key>images/new images/jelly20000.png</key>
+		<data>
+		jQCfIRmMsZ2SzosqY4UNzKCmzAI=
+		</data>
+		<key>images/new images/jelly3.png</key>
+		<data>
+		VuHnHiHTieNeiA1Aw39dO9sOScA=
+		</data>
+		<key>images/new images/jelly30.png</key>
+		<data>
+		aodlzkEtV7aLOS6yZHwgyJIrTfw=
+		</data>
+		<key>images/new images/jelly3000.png</key>
+		<data>
+		5YxBT1WMUIavKyyHxlv1VgoKah8=
+		</data>
+		<key>images/new images/jelly30000.png</key>
+		<data>
+		MKwmq2kpPJi0dPTU07ySei2NKMg=
+		</data>
+		<key>images/new images/jelly4.png</key>
+		<data>
+		3WkADvXWHi9+FwREnnk8kvvsYYg=
+		</data>
+		<key>images/new images/jelly40.png</key>
+		<data>
+		U1MO8POviluc7+pMEmt/Jg+rSco=
+		</data>
+		<key>images/new images/jelly400.png</key>
+		<data>
+		3Dk/A+m/LhKuRQlCIEddvooLVAE=
+		</data>
+		<key>images/new images/jelly4000.png</key>
+		<data>
+		0gpNGJACwdljf58gBn+u/y7HyvY=
+		</data>
+		<key>images/new images/jelly40000.png</key>
+		<data>
+		FVwbrcHwpBriAd6IzNMqfJjRU6M=
+		</data>
+		<key>images/new images/jelly5.png</key>
+		<data>
+		SQn4HoRGhgzG7JPpeCCG8IE0xv8=
+		</data>
+		<key>images/new images/jelly50.png</key>
+		<data>
+		xQiUu+ZQcJpuSZlr4GBMqKAHPZ0=
+		</data>
+		<key>images/new images/jelly500.png</key>
+		<data>
+		YTROjMm6ZF586JvEiNCt2sIXqTE=
+		</data>
+		<key>images/new images/jelly5000.png</key>
+		<data>
+		2jv6Nxgl1mvQkz6Slf7HOPv77wg=
+		</data>
+		<key>images/new images/jelly50000.png</key>
+		<data>
+		lTBaXzNMWzEiscFYOtJcc8zibwM=
+		</data>
+		<key>images/new images/jelly6.png</key>
+		<data>
+		FlUn+RoYYusikfhOFOLKi9uh70Y=
+		</data>
+		<key>images/new images/jelly60.png</key>
+		<data>
+		1TS4xXi+p8Sn38v5l6mCwx5+qJw=
+		</data>
+		<key>images/new images/jelly600.png</key>
+		<data>
+		SYFPhb0YqynO5mvD1TaK6OIZt5I=
+		</data>
+		<key>images/new images/jelly6000.png</key>
+		<data>
+		KA7jWBKVFDENXTXQ7A426nWZIJI=
+		</data>
+		<key>images/new images/jelly60000.png</key>
+		<data>
+		wzJIAQ7q1t+DIFb4icvn9IagvT0=
+		</data>
+		<key>images/new images/jelly7.png</key>
+		<data>
+		oG37x86AKTowEua1w3M1uTUz0XM=
+		</data>
+		<key>images/new images/jelly70.png</key>
+		<data>
+		cpQOb3jRuSZvgGkVxo6VlsEXmiw=
+		</data>
+		<key>images/new images/jelly700.png</key>
+		<data>
+		pLJW+061wpbWGFmYXCgZm0bnu/M=
+		</data>
+		<key>images/new images/jelly7000.png</key>
+		<data>
+		KT+gcQW5qYrlcIWzAddG0Gof0vQ=
+		</data>
+		<key>images/new images/jelly70000.png</key>
+		<data>
+		djf1VzhOLdAG8oVVorSkkrw6s80=
+		</data>
+		<key>images/new images/jelly8.png</key>
+		<data>
+		NEDiwcd2i/29Thr1I7Z9Yw3m9Jc=
+		</data>
+		<key>images/new images/jelly80.png</key>
+		<data>
+		8HC9y09/ESi8JV61my/eUyzVqF8=
+		</data>
+		<key>images/new images/jelly800.png</key>
+		<data>
+		2RgoUtis9Ata9oRFX2AXoMs7hvU=
+		</data>
+		<key>images/new images/jelly8000.png</key>
+		<data>
+		KztZRwzmoJdlUkl1PqZmT4so5GI=
+		</data>
+		<key>images/new images/jelly80000.png</key>
+		<data>
+		MAN+9WBYaMLa/gY/TpYGRRZBsJc=
+		</data>
+		<key>images/new images/jelly9.png</key>
+		<data>
+		mbHM5/l+696joeN5V0c17E+myOI=
+		</data>
+		<key>images/new images/jelly90.png</key>
+		<data>
+		djHsTgXjGeV34uBidYihWY6Lo8U=
+		</data>
+		<key>images/new images/jelly900.png</key>
+		<data>
+		KTqo04ZU3qP8LlYL18CcmPgdJAE=
+		</data>
+		<key>images/new images/jelly9000.png</key>
+		<data>
+		hX4ocDdDhGNpRSprimx4BT3Wavg=
+		</data>
+		<key>images/new images/jelly90000.png</key>
+		<data>
+		Kk6LNJ6prkP5Bn6V5vMd8GT9S+M=
+		</data>
+		<key>images/new images/oreo1.png</key>
+		<data>
+		6B48G1+jUYvxyoLm9Y3bVUzIGZM=
+		</data>
+		<key>images/new images/oreo10.png</key>
+		<data>
+		MfYsq6jrBUxRDAsdGdzvPOViDR8=
+		</data>
+		<key>images/new images/oreo100.png</key>
+		<data>
+		xTB95+lSJqVchcyQwXy1TMNy+uQ=
+		</data>
+		<key>images/new images/oreo1000.png</key>
+		<data>
+		iXW56hxJ/qKjjGQ6AB4068cpC4E=
+		</data>
+		<key>images/new images/oreo10000.png</key>
+		<data>
+		hvIZ97AIBhEKaXicWxQq68QtC0k=
+		</data>
+		<key>images/new images/oreo2.png</key>
+		<data>
+		hnvfTTb36k5sFuXW3NJhJa1cInQ=
+		</data>
+		<key>images/new images/oreo20.png</key>
+		<data>
+		fsL97NAoCPwGPiQx5PkJErcVOqY=
+		</data>
+		<key>images/new images/oreo200.png</key>
+		<data>
+		okHWjpovpPxoF2Th/tecuicTEKY=
+		</data>
+		<key>images/new images/oreo2000.png</key>
+		<data>
+		DX1I7qlbwvwiV8SDmU4Ep1/6HIo=
+		</data>
+		<key>images/new images/oreo20000.png</key>
+		<data>
+		DHZKhMFTMMDYbLHvpN1w/rYyr1I=
+		</data>
+		<key>images/new images/oreo3.png</key>
+		<data>
+		MAVfkNrFIeE2Cc81FEQsl+fykgI=
+		</data>
+		<key>images/new images/oreo30.png</key>
+		<data>
+		qyaGYQdPosyMfdN7dKXbnn+ocMY=
+		</data>
+		<key>images/new images/oreo300.png</key>
+		<data>
+		UxoR4t6co3CZzhptmW6s/geufUc=
+		</data>
+		<key>images/new images/oreo3000.png</key>
+		<data>
+		bDog0EOMQYcqhVQSLIEniW2HJ68=
+		</data>
+		<key>images/new images/oreo30000.png</key>
+		<data>
+		D8a5U/iSlMfaQ4uN46CpbGF2fho=
+		</data>
+		<key>images/new images/oreo4.png</key>
+		<data>
+		Jc+isbSpsCLENQ51WWc96ImXlSE=
+		</data>
+		<key>images/new images/oreo40.png</key>
+		<data>
+		FVnG+mtn0tl2nCcd55J306BUaa4=
+		</data>
+		<key>images/new images/oreo400.png</key>
+		<data>
+		cp+TZCUstoapNmiWGM7a6iTOpps=
+		</data>
+		<key>images/new images/oreo4000.png</key>
+		<data>
+		IXr1mQSQVBh4VXBXeFKHcf+Kov8=
+		</data>
+		<key>images/new images/oreo40000.png</key>
+		<data>
+		I+pcaI3KrtLrMlCTKlBXOBZOV5g=
+		</data>
+		<key>images/new images/oreo5.png</key>
+		<data>
+		DTeehINWT+OFjcc9UrOR9rujBMk=
+		</data>
+		<key>images/new images/oreo50.png</key>
+		<data>
+		V+IQbSjHq6Ykb4Lj11LSYq6Qvw4=
+		</data>
+		<key>images/new images/oreo500.png</key>
+		<data>
+		ddRzudWEkd4Ywj9r1XXND86CnLk=
+		</data>
+		<key>images/new images/oreo5000.png</key>
+		<data>
+		Q6XisCoAfyXMfDWjIsNgEWytorc=
+		</data>
+		<key>images/new images/oreo50000.png</key>
+		<data>
+		AW2z1T/x2Dzk76jlVFzw/LCwS8s=
+		</data>
+		<key>images/new images/oreo6.png</key>
+		<data>
+		2Jpds5oA/qgSc+i3vzsl6jm5kcs=
+		</data>
+		<key>images/new images/oreo60.png</key>
+		<data>
+		zDb49f0jWThUf8wpumn7xtKwmbU=
+		</data>
+		<key>images/new images/oreo600.png</key>
+		<data>
+		m78lLclf7AMnt/hXHf9TQjcQnlo=
+		</data>
+		<key>images/new images/oreo6000.png</key>
+		<data>
+		8FLXZFq5WDzKsKtpp8iaTx5ByeE=
+		</data>
+		<key>images/new images/oreo60000.png</key>
+		<data>
+		+jtEDcN/ylN9r4avR9CGk3Z97ks=
+		</data>
+		<key>images/new images/oreo7.png</key>
+		<data>
+		1CVYvHi9wObNT/WUtfQHeOuxKCY=
+		</data>
+		<key>images/new images/oreo70.png</key>
+		<data>
+		DN3a0inUeXFGos29qH7zGB1rL94=
+		</data>
+		<key>images/new images/oreo700.png</key>
+		<data>
+		/3bQqfMI9Hv+fb9+vCXJ/T0NRuE=
+		</data>
+		<key>images/new images/oreo7000.png</key>
+		<data>
+		RjHhhiqbXPewpeT2KuoziQliiD0=
+		</data>
+		<key>images/new images/oreo70000.png</key>
+		<data>
+		cM1wWEyNbQSx4DIHCwHEOHx1c80=
+		</data>
+		<key>images/new images/oreo8.png</key>
+		<data>
+		jsBbXndwSb0rwWwHMjEYN6WGa20=
+		</data>
+		<key>images/new images/oreo80.png</key>
+		<data>
+		xtxEyVWFGDZPa5zV1+rA79+8WPY=
+		</data>
+		<key>images/new images/oreo800.png</key>
+		<data>
+		VdMp65AfoQxCz8N7qhrTgRZ2iDs=
+		</data>
+		<key>images/new images/oreo8000.png</key>
+		<data>
+		9ZEOfvtbDs8RwLeG+rdlvnWugnA=
+		</data>
+		<key>images/new images/oreo80000.png</key>
+		<data>
+		iYK1GNtXGrqvS9zlabtp1Bekt+A=
+		</data>
+		<key>images/new images/oreo9.png</key>
+		<data>
+		qGzOYg9lbbTs1RIaC3bc5aoRbwU=
+		</data>
+		<key>images/new images/oreo90.png</key>
+		<data>
+		9qfAOiYz9+ONghkBwAbHDNGhAro=
+		</data>
+		<key>images/new images/oreo900.png</key>
+		<data>
+		Yqi10ihsipsxFLfqs8eRAdWBsqE=
+		</data>
+		<key>images/new images/oreo9000.png</key>
+		<data>
+		TjhqvzAEbbcKCs8MjzuZSWftCjg=
+		</data>
+		<key>images/new images/oreo90000.png</key>
+		<data>
+		11wVJQne61xAZj5DjqLTZoGQ4DU=
+		</data>
+		<key>images/new images/pb1.png</key>
+		<data>
+		fnZRC9f9Eihknd9Db1gHcwHChTo=
+		</data>
+		<key>images/new images/pb10.png</key>
+		<data>
+		YdV+v17VsH3mLj5unwvwmacCJm8=
+		</data>
+		<key>images/new images/pb100.png</key>
+		<data>
+		yoaKgfiWNe/OKw+s78r5Zd28mFs=
+		</data>
+		<key>images/new images/pb1000.png</key>
+		<data>
+		siWKOKiIUZbpK2drTzNOL6QlaSE=
+		</data>
+		<key>images/new images/pb10000.png</key>
+		<data>
+		YtnYd6OPP+DSUggWnBO7qYCaOvQ=
+		</data>
+		<key>images/new images/pb2.png</key>
+		<data>
+		DreUIzQUWSlzvcvm3xnIac8Oj/k=
+		</data>
+		<key>images/new images/pb20.png</key>
+		<data>
+		SQWqAn7A2AcJVkZfYmAH2EqbUhk=
+		</data>
+		<key>images/new images/pb200.png</key>
+		<data>
+		YeDX4VB9GWqgqO/WgftKq9ZcYyU=
+		</data>
+		<key>images/new images/pb2000.png</key>
+		<data>
+		6hMwLKD3cqL5a7wo62FO2mU4PtQ=
+		</data>
+		<key>images/new images/pb20000.png</key>
+		<data>
+		RIu+9Jsi7amzk34dYFaUh/ya8Fk=
+		</data>
+		<key>images/new images/pb3.png</key>
+		<data>
+		P24JnoGG3E8DZ8WZkrvykI+c8AQ=
+		</data>
+		<key>images/new images/pb30.png</key>
+		<data>
+		5VSQGBYsL045eBZqIpiG6Bejags=
+		</data>
+		<key>images/new images/pb300.png</key>
+		<data>
+		OwRHXWkKci0jT+LKPUCJCIio6Zw=
+		</data>
+		<key>images/new images/pb3000.png</key>
+		<data>
+		cbgKrzmVzeXjNcLQkOduP7yywk8=
+		</data>
+		<key>images/new images/pb30000.png</key>
+		<data>
+		thDvZqamFIoDDmxNSUOj4tbKN4g=
+		</data>
+		<key>images/new images/pb4.png</key>
+		<data>
+		orJmBch77VbumzY0Zfph3wiaxHU=
+		</data>
+		<key>images/new images/pb40.png</key>
+		<data>
+		GIb715uN1doeDzeSnHvnaOa4COU=
+		</data>
+		<key>images/new images/pb400.png</key>
+		<data>
+		GiPMTf0xPuL5Re+hZeYT+ftjZas=
+		</data>
+		<key>images/new images/pb4000.png</key>
+		<data>
+		QExxEw3CvnYbcpHqZraIx5ZKaYg=
+		</data>
+		<key>images/new images/pb40000.png</key>
+		<data>
+		klMdZxuK6HAAlzj28rQUEDTsslI=
+		</data>
+		<key>images/new images/pb5.png</key>
+		<data>
+		xWumbhRDKcqBCqSKpKP40Bd85MM=
+		</data>
+		<key>images/new images/pb50.png</key>
+		<data>
+		F3LMnePTTrp3381K6/7VxnUQINo=
+		</data>
+		<key>images/new images/pb500.png</key>
+		<data>
+		15i54rKQ+8nngb+XNWjnN4A2u9c=
+		</data>
+		<key>images/new images/pb5000.png</key>
+		<data>
+		4jZUPX9bA7/gJkhWUAY0mhR16Nc=
+		</data>
+		<key>images/new images/pb50000.png</key>
+		<data>
+		7BOrso7iL/rvYlPj6nweNEaWQ4o=
+		</data>
+		<key>images/new images/pb6.png</key>
+		<data>
+		ezbXvehN/heJZ23Kp4nSV3GtENw=
+		</data>
+		<key>images/new images/pb60.png</key>
+		<data>
+		La+c67E0GTQMig4jxwVFvwPQIdQ=
+		</data>
+		<key>images/new images/pb600.png</key>
+		<data>
+		Neq264nV0l3/NbG3t/P2w/Uc62k=
+		</data>
+		<key>images/new images/pb6000.png</key>
+		<data>
+		0g+RfG0J9p9XBJrkOdDA+OvKAm0=
+		</data>
+		<key>images/new images/pb60000.png</key>
+		<data>
+		1z9aVuotqOFkkNlbGB8nBfJC4c0=
+		</data>
+		<key>images/new images/pb7.png</key>
+		<data>
+		BYXNl5y5OQ0bcWq7tGiC8JsN/Zs=
+		</data>
+		<key>images/new images/pb70.png</key>
+		<data>
+		7eC59fbnxgBY9oCCS4EFoUgCCKA=
+		</data>
+		<key>images/new images/pb700.png</key>
+		<data>
+		kpsHmw3LTNmkMA8NYZ+4Ze00IEo=
+		</data>
+		<key>images/new images/pb7000.png</key>
+		<data>
+		zXU0cLH4mtbSMSQXbYKkT5Byu4I=
+		</data>
+		<key>images/new images/pb70000.png</key>
+		<data>
+		uT0SnISEHDcqGNxo3CWnCkZQ928=
+		</data>
+		<key>images/new images/pb8.png</key>
+		<data>
+		gYpIAb+0giXlgcSBM0HtAkVDz1g=
+		</data>
+		<key>images/new images/pb80.png</key>
+		<data>
+		uZRb3+akzVoxie5d4BLWuBsArww=
+		</data>
+		<key>images/new images/pb800.png</key>
+		<data>
+		P8/hJ9hxCRud6gV/Es/JruWestg=
+		</data>
+		<key>images/new images/pb8000.png</key>
+		<data>
+		0/UBDMRsC6hvBTrgOPoQVxKolqI=
+		</data>
+		<key>images/new images/pb80000.png</key>
+		<data>
+		mux93LnMgNAHwmjHvqRoZf7qWJ8=
+		</data>
+		<key>images/new images/pb9.png</key>
+		<data>
+		vSgNhI4MYMj3KL6MHKfhWww7szo=
+		</data>
+		<key>images/new images/pb90.png</key>
+		<data>
+		O0nWlG9jgoSwnfzzPUmRr35DbwQ=
+		</data>
+		<key>images/new images/pb900.png</key>
+		<data>
+		2sB4dwgGMpOOLitsbhyO9WXsy+A=
+		</data>
+		<key>images/new images/pb9000.png</key>
+		<data>
+		kIviQH8a2LEPl3TanmwROtAcb0E=
+		</data>
+		<key>images/new images/pb90000.png</key>
+		<data>
+		4pHuuhOzD2Vm94piNGH3wPuMiSs=
 		</data>
 		<key>images/newBG.jpg</key>
 		<data>
@@ -3544,6 +4404,14 @@
 		<data>
 		srRf9mKC4Ppu4hEw7QzwzoOCMs0=
 		</data>
+		<key>images/trucks.png</key>
+		<data>
+		34gKmN/oQdIIhXg+VOSgvcNiqXw=
+		</data>
+		<key>images/trucks@2x.png</key>
+		<data>
+		QeGyEg2SkV6UCk+CiprbxFObRaI=
+		</data>
 		<key>images/white10000.png</key>
 		<data>
 		S4QOVF2GZmF1PFa6qzhJyxZgYDQ=
@@ -3664,17 +4532,45 @@
 		<data>
 		cnL9//1IRabelNnVEc32zsEZG78=
 		</data>
+		<key>jelly_sheet.png</key>
+		<data>
+		hLFUrOPjU1aE55SrbYpbDDHnLJY=
+		</data>
+		<key>jelly_sheet@2x.png</key>
+		<data>
+		UYnkL9YZJH7T1RGj2UIaqJiF1g0=
+		</data>
+		<key>oreo_sheet.png</key>
+		<data>
+		uPhTkiFo1esMcJmreMjFQdGPHAg=
+		</data>
+		<key>oreo_sheet@2x.png</key>
+		<data>
+		Ec7ZvjdFA0GnS5Yx9zPqKSRMiKw=
+		</data>
+		<key>pb.png</key>
+		<data>
+		EIuMRh5PTMKOXnhvJYNcfoyC1EI=
+		</data>
+		<key>pb@2x.png</key>
+		<data>
+		grX3sVM1IDc2qgO0RaRFqqKQjRo=
+		</data>
 		<key>physics_chocchip.pes</key>
 		<data>
 		hZJBaqZd/GKkfQzUWb8qQFMkfEQ=
 		</data>
 		<key>resource.car</key>
 		<data>
-		k1CsbXrCaCjb8mBY+6HvJLCCspg=
+		4EMqr/kG1DPHn3+yy67WhKmjBUk=
 		</data>
 		<key>scoreboard.ttf</key>
 		<data>
 		UvV/ZwWnaYr3RSQIDzmJJjpubbw=
+		</data>
+		<key>shapes_all.pes</key>
+		<data>
+		kupnZsAyRBQx5qLt7yw1Qomt1Bo=
 		</data>
 		<key>truckSprite1.png</key>
 		<data>
@@ -3699,6 +4595,10 @@
 		<key>truckSprite3@2.png</key>
 		<data>
 		GAFJ4OTv2KJBubvmoviiChnwlNs=
+		</data>
+		<key>trucks.tps</key>
+		<data>
+		1ToBmQnQFOqwNzMqmgIboLVnLpU=
 		</data>
 		<key>userData.json</key>
 		<data>

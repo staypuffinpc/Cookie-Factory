@@ -98,7 +98,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 Apache License
 Apache Ant  Copyright (c) 1999-2011, The Apache Software Foundation
 Facebook API Copyright 2010 Facebook
-OpenFeint  Copyright 2011 OpenFeint
 Android Asynchronous Http Client Copyright (c) 2011 James Smith <james@loopj.com> http://loopj.com
 
                                  Apache License

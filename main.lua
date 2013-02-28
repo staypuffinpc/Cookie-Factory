@@ -3,7 +3,6 @@
 -- main.lua
 --
 -----------------------------------------------------------------------------------------
-require("CHDebugger").start()
 
 _W=display.contentWidth
 _H=display.contentHeight
