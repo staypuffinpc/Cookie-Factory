@@ -11,7 +11,6 @@ local onBtnRelease
 local factoryBG
 local homeBtn
 local linkToURL
-local webViewGroup
 
 ----------------------------------------------------------------------------------
 -- 
@@ -37,11 +36,9 @@ function onBtnRelease(event)
 end
 
 function linkToURL(event)
-	webView:request(event.target.url)
-	webViewGroup.x=_W/2
-	webViewGroup.y=_H/2
-	
+    system.openURL( event.target.url ); 
 end
+
 
 function scene:createScene( event )
 	local group = self.view
@@ -108,25 +105,9 @@ function scene:createScene( event )
 	
 	local textgrade4=display.newText("Generalize place value understanding for multi-digit whole numbers. Use place value understanding and properties of operations to perform multi-digit arithmetic.", _W/2-250, _H/2+195, 600, 0, native.systemFontBold, 30)
 
-	local webViewGroup=display.newGroup()
-	webViewGroup:setReferencePoint( display.CenterReferencePoint)
-	webViewGroup.x, webViewGroup.y= -800, -600
-	
-	webView = native.newWebView( 0, 0, 800, 600 )
-	webView:setReferencePoint( display.TopLeftReferencePoint)
-	webView.x, webView.y=0,0
-	webView.strokeWidth=10
-	webView:setStrokeColor(255)
-	
-	
-	webViewGroup:insert(webView)
-	
-	-----------------------------------------------------------------------------
-		
-	--	CREATE display objects and add them to 'group' here.
-	--	Example use-case: Restore 'group' from previously saved state.
-	
-	-----------------------------------------------------------------------------
+    
+    
+    --make sure to add all display items to local group
 	group:insert(factoryBG)
 	group:insert(jellyButton2grade)
 	group:insert(jellyButton3grade)
@@ -134,7 +115,6 @@ function scene:createScene( event )
 	group:insert(coreTitle)
 	group:insert(coreText)
 	group:insert(homeBtn)
-	group:insert(webViewGroup)
 	
 end
 

@@ -114,7 +114,7 @@
 		</data>
 		<key>Cookie-Factory.app/Cookie-Factory</key>
 		<data>
-		SI+g7YG5GC8qs+QH2FGdaJ20Hd4=
+		smFY0usYP2tv9Cv7XZfDFKkMOdo=
 		</data>
 		<key>Cookie-Factory.app/CoronaSDK3rdPartyLicenses.txt</key>
 		<data>
@@ -202,7 +202,7 @@
 		</data>
 		<key>Cookie-Factory.app/resource.car</key>
 		<data>
-		JvQNV5hlCnP+k/1aRXAORUuityg=
+		caqLK9AEnJwLbavTwe8QbPxDs+I=
 		</data>
 		<key>Cookie_W13.ccwork</key>
 		<data>
@@ -2287,6 +2287,26 @@
 		<key>images/cleaver@2x.png</key>
 		<data>
 		SY0xAJq3chs3BbfPdGRPCiOfkiA=
+		</data>
+		<key>images/close_btn.png</key>
+		<data>
+		ZmB8lZfNtw2VK5NVnjAZesFDoto=
+		</data>
+		<key>images/close_btn.psd</key>
+		<data>
+		iNAjMCUJK4kQwmgWMZzd3yvm7e4=
+		</data>
+		<key>images/close_btn@2x.png</key>
+		<data>
+		JeK4UzZcO36yuVhO7xOBHWbEI3Q=
+		</data>
+		<key>images/close_btn_down.png</key>
+		<data>
+		K7rVh5TwHntK5OBatKawl3pa+48=
+		</data>
+		<key>images/close_btn_down@2x.png</key>
+		<data>
+		k0d77vwyTWHVTLZutwSniaCaTTY=
 		</data>
 		<key>images/cloud.png</key>
 		<data>
@@ -4562,7 +4582,7 @@
 		</data>
 		<key>resource.car</key>
 		<data>
-		JvQNV5hlCnP+k/1aRXAORUuityg=
+		caqLK9AEnJwLbavTwe8QbPxDs+I=
 		</data>
 		<key>scoreboard.ttf</key>
 		<data>
