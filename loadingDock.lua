@@ -173,25 +173,23 @@ items=itemInfo.createItemsForThisLevel(theme)
 end
 
 
--- Called immediately after scene has moved onscreen:
+-------ENTER SCENE----------
 function scene:enterScene( event )
 physics.start()
 
 	local group = self.view
------------------------------------------------------------------------------
--------ENTER SCENE----------
------------------------------------------------------------------------------
---1 Generate 4 truck numbers (SessionNumbers)
-createdItems={}
-usedPositions={}
 
-newList = generate.generateNumInfos(4,5)
-themes= {"oreo", "pb","jelly","chocchip"}
-level=3
-theme = themes[level]
-items=itemInfo.createItemsForThisLevel(theme)
+    --1 Generate 4 truck numbers (SessionNumbers)
+    createdItems={}
+    usedPositions={}
+    
+    newList = generate.generateNumInfos(3,5)
+    themes = {"oreo", "pb","jelly","chocchip"}
+    level = 3
+    theme = themes[level]
+    items = itemInfo.createItemsForThisLevel(theme)
 
-
+    --needle in a haystack fcn
 	function inArray(array, value)
 		local is = false
 		for i, thisValue in ipairs(array) do
@@ -201,7 +199,7 @@ items=itemInfo.createItemsForThisLevel(theme)
 		return is
 	end
 		
-		
+	--create a unique key for each item generated (used to reference that item later on)	
 	function createKey(array)
 		local key = "object"..math.random(1,100000000)
 		if inArray(array,key) == true then return createKey(array) end
@@ -219,25 +217,26 @@ end
 		
 --Create a function that generates trucks
 	function createTruck(truckX,truckY, numObj)
-		truck=display.newGroup()
+		truck = display.newGroup()
 		truck:setReferencePoint(display.TopRightReferencePoint)
-		local image=display.newImageRect("images/TruckOrange.png", 396, 245)
+		local image = display.newImageRect("images/TruckOrange.png", 300, 186)
 			truck:insert(image)
-		local numberText=display.newEmbossedText(numObj.omittedNum, 0, 0, native.systemFontBold, 40)
-			numberText.x = 0; numberText.y = -55
+		local numberText = display.newEmbossedText(numObj.omittedNum, 0, 0, native.systemFontBold, 40)
+			numberText.x = -10; numberText.y = -55
 			numberText:setTextColor(75)
 			truck:insert(numberText)
-		truck.value=numObj.omittedValue
-		truck.myName="Truck Number: "..truck.value
+		truck.value = numObj.omittedValue
+		truck.myName ="Truck Number: "..truck.value
 			print(truck.myName)
-		key=createKey(createdItems)
-		truck.key=key
-		createdItems[key]=truck
-		truck.x=truckX
-		truck.y=truckY
+		key = createKey(createdItems)
+		truck.key = key
+		createdItems[key] = truck
+		truck.x = truckX
+		truck.y = truckY
 		physics.addBody(truck, "static", {isSensor=true})
-		truck.collision=onLocalCollision
+		truck.collision = onLocalCollision
 		truck:addEventListener( "collision", truck )
+        return truck
 	end
 
 truckX=_W/2+55 --increase by 100
