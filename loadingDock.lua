@@ -219,7 +219,7 @@ end
 	function createTruck(truckX,truckY, numObj)
 		truck = display.newGroup()
 		truck:setReferencePoint(display.TopRightReferencePoint)
-		local image = display.newImageRect("images/TruckOrange.png", 300, 186)
+		local image = display.newImageRect("images/TruckOrange.png", 200, 130)
 			truck:insert(image)
 		local numberText = display.newEmbossedText(numObj.omittedNum, 0, 0, native.systemFontBold, 40)
 			numberText.x = -10; numberText.y = -55
