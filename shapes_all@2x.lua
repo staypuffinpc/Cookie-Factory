@@ -8151,6 +8151,22 @@ function M.physicsData(scale)
                     
 		}
 		
+		, 
+		["truck"] = {
+                    
+                    
+                    
+                    
+                    {
+                    pe_fixture_id = "", density = 2, friction = 0, bounce = 0, isSensor=true, 
+                    filter = { categoryBits = 1, maskBits = 65535, groupIndex = 0 },
+                    shape = {   -151, 45  ,  -234, 36  ,  -234, -121  ,  -151, -136  }
+                    }
+                    
+                    
+                    
+		}
+		
 	} }
 
         -- apply scale factor
