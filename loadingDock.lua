@@ -62,6 +62,7 @@ totalTrucks=level
 totalItems=level-1
 palletPositions={330, 500, 670}
 print(palletPositions[3])
+local numTrucksToCreate = 3
 
 -- 'onRelease' event listener for return to main menu
 function onBtnRelease(event)
@@ -183,7 +184,7 @@ physics.start()
     createdItems={}
     usedPositions={}
     
-    newList = generate.generateNumInfos(3,5)
+    newList = generate.generateNumInfos(numTrucksToCreate,5)
     themes = {"oreo", "pb","jelly","chocchip"}
     level = 3
     theme = themes[level]
@@ -242,7 +243,7 @@ end
 truckX=_W/2+55 --increase by 100
 truckY=250 --increase by 125
 
-	for i=1, #newList do
+	for i=1, numTrucksToCreate do
 		createTruck(truckX, truckY, newList[i])
 		truckX=truckX+80
 		truckY=truckY+125	
@@ -279,7 +280,8 @@ truckY=250 --increase by 125
 		pallet.isFixedRotation=true
 	end
 
-	for i=1, #newList-1 do
+	do 
+		local i=math.random(1,numTrucksToCreate)
 		createPallet(palletPositions[i], newList[i], items[i])
 		print(palletPositions[i])
 		print(items[i])
