@@ -157,7 +157,6 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_0.png</filename>
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_1.png</filename>
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_2.png</filename>
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_3.png</filename>
@@ -180,6 +179,7 @@
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_28.png</filename>
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_29.png</filename>
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_30.png</filename>
+            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/truck.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -1,0 +1,28 @@
+--Tasks and things to get done in Cookie Factory--
+
+-------------------------------------
+LOADING DOCK (loadingdock.lua)
+• create trucks as sprite.
+•• use trucks.png for image sheet
+•• use shapes_all@2x.lua (shape "truck") for physics shape.  The shape is just the back door of each truck.  Make sure the scaleFactor is set to .5, since the shapes are the larger shapes.  The truck should be a static object and a sensor.
+
+• create truck animation
+•• animation should loop through the "idling" animation to begin with, using frames 17-18
+•• "opening" animation should be frames 0-9
+•• "moving" animation should be frames 20-29
+
+• Sense when the coookie item is dragged over the truck
+•• when dragged over the truck, make the back door open
+•• when dropped onto the truck, shrink the item and place into the truck.  The truck should drive away, playing the "moving" animation.
+•• check to see if the value of the item was the same as the value of the missing place value on the truck's number
+
+-------------------------------------
+SpawnCookie ("spawn_cookie.lua")
+• Change the images to come from a sprite sheet
+• change the physics bodies to come from "shapes_all@2x.lua"
+
+-------------------------------------
+PACKAGING ("packaging.lua")
+• fix number_check fcn (drop?) so that, when the cookie item is dropped, it registers as correct if the numbers match up, and then generates a new number object.
+• create pull-apart function to be able to break the cookie into tenths? (discuss this)
+• create 10x (double-tap) fcn to change the cookie object to 10x what it currently is.

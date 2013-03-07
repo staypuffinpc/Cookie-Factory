@@ -114,7 +114,7 @@
 		</data>
 		<key>Cookie-Factory.app/Cookie-Factory</key>
 		<data>
-		qm4Dj/N+apk+uzjU8brMXDln0Vs=
+		rOr35kp1lO9LgWxNK5/dGJufNlo=
 		</data>
 		<key>Cookie-Factory.app/CoronaSDK3rdPartyLicenses.txt</key>
 		<data>
@@ -186,15 +186,19 @@
 		</data>
 		<key>Cookie-Factory.app/MainWindow-iPad.nib</key>
 		<data>
-		4RpGz0HA0Nlyoj3+5n+VZyanV4I=
+		5/l5NcP7nzk/OMFLCzPzLqne7/8=
 		</data>
 		<key>Cookie-Factory.app/MainWindow.nib</key>
 		<data>
-		04tNSJWl+6nsNRM6avVFdK/FNHg=
+		xxeKnRbLMx2Qz2T25fU4zefRKj0=
 		</data>
 		<key>Cookie-Factory.app/PkgInfo</key>
 		<data>
 		n57qDP4tZfLD1rCS43W0B4LQjzE=
+		</data>
+		<key>Cookie-Factory.app/_CodeSignature/CodeResources</key>
+		<data>
+		59uu8QShMYW9sREFtkBxUL7rvFM=
 		</data>
 		<key>Cookie-Factory.app/embedded.mobileprovision</key>
 		<data>
@@ -202,11 +206,11 @@
 		</data>
 		<key>Cookie-Factory.app/resource.car</key>
 		<data>
-		0xwMDy9LhvlUrD0f7rxKQxtmU4w=
+		L2CGKMUiq1eqGOIpMJ3cT7O89L8=
 		</data>
 		<key>Cookie_W13.ccwork</key>
 		<data>
-		JASLwgaxaxPGfRyUvP1ZS3t7ZSM=
+		AwtKb4pLZDlA48fAzZPLrfvCuHg=
 		</data>
 		<key>CoronaSDK3rdPartyLicenses.txt</key>
 		<data>
@@ -306,11 +310,11 @@
 		</data>
 		<key>MainWindow-iPad.nib</key>
 		<data>
-		4RpGz0HA0Nlyoj3+5n+VZyanV4I=
+		5/l5NcP7nzk/OMFLCzPzLqne7/8=
 		</data>
 		<key>MainWindow.nib</key>
 		<data>
-		04tNSJWl+6nsNRM6avVFdK/FNHg=
+		xxeKnRbLMx2Qz2T25fU4zefRKj0=
 		</data>
 		<key>MultiTouchTesting/build.settings</key>
 		<data>
@@ -388,6 +392,10 @@
 		<data>
 		T7M/AEWIseRDeS7vt5f0SBoUsXQ=
 		</data>
+		<key>TODO.txt</key>
+		<data>
+		WoWRBBcvgC+0D+nMFhl8iKfLrnk=
+		</data>
 		<key>TruckAnimations.swf</key>
 		<data>
 		VpqDu/U5HYawcl8LhDi6OIjQXsc=
@@ -403,6 +411,14 @@
 		<key>backgroundWithHoles@2.png</key>
 		<data>
 		Q6WKzH3e0PbFCqN2E0WquSTPwN8=
+		</data>
+		<key>chocchip_sheet.png</key>
+		<data>
+		j/4oIPvj73Wm6BDxOe0CA0tj+Xg=
+		</data>
+		<key>chocchip_sheet@2x.png</key>
+		<data>
+		KnLV9Lafeusp9zLBqBtriA/nFMQ=
 		</data>
 		<key>conveyorBelt.png</key>
 		<data>
@@ -2263,14 +2279,6 @@
 		<key>images/chocchipTray1@2x.png</key>
 		<data>
 		AA2QRlU19mwEQe7fns/DL6hAcRk=
-		</data>
-		<key>images/chocchip_sheet.png</key>
-		<data>
-		j/4oIPvj73Wm6BDxOe0CA0tj+Xg=
-		</data>
-		<key>images/chocchip_sheet@2x.png</key>
-		<data>
-		KnLV9Lafeusp9zLBqBtriA/nFMQ=
 		</data>
 		<key>images/chocchip_star.png</key>
 		<data>
@@ -4426,11 +4434,23 @@
 		</data>
 		<key>images/trucks.png</key>
 		<data>
-		34gKmN/oQdIIhXg+VOSgvcNiqXw=
+		OxwgEKEbcP1rlDKCBB149nuYKK8=
+		</data>
+		<key>images/trucks.pshs</key>
+		<data>
+		Hny4GTNowcDUNpFRDa8oh0JYYdY=
 		</data>
 		<key>images/trucks@2x.png</key>
 		<data>
-		QeGyEg2SkV6UCk+CiprbxFObRaI=
+		lkKVfXe8JHxnFZTKe57Wf4VV5y0=
+		</data>
+		<key>images/trucks_UntitledSheet.png</key>
+		<data>
+		WwmIXhDLHrS6KDmmN4YVFVRlKWE=
+		</data>
+		<key>images/trucks_UntitledSheet@2x.png</key>
+		<data>
+		7nUDwdbcSWXQNKHHYbcziLQavqw=
 		</data>
 		<key>images/white10000.png</key>
 		<data>
@@ -4568,17 +4588,17 @@
 		<data>
 		Ec7ZvjdFA0GnS5Yx9zPqKSRMiKw=
 		</data>
-		<key>pb.png</key>
+		<key>pb_sheet.png</key>
 		<data>
 		EIuMRh5PTMKOXnhvJYNcfoyC1EI=
 		</data>
-		<key>pb@2x.png</key>
+		<key>pb_sheet@2x.png</key>
 		<data>
 		grX3sVM1IDc2qgO0RaRFqqKQjRo=
 		</data>
 		<key>resource.car</key>
 		<data>
-		0xwMDy9LhvlUrD0f7rxKQxtmU4w=
+		L2CGKMUiq1eqGOIpMJ3cT7O89L8=
 		</data>
 		<key>scoreboard.ttf</key>
 		<data>
@@ -4586,7 +4606,7 @@
 		</data>
 		<key>shapes_all.pes</key>
 		<data>
-		kupnZsAyRBQx5qLt7yw1Qomt1Bo=
+		ocqfZBJLjXbWcIFzGNG0bZaRo08=
 		</data>
 		<key>truckSprite1.png</key>
 		<data>
@@ -4614,7 +4634,7 @@
 		</data>
 		<key>trucks.tps</key>
 		<data>
-		1ToBmQnQFOqwNzMqmgIboLVnLpU=
+		DT4IiSv6oqDNPJBPf+w3FaTu4jw=
 		</data>
 		<key>userData.json</key>
 		<data>

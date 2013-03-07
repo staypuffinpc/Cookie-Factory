@@ -123,7 +123,7 @@ function scene:enterScene( event )
 		function cookie:enterFrame(event)
 			if self.x < -50 or self.x > _W+50 then
 				--destroy cookie
-				print ("destroying cookie "..self.key)
+				--print ("destroying cookie "..self.key)
 				physics.removeBody(cookieArray[self.key])
 				cookieArray[self.key]= nil
 				Runtime:removeEventListener("enterFrame",self)
@@ -153,7 +153,7 @@ function scene:exitScene( event )
 		physics.pause()
 		--delete all the cookies that were generated
 		for k, v in pairs(cookieArray) do 
-			print ("removing: "..k)
+			--print ("removing: "..k)
 			physics.removeBody(cookieArray[k])
 			cookieArray[k] = nil
 			v:removeSelf()

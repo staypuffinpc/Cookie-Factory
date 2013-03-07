@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------------------
--- PURPOSE: To practice generating a random #, converting it to text, and remove one digit, at random
+-- PURPOSE: To create a cookie object
 -----------------------------------------------------------------------------------------
 module(..., package.seeall)
 
@@ -10,12 +10,25 @@ answerSent = false
 sentValue = 0
 
 --forward declarations
-local disappear, itemHit, onLocalCollision, cookieGroup
-cookieGroup = display.newGroup()
+local disappear, itemHit, onLocalCollision
+local cookieGroup = display.newGroup()
 local cloud = display.newImageRect("images/cloud.png",256,256) --cloud for transformations
 cloud.x = -200
 cloud.y = -200 
-generatedItems = {}
+local generatedItems = {}
+
+
+--initialize all the cookie image sheets? (not sure if this is the best thing for memory consumption)
+local cookies = {"oreo","jelly","pb","chocchip"}
+local imageSheets = {}
+for i=1, #cookies do
+    local v = cookies[i]
+    imageSheets[v] = {
+    	sheetData = require(v.."_sheet"),
+    	name = v
+    }
+    imageSheets[v].sheet = graphics.newImageSheet(v.."_sheet.png",imageSheets[v].sheetData:getSheet())
+end
 
 
 local function inArray(array, value)
@@ -193,13 +206,17 @@ function spawnCookie(name, value,w,h, units, radius, shape,x,y)
 	--create a group to insert everything into about that cookie
 	local cookie = display.newGroup()
 	
+	
 	--cookie image
-	local image = display.newImageRect("images/"..name..value..".png",w,h)
+	--This is for when I figure out how to set the keys of one array to be the values of another:
+	local obj = imageSheets[name]
+	local image = display.newImage(obj.sheet, obj.sheetData:getFrameIndex(name..value))
+	
 	image.x = 0; image.y = 0;
 	cookie:insert(image)
 	
 	--generate an invisible shape with the same body that is dynamic so that it can interact with sensors at all times
-	local invImg = display.newImageRect("images/"..name..value..".png",w,h)
+	local invImg = display.newImage(obj.sheet, obj.sheetData:getFrameIndex(name..value))
 	invImg.x, invImg.y = image.x,image.y
 	invImg.alpha = .01
 	cookie:insert(invImg)
@@ -362,7 +379,7 @@ function cleanUp()
 	end
 	--delete all the cookies that were generated
 	for k, v in pairs(generatedItems) do 
-		print ("removing: "..k)
+		--print ("removing: "..k)
 		generatedItems[k] = nil
 		Runtime:removeEventListener("enterFrame", v)
 		v:removeSelf()
