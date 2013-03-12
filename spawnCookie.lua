@@ -8,6 +8,10 @@ moveRate = 4 -- how fast the cookie moves across the screen
 touchingOnRelease = false
 answerSent = false
 sentValue = 0
+local scaleFactor = .5
+local bodies = (require "shapes_all@2x").physicsData(scaleFactor)
+
+
 
 --forward declarations
 local disappear, itemHit, onLocalCollision
@@ -30,7 +34,7 @@ for i=1, #cookies do
     imageSheets[v].sheet = graphics.newImageSheet(v.."_sheet.png",imageSheets[v].sheetData:getSheet())
 end
 
-
+--fcn to check if an item is already in an array
 local function inArray(array, value)
     local is = false
     for i, thisValue in ipairs(array) do
@@ -66,7 +70,8 @@ local function comboItem(x,y, remainder, newItems, newValue,units)
 		local w = i.w 
 		local h = i.h 
 		local radius = i.radius
-		local shape = i.shape 
+		print(name..newValue)
+		local shape = i.shape
 		local cookie1=spawnCookie(name, thisValue ,w,h, newUnits, radius, shape, x+i.w/2, y+i.h/3)
 		cookie1.moved="yes"
 		cookieGroup:insert(cookie1)
@@ -252,6 +257,7 @@ function spawnCookie(name, value,w,h, units, radius, shape,x,y)
 	cookie.y = y or 240
 	cookie.units = units
 	cookie.dragging = 0
+	print(name..value)
 	physics.addBody(cookie, "dymamic", {radius=radius, shape=shape})
 	--physics.addBody(invImg, "dymamic", {radius=radius, shape=shape})
 	--physics.newJoint("weld", cookie, invImg, image.x, invImg.y)

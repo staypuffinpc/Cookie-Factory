@@ -7,7 +7,7 @@ LOADING DOCK (loadingdock.lua)
 •• use shapes_all@2x.lua (shape "truck") for physics shape.  The shape is just the back door of each truck.  Make sure the scaleFactor is set to .5, since the shapes are the larger shapes.  The truck should be a static object and a sensor.
 
 • create truck animation
-•• animation should loop through the "idling" animation to begin with, using frames 17-18
+•• animation should loop through the "idling" animation to begin with, using frames 11,17
 •• "opening" animation should be frames 0-9
 •• "moving" animation should be frames 20-29
 
