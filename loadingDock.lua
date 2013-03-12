@@ -61,7 +61,7 @@ level=4
 totalTrucks=level
 totalItems=level-1
 palletPositions={330, 500, 670}
-print(palletPositions[3])
+print(palletPositions[1])
 local numTrucksToCreate = 3
 
 -- 'onRelease' event listener for return to main menu
@@ -274,8 +274,8 @@ truckY=250 --increase by 125
 		pallet.value=numObj.omittedValue--should this actually be the omittedValue so it can be compared to the truck?
 			pallet.myName="Palette Number:"..pallet.value
 			print(pallet.myName)
-		pallet.x=120
-		pallet.y=palletY
+		pallet.x=150
+		pallet.y=_H/2
 		physics.addBody(pallet,"kinetic", {friction=0.7})
 		pallet.isFixedRotation=true
 	end
