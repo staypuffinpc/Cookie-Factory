@@ -26,6 +26,7 @@ local itemsCreated
 local newList
 local inArray
 local createKey
+local toggle=0
 
 	--From generateNumInfo
 	local newList
@@ -115,16 +116,24 @@ function scene:createScene( event )
 	end
 	
 	 
-	function onLocalCollision( self, touch )
-		if ( touch.phase == "began" ) then
-			print( self.myName.."collision BEGAN with" .. touch.other.myName )
-				if self.myName==touch.other.myName then
+	function onLocalCollision( self, event )
+		if ( event.phase == "began" ) then
+			if toggle==1 then 
+				return false
+			else 
+				toggle=1
+			print( self.myName.."collision BEGAN with" .. event.other.myName )
+				if self.myName==event.other.myName then
 					print("MATCH")
 				else 
 					print("No Match")
 				end
-		elseif ( touch.phase == "ended" ) then
-			print( self.myName .. " ended a collision with " .. touch.other.myName )
+			end
+		elseif ( event.phase == "ended" ) then
+			if toggle==1 then
+				toggle=0
+			end
+			print( self.myName .. " ended a collision with " .. event.other.myName )
 			return true
 		end
 	end
@@ -235,8 +244,6 @@ end
 		truck.x = truckX
 		truck.y = truckY
 		physics.addBody(truck, "static", {isSensor=true})
-		truck.collision = onLocalCollision
-		truck:addEventListener( "collision", truck )
         return truck
 	end
 
@@ -291,36 +298,15 @@ truckY=250 --increase by 125
 	end
 
 --create a target block (i.e. "dropzone") for delivering the packaged cookies
-	function createDropZone(dropZone)
-		dropZone = display.newRect(0,0, 140,130)
-		dropZone:setFillColor(255,255,255,30)
-		dropZone.strokeWidth = 4
-		dropZone.alpha = 0 -- make invisible to begin with
-		dropZone:setStrokeColor(255,0,0)
-		dropZone:setReferencePoint(display.TopRightReferencePoint)
-		physics.addBody(dropZone)
-		dropZone.isSensor = true
-		dropZone.collision = checkAnswer
-		dropZone:addEventListener("collision",dropZone)
-		dropZone.y = dropZoneY
-		dropZone.x= dropZoneX
-	end
-	
-	for i=1, #newList do
-		createDropZone(dropZoneX, dropZoneY, newList[i])
-		dropZoneX=truckX+80
-		dropZoneY=truckY+125	
-		--truck:addEventListener("touch", truck)
-	end
+--EVENTUALLY OPEN THE BACK OF THE TRUCK AND ANIMATE IT
+
 
 --check user's answer
 	function checkAnswer(self, event)	
 		--if the item is over a sensor
 		if event.phase == "began" then
-			dropZone.alpha = 1
 			spawn.touchingOnRelease = true
-		elseif event.phase == "ended" then
-			dropZone.alpha = 0	
+		elseif event.phase == "ended" then	
 			spawn.touchingOnRelease = false
 		end	
 		return true
