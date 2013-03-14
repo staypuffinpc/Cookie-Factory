@@ -38,7 +38,7 @@
         <key>dataFormat</key>
         <string>corona-imagesheet</string>
         <key>textureFileName</key>
-        <filename>images/trucks@2x.png</filename>
+        <filename>trucks@2x.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -157,6 +157,8 @@
         </struct>
         <key>fileList</key>
         <array>
+            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_26.png</filename>
+            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_30.png</filename>
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_1.png</filename>
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_2.png</filename>
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_3.png</filename>
@@ -166,20 +168,14 @@
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_7.png</filename>
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_8.png</filename>
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_9.png</filename>
+            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_10.png</filename>
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_17.png</filename>
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_18.png</filename>
+            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_19.png</filename>
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_20.png</filename>
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_21.png</filename>
             <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_22.png</filename>
-            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_23.png</filename>
-            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_24.png</filename>
-            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_25.png</filename>
-            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_26.png</filename>
-            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_27.png</filename>
-            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_28.png</filename>
-            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_29.png</filename>
-            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_30.png</filename>
-            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/truck.png</filename>
+            <filename>../../../../../Dropbox/Advising/Anneke Garcia/TruckFlashFiles/Truck animations3/Truck animations3_11.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
