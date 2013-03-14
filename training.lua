@@ -450,7 +450,6 @@ function scene:createScene( event )
 			sideBar:insert(star)
 		end
 	end
-	
 
 	leftGroup = display.newGroup()
 		--left  wall slice is not part of the storyboard group so that it remains on top of everything.  Have to remove and add it when you leave/enter the screen
@@ -556,6 +555,7 @@ function scene:enterScene( event )
 	end
 	testItem:addEventListener("touch",testItem)
 --]]
+
 	--set up a timer to generate cookies (NOTE: allow users to increase the speed of the cookies across the screen and the rate at which cookies are generated)
 	function generator()
 		-- make sure to move this code to a question controlling 

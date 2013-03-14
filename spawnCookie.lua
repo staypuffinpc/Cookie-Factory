@@ -11,6 +11,7 @@ sentValue = 0
 local scaleFactor = .5
 local bodies = (require "shapes_all@2x").physicsData(scaleFactor)
 
+local debugger = require "debugger"
 
 
 --forward declarations
@@ -71,7 +72,7 @@ local function comboItem(x,y, remainder, newItems, newValue,units)
 		local h = i.h 
 		local radius = i.radius
 		print(name..newValue)
-		local shape = i.shape
+		local shape = bodies:get(name..newValue)
 		local cookie1=spawnCookie(name, thisValue ,w,h, newUnits, radius, shape, x+i.w/2, y+i.h/3)
 		cookie1.moved="yes"
 		cookieGroup:insert(cookie1)
@@ -87,7 +88,7 @@ local function comboItem(x,y, remainder, newItems, newValue,units)
 		local newH = n.h 
 		local newUnits = n.units
 		local newRadius = n.radius
-		local newShape = n.shape
+		local newShape = bodies:get(newName..newValue)
 		local cookie2 = spawnCookie(newName, units*10,newW,newH, newUnits, newRadius, newShape, x-30, y)
 		cookie2.moved ="yes"
 		generatedItems[cookie2.key] = cookie2
@@ -98,7 +99,7 @@ local function comboItem(x,y, remainder, newItems, newValue,units)
 		local w = j.w 
 		local h = j.h 
 		local radius = j.radius
-		local shape = j.shape 
+		local shape = bodies:get(name..newValue) 
 		local cookie1=spawnCookie(name, remainder ,w,h, units, radius, shape, x+j.w/2, y+j.h/3)
 		cookie1.moved="yes"
 		cookieGroup:insert(cookie1)
@@ -257,8 +258,7 @@ function spawnCookie(name, value,w,h, units, radius, shape,x,y)
 	cookie.y = y or 240
 	cookie.units = units
 	cookie.dragging = 0
-	print(name..value)
-	physics.addBody(cookie, "dymamic", {radius=radius, shape=shape})
+	physics.addBody(cookie, "dymamic", bodies:get(name..value))
 	--physics.addBody(invImg, "dymamic", {radius=radius, shape=shape})
 	--physics.newJoint("weld", cookie, invImg, image.x, invImg.y)
 	cookie.isFixedRotation = false
