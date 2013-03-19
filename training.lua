@@ -37,7 +37,7 @@ userInfoTable = json.decode(userInfo)
 print ("Welcome: "..userInfoTable.userName)	
 local currLevel = userInfoTable.data.trainingLevel
 
-local createRate = 1000 --how often a new cookie is spawned (in milliseconds)
+local createRate = 2000 --how often a new cookie is spawned (in milliseconds)
 local thisLevel
 local currMode = "timed" -- or count; also switch this per user request
 
@@ -356,7 +356,7 @@ function scene:createScene( event )
 	}
 	thisLevel = levelObjects[currLevel]
 		
-		--[[
+		--[[TODO: uncomment this
 		--create an intro message
 		local intro = display.newGroup()
 		local introBg = display.newRoundedRect(0,0,640,400,5)

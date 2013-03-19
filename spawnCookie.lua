@@ -185,7 +185,7 @@ function onLocalCollision(self, event)
 				else
 					--commence transformation
 					print ("obj1:"..obj1.units, "obj2: "..obj2.units)
-					print ("collision began")		
+					print ("collision began")	
 					local closure = function() return itemHit(hitX,hitY,obj1, obj2) end
 					onLocalCollisionTimer = timer.performWithDelay(100, closure, 1)
 					return true;
@@ -221,12 +221,14 @@ function spawnCookie(name, value,w,h, units, radius, shape,x,y)
 	image.x = 0; image.y = 0;
 	cookie:insert(image)
 	
+	
+	--[[TODO: look into this
 	--generate an invisible shape with the same body that is dynamic so that it can interact with sensors at all times
 	local invImg = display.newImage(obj.sheet, obj.sheetData:getFrameIndex(name..value))
 	invImg.x, invImg.y = image.x,image.y
-	invImg.alpha = .01
+	invImg.alpha = .8
 	cookie:insert(invImg)
-	
+	]]
 	
 	--cookie badge (needs text and a rounded rectangle grouped together)
 	local badge = display.newGroup()
@@ -287,7 +289,6 @@ function spawnCookie(name, value,w,h, units, radius, shape,x,y)
 			self.isFocus = true
 			self.markX = self.x 
 			self.markY = self.y 
-			self.dragging = 1
 			
 			-- Create a temporary touch joint and store it in the object for later reference
             self.tempJoint = physics.newJoint( "touch", self, event.x, event.y )
@@ -295,6 +296,7 @@ function spawnCookie(name, value,w,h, units, radius, shape,x,y)
 			--return true
 		elseif self.isFocus then
 			if event.phase == "moved" then
+				self.dragging = 1 --only make new cookies if this is 1
 				--set a variable to know that the cookie has been moved and should no longer move across the screen
 				self.moved = "yes"
 				--move the cookie around the screen
