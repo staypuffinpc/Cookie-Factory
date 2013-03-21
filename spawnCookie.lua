@@ -68,12 +68,12 @@ local function comboItem(x,y, remainder, newItems, newValue,units)
 		local i = items[thisValue]
 		local newUnits = i.units
 		local name = i.name
-		local w = i.w 
-		local h = i.h 
+--		local w = i.w 
+--		local h = i.h 
 		local radius = i.radius
 		print(name..newValue)
 		local shape = bodies:get(name..newValue)
-		local cookie1=spawnCookie(name, thisValue ,w,h, newUnits, radius, shape, x+i.w/2, y+i.h/3)
+		local cookie1=spawnCookie(name, thisValue , newUnits, radius, shape, x+i.w/2, y+i.h/3)
 		cookie1.moved="yes"
 		cookieGroup:insert(cookie1)
 		generatedItems[cookie1.key] = cookie1
@@ -84,23 +84,23 @@ local function comboItem(x,y, remainder, newItems, newValue,units)
 		local newUnits = units*10
 		local n = items[newUnits]
 		local newName = n.name
-		local newW = n.w 
-		local newH = n.h 
+--		local newW = n.w 
+--		local newH = n.h 
 		local newUnits = n.units
 		local newRadius = n.radius
 		local newShape = bodies:get(newName..newValue)
-		local cookie2 = spawnCookie(newName, units*10,newW,newH, newUnits, newRadius, newShape, x-30, y)
+		local cookie2 = spawnCookie(newName, units*10, newUnits, newRadius, newShape, x-30, y)
 		cookie2.moved ="yes"
 		generatedItems[cookie2.key] = cookie2
 		--now create the same kind of item, with the remaining value
 		local j = items[remainder]
 		local newUnits = j.units
 		local name = j.name
-		local w = j.w 
-		local h = j.h 
+--		local w = j.w TODO: either delete or uncomment
+--		local h = j.h 
 		local radius = j.radius
 		local shape = bodies:get(name..newValue) 
-		local cookie1=spawnCookie(name, remainder ,w,h, units, radius, shape, x+j.w/2, y+j.h/3)
+		local cookie1=spawnCookie(name, remainder, units, radius, shape, x+j.w/2, y+j.h/3)
 		cookie1.moved="yes"
 		cookieGroup:insert(cookie1)
 		cookieGroup:insert(cookie2)
@@ -171,6 +171,7 @@ end
 
 function onLocalCollision(self, event)
 	if self.dragging == 1 then
+		self.dragging = 0	--immediately turn off dragging so I don't accidentally create multiple items
 		local hitX = self.x 
 		local hitY = self.y 
 		local obj1 = self
@@ -185,7 +186,7 @@ function onLocalCollision(self, event)
 				else
 					--commence transformation
 					print ("obj1:"..obj1.units, "obj2: "..obj2.units)
-					print ("collision began")	
+					print ("collision began")
 					local closure = function() return itemHit(hitX,hitY,obj1, obj2) end
 					onLocalCollisionTimer = timer.performWithDelay(100, closure, 1)
 					return true;
@@ -208,7 +209,7 @@ local function genKey(array)
 end
 
 --couldn't seem to get external classes to work, so I'm going to use Rafael Hernandez's method of spawning objects as seen in the Bubble Ball exercise
-function spawnCookie(name, value,w,h, units, radius, shape,x,y)
+function spawnCookie(name, value, units, radius, shape,x,y)
 	--create a group to insert everything into about that cookie
 	local cookie = display.newGroup()
 	
@@ -243,10 +244,10 @@ function spawnCookie(name, value,w,h, units, radius, shape,x,y)
 	badge:insert(badgeRect)
 	badge:insert(badgeText)
 	cookie:insert(badge)
-	badge.x=-25; badge.y = h*.3
+	badge.x=-25; badge.y = image.height*.3
 	
 	--create num to be displayed above cookie when dragged
-	local dragNumDisp = display.newRetinaText(cookie,value,-w/4,-image.height,"Arial",48)
+	local dragNumDisp = display.newRetinaText(cookie,value,-image.width/4,-image.height,"Arial",48)
 	dragNumDisp.alpha = 0
 	--cookie properties
 	cookie.dragNumDisp = dragNumDisp

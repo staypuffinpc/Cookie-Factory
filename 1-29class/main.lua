@@ -4,6 +4,10 @@ physics.start()
 physics.setGravity(0,0)
 physics.setDrawMode("hybrid")
 
+
+--create a display group for all the display items
+local group = display.newGroup()
+
 -- create object and BETTER dragability
 local myObject = display.newRect( 0, 0, 100, 100 )
 myObject:setFillColor( 200, 54, 84 )
@@ -44,7 +48,7 @@ local myImageSheet = graphics.newImageSheet( "trucks.png", sheetInfo:getSheet() 
 local sequenceData = 
 {
    { name = "idling", frames = { 3,4}, time = 250, loopCount = 0 },
-   { name = "opening", frames = { 1,7,12,14, 15, 16, 17, 18, 19, 2}, time = 1000, loopCount = 1 },
+   { name = "opening", frames = { 1,2,7,12,14, 15, 16, 17, 18, 19}, time = 300, loopCount = 1 },
    { name = "moving", frames = { 5,6,8,9,10,11,13}, time = 250, loopCount = 0 }
  }
 
@@ -73,8 +77,13 @@ animation:addEventListener( "trucks", mySpriteListener )  --add a sprite listene
 ]]
 --catShape={-256,-128,  256,-128,  128,0, 256,128,  -256,128}
 --add them to physics
-physics.addBody( myObject, "dynamic" )--, { density=3.0, friction=0.5, bounce=0.3 } )
+local shapes = (require "shapes_all@2x").physicsData(.5)
+
+local specificShape = shapes:get("chocchip1")
+
+physics.addBody( myObject, "dynamic", specificShape )--, { density=3.0, friction=0.5, bounce=0.3 } )
 physics.addBody( animation, "dynamic" )--, {shape=catShape} )
+
 
 --??I can't tell which this should be, mySheet or myObject??
 
@@ -109,4 +118,9 @@ end
 animation.isSensor = "false"
 animation.collision = onCollide
 animation:addEventListener( "collision", animation )
+
+
+--insert everything into the display group
+group:insert("animation")
+group:insert("myObject")
  
