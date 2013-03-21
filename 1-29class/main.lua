@@ -30,7 +30,7 @@ function myObject:touch( event )
 	--end focus
 			display.getCurrentStage():setFocus( self, nil )
 			self.isFocus = false
-		end
+		end 
 	end
 	--event handled
 	return true
