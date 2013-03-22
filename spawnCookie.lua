@@ -281,7 +281,7 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 			--get the time at which the cookie was last tapped
 			if (os.difftime(os.time(),self.lastTapped)<1) then
 				local newVal = self.value*10
-				--make the 10x appear
+				--TO DO:make the 10x appear with a sound
 				self:setReferencePoint(display.CenterReferencePoint)
 				local x, y = self.x+self.width/2+20, self.y+self.height/2+20
 				local newCookie = spawnCookie(self.name, newVal, self.units*10, 50, bodies:get(self.name..newVal),x, y)
@@ -293,8 +293,7 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 								self:removeSelf()
 								self = nil
 							end, 1)
-				--remove old cookie from the generatedCookies list
-				--destroy the old cookie				
+				
 			end
 		end
 		self.lastTapped = os.time()
