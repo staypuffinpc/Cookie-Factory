@@ -492,7 +492,7 @@ function scene:enterScene( event )
 	rightWall = display.newRect(0,0, 95, .65*_H)
 	rightWall:setReferencePoint(display.TopRightReferencePoint)
 	rightWall.x = _W
-	rightWall.y = .35*_H
+	rightWall.y = .33*_H
 	rightWall:setFillColor(255,0,0)
 	rightWall.alpha = 0
 	physics.addBody(rightWall, "static")
@@ -512,16 +512,16 @@ function scene:enterScene( event )
 	physics.addBody(top, "static")
 	cookieGroup:insert(top)
 	
-	conveyorFloor = display.newRoundedRect(100,240,850,70,35)
+	conveyorFloor = display.newRoundedRect(70,240,870,70,35)
 	conveyorFloor:setReferencePoint(display.TopLeftReferencePoint)
-	conveyorFloor.x = 85
+	conveyorFloor.x = 65
 	conveyorFloor.y = 255
 	conveyorFloor:setFillColor(0,0,255)
 	conveyorFloor.alpha = .0
 	physics.addBody(conveyorFloor, "static", {friction = 0})
 	cookieGroup:insert(conveyorFloor)
 	
-	packingFloor = display.newRect(0,600,_W,10)
+	packingFloor = display.newRect(0,600,_W*1.2,10)
 	packingFloor:setReferencePoint(display.TopLeftReferencePoint)
 	packingFloor.x = 0
 	packingFloor.y = 590
@@ -562,7 +562,7 @@ function scene:enterScene( event )
 		local randNum = generate.genRandNum(levels[currLevel].digits)
 		local newCookie = math.random(#thisLevel)
 		local c = thisLevel[newCookie]
-		local cookieSpawn = spawn.spawnCookie(c.name,c.value, c.w,c.h,c.units, c.radius, c.shape)
+		local cookieSpawn = spawn.spawnCookie(c.name,c.value,c.units, c.radius, c.shape)
 		cookieGroup:insert(cookieSpawn)
 	end
 	-----------------------------------------------------------------------------

@@ -171,34 +171,35 @@ end
 
 function onLocalCollision(self, event)
 	if self.dragging == 1 then
-		self.dragging = 0	--immediately turn off dragging so I don't accidentally create multiple items
 		local hitX = self.x 
 		local hitY = self.y 
 		local obj1 = self
 		local obj2 = event.other
 		if event.phase == "began" then
-			if ((obj1.units == obj2.units) and (obj1.y > 300) and (obj2.y >300)) then--units are the same
-				--check to see if this is the 10,000 units hitting each other, b/c we don't have a graphic for that
-				if (obj1.value + obj2.value >= 100000) then--too big so exit fcn
-					--TODO: play "bonk!" sound and exit
-					print ("sorry, haven't got anything higher")
+			if self.dragging == 1 then
+				if ((obj1.units == obj2.units) and (obj1.y > 300) and (obj2.y >300)) then--units are the same
+					--check to see if this is the 10,000 units hitting each other, b/c we don't have a graphic for that
+					if (obj1.value + obj2.value >= 100000) then--too big so exit fcn
+						--TODO: play "bonk!" sound and exit
+						print ("sorry, haven't got anything higher")
+						return false
+					elseif (self.copied ~= true) then
+						self.copied = true -- set right away so as not to propagate creation
+						--commence transformation
+						print ("obj1:"..obj1.units, "obj2: "..obj2.units)
+						print ("collision began")
+						local closure = function() return itemHit(hitX,hitY,obj1, obj2) end
+						onLocalCollisionTimer = timer.performWithDelay(100, closure, 1)
+						return true;
+					end
+				else --units are different, so play sound and exit fcn
+					--print ("sorry, these two objects are not from the same mother")
 					return false
-				else
-					--commence transformation
-					print ("obj1:"..obj1.units, "obj2: "..obj2.units)
-					print ("collision began")
-					local closure = function() return itemHit(hitX,hitY,obj1, obj2) end
-					onLocalCollisionTimer = timer.performWithDelay(100, closure, 1)
-					return true;
 				end
-			else --units are different, so play sound and exit fcn
-				--print ("sorry, these two objects are not from the same mother")
-				return false
 			end
 		end
-		
-		return true
 	end
+	return true
 end
 
 
@@ -261,20 +262,18 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 	cookie.y = y or 240
 	cookie.units = units
 	cookie.dragging = 0
+	cookie.copied = false
 	physics.addBody(cookie, "dymamic", bodies:get(name..value))
 	--physics.addBody(invImg, "dymamic", {radius=radius, shape=shape})
 	--physics.newJoint("weld", cookie, invImg, image.x, invImg.y)
 	cookie.isFixedRotation = false
-	cookie.linearDamping = 9
+	cookie.linearDamping = 3
 	cookie.collision = onLocalCollision
 	cookie:addEventListener("collision",cookie)
 	--generate a unique key to refer to this cookie
 	cookie.key = genKey(generatedItems)
 	generatedItems[cookie.key] = cookie
-	
-	
-	--table.insert(generatedItems,cookie)
-	
+		
 	function cookie:touch(event)
 		if event.phase == "began" then
 			cookie:setReferencePoint(display.CenterReferencePoint)
@@ -282,7 +281,6 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 			self.isFixedRotation = true
 			self.isBodyActive = false
 			self.bodyType = "kinematic"
-			self.isBodyActive = true
 			--show the value of the cookie on top of the cookie
 			self.dragNumDisp.alpha = 1
 			
@@ -297,6 +295,7 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 			--return true
 		elseif self.isFocus then
 			if event.phase == "moved" then
+				self.isBodyActive = true
 				self.dragging = 1 --only make new cookies if this is 1
 				--set a variable to know that the cookie has been moved and should no longer move across the screen
 				self.moved = "yes"
@@ -317,7 +316,7 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 				self.dragNumDisp.alpha = 0
 				display.getCurrentStage():setFocus(self,nil)
 				self.isFocus=false
-				--get rid of temporary physics joint
+				--get rid of temporary physics joint: TO DO: turn this back on
 				self.tempJoint:removeSelf()
 				self.tempJoint = nil
 				if touchingOnRelease == true then

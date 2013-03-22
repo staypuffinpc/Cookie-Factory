@@ -121,6 +121,6 @@ animation:addEventListener( "collision", animation )
 
 
 --insert everything into the display group
-group:insert("animation")
-group:insert("myObject")
+group:insert(animation)
+group:insert(myObject)
  
