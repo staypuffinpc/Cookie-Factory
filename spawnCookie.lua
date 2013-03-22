@@ -273,7 +273,34 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 	--generate a unique key to refer to this cookie
 	cookie.key = genKey(generatedItems)
 	generatedItems[cookie.key] = cookie
-		
+	cookie:addEventListener("tap",cookie)
+	
+	--for double taps (so we can multiply the cookie x10
+	function cookie:tap(event)
+		if (self.lastTapped) then
+			--get the time at which the cookie was last tapped
+			if (os.difftime(os.time(),self.lastTapped)<1) then
+				local newVal = self.value*10
+				--make the 10x appear
+				self:setReferencePoint(display.CenterReferencePoint)
+				local x, y = self.x+self.width/2+20, self.y+self.height/2+20
+				local newCookie = spawnCookie(self.name, newVal, self.units*10, 50, bodies:get(self.name..newVal),x, y)
+				newCookie.moved = "yes"
+				timer.performWithDelay(100, function()  
+								Runtime:removeEventListener("enterFrame",self)
+								generatedItems[self.key] = nil
+								collectgarbage("collect")
+								self:removeSelf()
+								self = nil
+							end, 1)
+				--remove old cookie from the generatedCookies list
+				--destroy the old cookie				
+			end
+		end
+		self.lastTapped = os.time()
+	end
+	
+	--touch
 	function cookie:touch(event)
 		if event.phase == "began" then
 			cookie:setReferencePoint(display.CenterReferencePoint)

@@ -9,9 +9,22 @@ local scene = storyboard.newScene()
 physics.start()
 physics.setDrawMode("hybrid")
 
--- include Corona's "widget" library
+--get required files
 local widget = require "widget"
+local scalefactor = .5
+local bodies = (require "shapes_all@2x").physicsData(scaleFactor)
 
+--initialize all the cookie image sheets? (not sure if this is the best thing for memory consumption)
+local cookies = {"chocchip","oreo","jelly","pb"}
+local imageSheets = {}
+for i=1, #cookies do
+    local v = cookies[i]
+    imageSheets[v] = {
+    	sheetData = require(v.."_sheet"),
+    	name = v
+    }
+    imageSheets[v].sheet = graphics.newImageSheet(v.."_sheet.png",imageSheets[v].sheetData:getSheet())
+end
 --------------------------------------------
 
 
@@ -22,7 +35,6 @@ local supervisorBtn
 local onEnterFrame
 local rainTimer, spawnCookieDrop, rain
 local cookieArray = {}
-local cookies = {"chocchip","oreo","jelly","pb"}
 --local onTrainingBtnRelease={}
 
 
@@ -112,9 +124,13 @@ function scene:enterScene( event )
 		local index = math.random(1,#cookies)
 		local startX = math.random(0,_W)
 		local cookie = display.newGroup()
-		local image = display.newImageRect("images/"..cookies[index].."1.png",75,68)
+		local name = cookies[index]
+		local obj = imageSheets[name]
+		local image = display.newImage(obj.sheet, obj.sheetData:getFrameIndex(name.."1"))
 		cookie.x = startX; cookie.y = -50
-		physics.addBody(cookie,"dynamic",{bounce=.1,density=.9, friction=2, radius=34})
+		local shape = bodies:get(name.."1")
+		print (name.."1")
+		physics.addBody(cookie,"dynamic",shape)
 		cookie.key = "cookie_"..math.random(1,1000000000)
 		cookie:insert(image)
 		
@@ -136,13 +152,13 @@ function scene:enterScene( event )
 		return cookie
 	end
 	
-function rain(event)
-	local cookie = spawnCookieDrop()
-	cookieArray[cookie.key] = cookie
-	group:insert(cookie)
-end
+	function rain(event)
+		local cookie = spawnCookieDrop()
+		cookieArray[cookie.key] = cookie
+		group:insert(cookie)
+	end
 	--rain decadent cookies from above
-	rainTimer = timer.performWithDelay(500,rain,0)
+	rainTimer = timer.performWithDelay(2500,rain,0)
 end
 
 -- Called when scene is about to move offscreen:
