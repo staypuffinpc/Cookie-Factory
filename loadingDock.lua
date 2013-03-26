@@ -30,6 +30,7 @@ local newList
 local inArray
 local createKey
 local toggle=0
+local themePics, cookieInfo --vars to load the img sheet into
 
 	--From generateNumInfo
 	local newList
@@ -146,6 +147,7 @@ function scene:createScene( event )
 --local themes= {"creme", "pb","jelly","chocchip"}
 local theme = themes[level]
 
+
 items=itemInfo.createItemsForThisLevel(theme)
 
 	--the omitted# from the trucks (with the exception of 1) will determine the cookie to appear
@@ -198,10 +200,13 @@ physics.start()
     usedPositions={}
     
     newList = generate.generateNumInfos(numTrucksToCreate,5)
-    themes = {"oreo", "pb","jelly","chocchip"}
-    level = 3
+    level = 3 --TO DO: load the level dynamicall from some global
     theme = themes[level]
+    --create the appropriate image sheet for this level
+	cookieInfo = require (theme.."_sheet")
+	themePics = graphics.newImageSheet(theme.."_sheet.png",cookieInfo:getSheet())
     items = itemInfo.createItemsForThisLevel(theme)
+    
 
     --needle in a haystack fcn
 	function inArray(array, value)
@@ -230,6 +235,7 @@ end
 
 --local sheetInfo = require("trucks")
 local myImageSheet = graphics.newImageSheet( "trucks.png", sheetInfo:getSheet() )
+
 
 --define sequences
 local sequenceData = 
@@ -281,7 +287,7 @@ truckY=250 --increase by 125
 		local num = numObj.omittedValue
 		local imagePallet=display.newImageRect("images/Palette.png", 213, 79)
 			pallet:insert(imagePallet)
-		local itemImage=display.newImageRect("images/"..theme..tostring(num)..".png", items[num].w*0.9, items[num].h*0.9) --TO DO: REPLACE WITH COOKIE SPRITE...WHICH SHEET DO I USE....or do i just change newImageRect to newSprite??
+		local itemImage=display.newImage(themePics, cookieInfo:getFrameIndex(theme..num)) --TO DO: REPLACE WITH COOKIE SPRITE...WHICH SHEET DO I USE....or do i just change newImageRect to newSprite??
 			itemImage.y=-50
 			pallet:insert(itemImage)
 		numberText=tostring(numObj.omittedValue)
