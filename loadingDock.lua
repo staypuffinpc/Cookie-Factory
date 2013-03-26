@@ -234,7 +234,7 @@ end
 ]]
 
 --local sheetInfo = require("trucks")
-local myImageSheet = graphics.newImageSheet( "trucks.png", sheetInfo:getSheet() )
+local truckImageSheet = graphics.newImageSheet( "trucks.png", sheetInfo:getSheet() )
 
 
 --define sequences
@@ -249,12 +249,12 @@ local sequenceData =
 	function createTruck(truckX,truckY, numObj)
 		truck = display.newGroup()
 		--truck:setReferencePoint(display.TopRightReferencePoint) --TO DO: REPLACE LINE 235-237 WITH TRUCK SPRITE
-		local image = display.newSprite( myImageSheet , sequenceData )
+		local image = display.newSprite( truckImageSheet , sequenceData )
 		image:setSequence("idling")
 		image:play()
 		truck:insert(image)
 		local numberText = display.newEmbossedText(numObj.omittedNum, 0, 0, native.systemFontBold, 40)
-			numberText.x = -10; numberText.y = -55
+			numberText.x = -10; numberText.y = -30
 			numberText:setTextColor(75)
 			truck:insert(numberText)
 		truck.value = numObj.omittedValue
@@ -288,7 +288,9 @@ truckY=250 --increase by 125
 		local imagePallet=display.newImageRect("images/Palette.png", 213, 79)
 			pallet:insert(imagePallet)
 		local itemImage=display.newImage(themePics, cookieInfo:getFrameIndex(theme..num)) --TO DO: REPLACE WITH COOKIE SPRITE...WHICH SHEET DO I USE....or do i just change newImageRect to newSprite??
-			itemImage.y=-50
+			itemImage:setReferencePoint(display.BottomCenterReferencePoint)
+			itemImage.x=-10
+			itemImage.y=10
 			pallet:insert(itemImage)
 		numberText=tostring(numObj.omittedValue)
 		print("numberText:"..numberText)
@@ -306,7 +308,7 @@ truckY=250 --increase by 125
 			print(pallet.myName)
 		pallet.x=190
 		pallet.y=_H/2+70
-		--local specificShape = shapes:get()  WHAT DO I PUT HERE TO MAKE IT FIND THE RIGHT NAME??
+		local specificShape = shapes:get(theme..num)  --WHAT DO I PUT HERE TO MAKE IT FIND THE RIGHT NAME??
 		physics.addBody(pallet, "dynamic", specificShape )  --TO DO: REPLACE WITH SPECIFIC SHAPE, FROM SHAPES DATA
 		pallet.isFixedRotation=true
 	end
