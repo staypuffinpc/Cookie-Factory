@@ -234,7 +234,7 @@ end
 ]]
 
 --local sheetInfo = require("trucks")
-local truckImageSheet = graphics.newImageSheet( "trucks.png", sheetInfo:getSheet() )
+local myImageSheet = graphics.newImageSheet( "trucks.png", sheetInfo:getSheet() )
 
 
 --define sequences
@@ -249,7 +249,7 @@ local sequenceData =
 	function createTruck(truckX,truckY, numObj)
 		truck = display.newGroup()
 		--truck:setReferencePoint(display.TopRightReferencePoint) --TO DO: REPLACE LINE 235-237 WITH TRUCK SPRITE
-		local image = display.newSprite( truckImageSheet , sequenceData )
+		local image = display.newSprite( myImageSheet , sequenceData )
 		image:setSequence("idling")
 		image:play()
 		truck:insert(image)
