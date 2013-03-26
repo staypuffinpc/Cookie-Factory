@@ -9,6 +9,9 @@ local storyboard = require "storyboard"
 local widget= require "widget"
 local scene = storyboard.newScene()
 physics.setGravity(0,0)
+local sheetInfo = require "trucks"
+local shapes = (require "shapes_all@2x").physicsData(.5)
+themes = {"oreo", "pb","jelly","chocchip"}
 
 _H = display.contentHeight
 _W = display.contentWidth
@@ -140,7 +143,7 @@ function scene:createScene( event )
  
 
 --Spawn cookies, which should be the #trucks-1
-local themes= {"creme", "pb","jelly","chocchip"}
+--local themes= {"creme", "pb","jelly","chocchip"}
 local theme = themes[level]
 
 items=itemInfo.createItemsForThisLevel(theme)
@@ -184,6 +187,7 @@ end
 
 
 -------ENTER SCENE----------
+--
 function scene:enterScene( event )
 physics.start()
 
@@ -224,13 +228,25 @@ function palletPositionsTaken(array)
 end
 ]]
 
-		
+--local sheetInfo = require("trucks")
+local myImageSheet = graphics.newImageSheet( "trucks.png", sheetInfo:getSheet() )
+
+--define sequences
+local sequenceData = 
+{
+   { name = "idling", frames = { 3,4}, time = 250, loopCount = 0 },
+   { name = "opening", frames = { 1,2,7,12,14, 15, 16, 17, 18, 19}, time = 300, loopCount = 1 },
+   { name = "moving", frames = { 5,6,8,9,10,11,13}, time = 250, loopCount = 0 }
+ }
+	
 --Create a function that generates trucks
 	function createTruck(truckX,truckY, numObj)
 		truck = display.newGroup()
-		truck:setReferencePoint(display.TopRightReferencePoint)
-		local image = display.newImageRect("images/TruckOrange.png", 200, 130)
-			truck:insert(image)
+		--truck:setReferencePoint(display.TopRightReferencePoint) --TO DO: REPLACE LINE 235-237 WITH TRUCK SPRITE
+		local image = display.newSprite( myImageSheet , sequenceData )
+		image:setSequence("idling")
+		image:play()
+		truck:insert(image)
 		local numberText = display.newEmbossedText(numObj.omittedNum, 0, 0, native.systemFontBold, 40)
 			numberText.x = -10; numberText.y = -55
 			numberText:setTextColor(75)
@@ -243,8 +259,9 @@ end
 		createdItems[key] = truck
 		truck.x = truckX
 		truck.y = truckY
-		physics.addBody(truck, "static", {isSensor=true})
-        return truck
+		local specificShape = shapes:get("truck")
+		physics.addBody(truck, "dynamic", specificShape) --TO DO: GIVE A SHAPE FROM SHAPES ALL
+		return truck
 	end
 
 truckX=_W/2+55 --increase by 100
@@ -252,9 +269,9 @@ truckY=250 --increase by 125
 
 	for i=1, numTrucksToCreate do
 		createTruck(truckX, truckY, newList[i])
-		truckX=truckX+80
-		truckY=truckY+125	
-		--truck:addEventListener("touch", truck)
+		truckX=truckX+90
+		truckY=truckY+190	
+		
 	end
 		
 	--2 Generate 3 of the 4 cookie objects 		
@@ -264,7 +281,7 @@ truckY=250 --increase by 125
 		local num = numObj.omittedValue
 		local imagePallet=display.newImageRect("images/Palette.png", 213, 79)
 			pallet:insert(imagePallet)
-		local itemImage=display.newImageRect("images/"..theme..tostring(num)..".png", items[num].w*0.9, items[num].h*0.9)
+		local itemImage=display.newImageRect("images/"..theme..tostring(num)..".png", items[num].w*0.9, items[num].h*0.9) --TO DO: REPLACE WITH COOKIE SPRITE...WHICH SHEET DO I USE....or do i just change newImageRect to newSprite??
 			itemImage.y=-50
 			pallet:insert(itemImage)
 		numberText=tostring(numObj.omittedValue)
@@ -278,12 +295,13 @@ truckY=250 --increase by 125
 		key=createKey(createdItems)
 			pallet.key=key
 			createdItems[key]=pallet
-		pallet.value=numObj.omittedValue--should this actually be the omittedValue so it can be compared to the truck?
+		pallet.value=numObj.omittedValue--should this actually be the omittedValue so it can be compared to the truck? ???would this make the "checkanswer" work?
 			pallet.myName="Palette Number:"..pallet.value
 			print(pallet.myName)
-		pallet.x=150
-		pallet.y=_H/2
-		physics.addBody(pallet,"kinetic", {friction=0.7})
+		pallet.x=190
+		pallet.y=_H/2+70
+		--local specificShape = shapes:get()  WHAT DO I PUT HERE TO MAKE IT FIND THE RIGHT NAME??
+		physics.addBody(pallet, "dynamic", specificShape )  --TO DO: REPLACE WITH SPECIFIC SHAPE, FROM SHAPES DATA
 		pallet.isFixedRotation=true
 	end
 
@@ -298,7 +316,7 @@ truckY=250 --increase by 125
 	end
 
 --create a target block (i.e. "dropzone") for delivering the packaged cookies
---EVENTUALLY OPEN THE BACK OF THE TRUCK AND ANIMATE IT
+--EVENTUALLY OPEN THE BACK OF THE TRUCK AND ANIMATE IT...I've tried everything...I cannot figure out where to put the animation sequence function in this code to make it work. the closest i got was to have it only NOT work on the third truck. 
 
 
 --check user's answer
@@ -318,7 +336,7 @@ truckY=250 --increase by 125
 
 
 
-onLocalCollision(self, event)
+
 
 
 
