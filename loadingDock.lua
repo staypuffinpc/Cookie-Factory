@@ -31,6 +31,9 @@ local inArray
 local createKey
 local toggle=0
 local themePics, cookieInfo --vars to load the img sheet into
+local specificShape
+local touching = false
+local touchedTruck = {}
 
 	--From generateNumInfo
 	local newList
@@ -83,61 +86,32 @@ end
 function scene:createScene( event )
 	local group = self.view
 
-	--DRAG FUNCTION	
-	function startDrag( event )
-		local t = event.target
-	
-		local phase = event.phase
-		if "began" == phase then
-			display.getCurrentStage():setFocus( t )
-			t.isFocus = true
-	
-			-- Store initial position
-			t.x0 = event.x - t.x
-			t.y0 = event.y - t.y
-			
-			-- Make body type temporarily "kinematic" (to avoid gravitional forces)
-			event.target.bodyType = "kinematic"
-			event.target.isFixedRotation= true
-			
-		elseif t.isFocus then
-			if "moved" == phase then
-				t.x = event.x - t.x0
-				t.y = event.y - t.y0
-	
-			elseif "ended" == phase or "cancelled" == phase then
-				display.getCurrentStage():setFocus( nil )
-				t.isFocus = false
-				
-				-- Switch body type back to "dynamic", unless we've marked this sprite as a platform
-				if ( not event.target.isPlatform ) then
-					event.target.bodyType = "dynamic"
-				end
-			end
-		end
-		--end the touch event when ended
-		return true
-	end
+
 	
 	 
 	function onLocalCollision( self, event )
 		if ( event.phase == "began" ) then
+			touchedTruck = event.other
+			touching = true
 			if toggle==1 then 
 				return false
 			else 
 				toggle=1
-			print( self.myName.."collision BEGAN with" .. event.other.myName )
-				if self.myName==event.other.myName then
+			print( self.myName.."collision BEGAN with" .. touchedTruck.myName )
+				if self.myName==touchedTruck.myName then
 					print("MATCH")
 				else 
 					print("No Match")
 				end
 			end
 		elseif ( event.phase == "ended" ) then
+			
 			if toggle==1 then
 				toggle=0
 			end
-			print( self.myName .. " ended a collision with " .. event.other.myName )
+			print( self.myName .. " ended a collision with " .. touchedTruck.myName )
+			touchedTruck = {}
+			touching = false
 			return true
 		end
 	end
@@ -194,7 +168,7 @@ function scene:enterScene( event )
 physics.start()
 
 	local group = self.view
-
+touching = false
     --1 Generate 4 truck numbers (SessionNumbers)
     createdItems={}
     usedPositions={}
@@ -238,10 +212,11 @@ local truckImageSheet = graphics.newImageSheet( "trucks.png", sheetInfo:getSheet
 
 
 --define sequences
-local sequenceData = 
+sequenceData = 
 {
    { name = "idling", frames = { 3,4}, time = 250, loopCount = 0 },
    { name = "opening", frames = { 1,2,7,12,14, 15, 16, 17, 18, 19}, time = 300, loopCount = 1 },
+   { name = "closing", frames = { 19,18,17,16,15,14,12,7,2,1}, time = 300, loopCount = 1 },
    { name = "moving", frames = { 5,6,8,9,10,11,13}, time = 250, loopCount = 0 }
  }
 	
@@ -253,7 +228,7 @@ local sequenceData =
 		image:setSequence("idling")
 		image:play()
 		truck:insert(image)
-		local numberText = display.newEmbossedText(numObj.omittedNum, 0, 0, native.systemFontBold, 40)
+		local numberText = display.newEmbossedText(numObj.omittedNum, 0, 0, native.systemFontBold, 35)
 			numberText.x = -10; numberText.y = -30
 			numberText:setTextColor(75)
 			truck:insert(numberText)
@@ -265,7 +240,7 @@ local sequenceData =
 		createdItems[key] = truck
 		truck.x = truckX
 		truck.y = truckY
-		local specificShape = shapes:get("truck")
+		specificShape = shapes:get("truck")
 		physics.addBody(truck, "dynamic", specificShape) --TO DO: GIVE A SHAPE FROM SHAPES ALL
 		return truck
 	end
@@ -308,7 +283,7 @@ truckY=250 --increase by 125
 			print(pallet.myName)
 		pallet.x=190
 		pallet.y=_H/2+70
-		local specificShape = shapes:get(theme..num)  --WHAT DO I PUT HERE TO MAKE IT FIND THE RIGHT NAME??
+		specificShape = shapes:get(theme..num)  --WHAT DO I PUT HERE TO MAKE IT FIND THE RIGHT NAME??
 		physics.addBody(pallet, "dynamic", specificShape )  --TO DO: REPLACE WITH SPECIFIC SHAPE, FROM SHAPES DATA
 		pallet.isFixedRotation=true
 	end
@@ -320,7 +295,47 @@ truckY=250 --increase by 125
 		print(items[i])
 		pallet.collision=onLocalCollision --these collision events must go in here to be applied to all pallets
 		pallet:addEventListener( "collision", pallet)
-		pallet:addEventListener("touch", startDrag)
+		pallet:addEventListener("touch", pallet)
+			--DRAG FUNCTION	
+function pallet:touch( event )
+--begin focus
+	if event.phase == "began" then
+		display.getCurrentStage():setFocus( self, event.id )
+		self.isFocus = true
+		self.markX = self.x
+		self.markY = self.y
+	elseif self.isFocus then
+	--drag touch object 
+		if event.phase == "moved" then
+			self.x = event.x - event.xStart + self.markX
+			self.y = event.y - event.yStart + self.markY
+	
+		elseif event.phase == "ended" or event.phase == "cancelled" then
+			print (touchedTruck.myName)
+			function moveTruck()
+				local end_x=display.contentWidth/2+600
+				touchedTruck:setSequence( "moving" )  
+				touchedTruck:play()
+				transition.to( touchedTruck, { time=2000, alpha=1, x=end_x, onComplete=removeObject } )
+				self:removeSelf() 
+				self=nil
+			end
+			function closeTruck()
+				touchedTruck:setSequence( "closing" )  
+				touchedTruck:play()
+				timer.performWithDelay ( 200, moveTruck )
+			end
+			if touching == true then
+				transition.to (self, { time=300, xScale=.01, yScale=.01, x=touchedTruck.x-touchedTruck.width/2.5, y=touchedTruck.y, onComplete=closeTruck} )				
+			end
+	--end focus
+			display.getCurrentStage():setFocus( self, nil )
+			self.isFocus = false
+		end 
+	end
+	--event handled
+	return true
+end 
 	end
 
 --create a target block (i.e. "dropzone") for delivering the packaged cookies
