@@ -93,6 +93,8 @@ function scene:createScene( event )
 		if ( event.phase == "began" ) then
 			touchedTruck = event.other
 			touching = true
+				touchedTruck.image:setSequence( "opening" )
+				touchedTruck.image:play()
 			if toggle==1 then 
 				return false
 			else 
@@ -105,11 +107,20 @@ function scene:createScene( event )
 				end
 			end
 		elseif ( event.phase == "ended" ) then
-			
+			local function idle()
+				touchedTruck.image:setSequence( "idling" )
+				touchedTruck.image:play()
+			end
+			local function close()
+				touchedTruck.image:setSequence( "closing" )
+				touchedTruck.image:play()
+				timer.performWithDelay ( 300, idle )
+			end
+				close()
 			if toggle==1 then
 				toggle=0
 			end
-			print( self.myName .. " ended a collision with " .. touchedTruck.myName )
+			print( self.myName .. " ended a collision with " )--.. touchedTruck.myName )
 			touchedTruck = {}
 			touching = false
 			return true
@@ -216,7 +227,7 @@ sequenceData =
 {
    { name = "idling", frames = { 3,4}, time = 250, loopCount = 0 },
    { name = "opening", frames = { 1,2,7,12,14, 15, 16, 17, 18, 19}, time = 300, loopCount = 1 },
-   { name = "closing", frames = { 19,18,17,16,15,14,12,7,2,1}, time = 300, loopCount = 1 },
+   { name = "closing", frames = { 19,18,17,16,15,14,12,7,2,3}, time = 300, loopCount = 1 },
    { name = "moving", frames = { 5,6,8,9,10,11,13}, time = 250, loopCount = 0 }
  }
 	
@@ -228,6 +239,7 @@ sequenceData =
 		image:setSequence("idling")
 		image:play()
 		truck:insert(image)
+		truck.image=image
 		local numberText = display.newEmbossedText(numObj.omittedNum, 0, 0, native.systemFontBold, 35)
 			numberText.x = -10; numberText.y = -30
 			numberText:setTextColor(75)
@@ -283,13 +295,7 @@ truckY=250 --increase by 125
 			print(pallet.myName)
 		pallet.x=190
 		pallet.y=_H/2+70
-<<<<<<< HEAD
-		specificShape = shapes:get(theme..num)  --WHAT DO I PUT HERE TO MAKE IT FIND THE RIGHT NAME??
-		physics.addBody(pallet, "dynamic", specificShape )  --TO DO: REPLACE WITH SPECIFIC SHAPE, FROM SHAPES DATA
-=======
-		--local specificShape = shapes:get()  WHAT DO I PUT HERE TO MAKE IT FIND THE RIGHT NAME??
-		physics.addBody(itemImage, "dynamic", shapes:get(theme..num))  --TO DO: REPLACE WITH SPECIFIC SHAPE, FROM SHAPES DATA
->>>>>>> update to spawning function to get rid of self joint
+		physics.addBody(pallet, "dynamic", shapes:get(theme..num))  --TO DO: REPLACE WITH SPECIFIC SHAPE, FROM SHAPES DATA
 		pallet.isFixedRotation=true
 	end
 
@@ -318,20 +324,20 @@ function pallet:touch( event )
 		elseif event.phase == "ended" or event.phase == "cancelled" then
 			print (touchedTruck.myName)
 			function moveTruck()
-				local end_x=display.contentWidth/2+600
-				touchedTruck:setSequence( "moving" )  
-				touchedTruck:play()
-				transition.to( touchedTruck, { time=2000, alpha=1, x=end_x, onComplete=removeObject } )
+				local end_x=display.contentWidth/2+800
+				touchedTruck.image:setSequence( "moving" )  
+				touchedTruck.image:play()
+				transition.to( touchedTruck, { time=1500, alpha=1, x=end_x, onComplete=removeObject } )
 				self:removeSelf() 
 				self=nil
 			end
 			function closeTruck()
-				touchedTruck:setSequence( "closing" )  
-				touchedTruck:play()
-				timer.performWithDelay ( 200, moveTruck )
+				touchedTruck.image:setSequence( "closing" )  
+				touchedTruck.image:play()
+				timer.performWithDelay ( 500, moveTruck )
 			end
 			if touching == true then
-				transition.to (self, { time=300, xScale=.01, yScale=.01, x=touchedTruck.x-touchedTruck.width/2.5, y=touchedTruck.y, onComplete=closeTruck} )				
+				transition.to (self, { time=200, delay=200, xScale=.01, yScale=.01, x=touchedTruck.x-touchedTruck.width/2.5, y=touchedTruck.y, onComplete=closeTruck} )				
 			end
 	--end focus
 			display.getCurrentStage():setFocus( self, nil )
