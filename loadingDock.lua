@@ -267,7 +267,7 @@ truckY=250 --increase by 125
 			itemImage.x=-10
 			itemImage.y=10
 			pallet:insert(itemImage)
-		numberText=tostring(numObj.omittedValue)
+		numberText=tostring(num)
 		print("numberText:"..numberText)
 		local numberText=display.newRetinaText(numberText, 0,0, native.systemFontBold, 30)
 			numberText:setReferencePoint(TopLeftReferencePoint)
@@ -283,8 +283,13 @@ truckY=250 --increase by 125
 			print(pallet.myName)
 		pallet.x=190
 		pallet.y=_H/2+70
+<<<<<<< HEAD
 		specificShape = shapes:get(theme..num)  --WHAT DO I PUT HERE TO MAKE IT FIND THE RIGHT NAME??
 		physics.addBody(pallet, "dynamic", specificShape )  --TO DO: REPLACE WITH SPECIFIC SHAPE, FROM SHAPES DATA
+=======
+		--local specificShape = shapes:get()  WHAT DO I PUT HERE TO MAKE IT FIND THE RIGHT NAME??
+		physics.addBody(itemImage, "dynamic", shapes:get(theme..num))  --TO DO: REPLACE WITH SPECIFIC SHAPE, FROM SHAPES DATA
+>>>>>>> update to spawning function to get rid of self joint
 		pallet.isFixedRotation=true
 	end
 

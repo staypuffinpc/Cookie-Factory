@@ -188,8 +188,10 @@ function onLocalCollision(self, event)
 						--commence transformation
 						print ("obj1:"..obj1.units, "obj2: "..obj2.units)
 						print ("collision began")
-						local closure = function() return itemHit(hitX,hitY,obj1, obj2) end
-						onLocalCollisionTimer = timer.performWithDelay(100, closure, 1)
+						--local closure = function() return itemHit(hitX,hitY,obj1, obj2) end
+						onLocalCollisionTimer = timer.performWithDelay(100, function()
+							return itemHit(hitX,hitY, obj1, obj2)
+						end, 1)
 						return true;
 					end
 				else --units are different, so play sound and exit fcn
@@ -316,7 +318,7 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 			self.markY = self.y 
 			
 			-- Create a temporary touch joint and store it in the object for later reference
-            self.tempJoint = physics.newJoint( "touch", self, event.x, event.y )
+            --self.tempJoint = physics.newJoint( "touch", self, event.x, event.y )
             
 			--return true
 		elseif self.isFocus then
@@ -330,7 +332,7 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 				self.y = event.y - event.yStart+self.markY
 
 				 -- Update the joint to track the touch
-	            self.tempJoint:setTarget( event.x, event.y )
+	            --self.tempJoint:setTarget( event.x, event.y )
 	            
 				return true
 			elseif event.phase == "ended"  or event.phase == "cancelled" then
@@ -343,8 +345,8 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 				display.getCurrentStage():setFocus(self,nil)
 				self.isFocus=false
 				--get rid of temporary physics joint: TO DO: turn this back on
-				self.tempJoint:removeSelf()
-				self.tempJoint = nil
+				--self.tempJoint:removeSelf()
+				--self.tempJoint = nil
 				if touchingOnRelease == true then
 					--package is in the dropzone and ready to be delivered
 					--check the number against the current number
