@@ -302,7 +302,7 @@ function scene:createScene( event )
 	onesPalette:setReferencePoint(display.TopLeftReferencePoint)
 	onesPalette.x = trayWidth*6; onesPalette.y = -40;
 
-
+ 
 	--create a target block (i.e. "dropzone") for delivering the packaged cookies
 	dropZone = display.newRect(0,0, trayWidth-6,125)
 	dropZone:setFillColor(255,255,255,30)
@@ -356,7 +356,6 @@ function scene:createScene( event )
 	}
 	thisLevel = levelObjects[currLevel]
 		
-		--[[TODO: uncomment this
 		--create an intro message
 		local intro = display.newGroup()
 		local introBg = display.newRoundedRect(0,0,640,400,5)
@@ -364,14 +363,14 @@ function scene:createScene( event )
 		introBg:setFillColor(200,100,50)
 		introBg:setStrokeColor(255)
 		intro:insert(introBg)
-		local message = "Welcome to our factory. We need help packaging cookies for delivery, but someone seems to have forgotten to fill one of the places in each order.  Please help us by combining cookies to the right amount.  After combining them, drag the cookie to the empty spot below and they'll be packaged."
+		local message = "Welcome to our factory. We need help packaging cookies for delivery, but someone seems to have forgotten to fill in one of the places in each order.  Please help us by combining cookies to the right amount.  After combining them, drag the cookie to the empty spot below and they'll be packaged and ready for shipping."
 		local introText = display.newRetinaText(message,20,20,600,400, "Helvetica", 30)
 		--
 		
 		intro:insert(introText)
 		intro:setReferencePoint(display.CenterReferencePoint)
 		intro.x = _W/2; intro.y = _H/2
-]]
+
 	 --marquee
 		lcdText = display.newRetinaText("",135, _H-30, mainFont, 28)
 		lcdText:setReferencePoint(display.TopRightReferencePoint)
@@ -384,13 +383,13 @@ function scene:createScene( event )
 		chalkBoard.x = 0; chalkBoard.y = 0;
 		--physics.addBody(chalkBoard, "static", {shape={-378, -40,  378,-40, 378, 40,  -378,40}})
 		
-		--[[
+		
 		timeDisplay = display.newText("Time: ",305,30, mainFont,38 )
 		timeDisplay:setTextColor(255, 150)
 		
 		timeCounter = display.newRetinaText(tostring(timeCount),415,30,mainFont,38)
 		timeCounter:setTextColor(255, 150)
-		]]
+		
 		countDisplay = display.newText("Orders: ",505,30, mainFont,38)
 		countDisplay:setTextColor(255, 150)
 	

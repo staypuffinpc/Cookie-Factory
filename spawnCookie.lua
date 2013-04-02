@@ -268,8 +268,8 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 	physics.addBody(cookie, "dymamic", bodies:get(name..value))
 	--physics.addBody(invImg, "dymamic", {radius=radius, shape=shape})
 	--physics.newJoint("weld", cookie, invImg, image.x, invImg.y)
-	cookie.isFixedRotation = false
-	cookie.linearDamping = 3
+	cookie.isFixedRotation = true
+	cookie.linearDamping = 1
 	cookie.collision = onLocalCollision
 	cookie:addEventListener("collision",cookie)
 	--generate a unique key to refer to this cookie
