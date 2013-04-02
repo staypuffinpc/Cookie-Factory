@@ -39,7 +39,7 @@ local currLevel = userInfoTable.data.trainingLevel
 
 local createRate = 2000 --how often a new cookie is spawned (in milliseconds)
 local thisLevel
-local currMode = "timed" -- or count; also switch this per user request
+local currMode = "timed" -- or count; TO DO: switch this per user request
 
 
 
@@ -52,11 +52,10 @@ levels[5] = { digits = 5, theme= "chocchip", unlock= "divisor", stars = 4,  star
 levels[6] = { digits = 5, theme= "chocchip", unlock = "next level", stars = 4,  starImg = "StarHammer.png", count = 5, timed = 3}
 
 --forward references
-local spawnCookie, onLocalCollision, itemHit, itemDisappear, itemCombo, generator, createItemsForThisLevel, spawnTimer, disappearTimer, onLocalCollisionTimer, itemHitTimer,onBtnRelease, factoryBG, homeBtn, levelBar, nextQuestion, lcdText, startSession, genQ, leftSlice,leftGroup, timeDisplay, countDisplay, numDisplay, trayGroup, genStars,generatedBlocks,spawnBlock,inArray,genKey, dropZone, itemSensor, cookieGroup, correct, attempted, timerDisplay, ordersDisplay, correctDisplay, timeCount, timeCounter,orderCount, orderCounter, correctCount, correctCounter, trayColors, leftWall,rightWall, bottomFloor, top, conveyorFloor, packingFloor
+local spawnCookie, onLocalCollision, itemHit, itemDisappear, itemCombo, generator, createItemsForThisLevel, spawnTimer, disappearTimer, onLocalCollisionTimer, itemHitTimer,onBtnRelease, factoryBG, homeBtn, levelBar, nextQuestion, lcdText, startSession, genQ, leftSlice,leftGroup, timeDisplay, countDisplay, numDisplay, trayGroup, genStars,generatedBlocks,spawnBlock,inArray,genKey, dropZone, itemSensor, cookieGroup, correct, attempted, timerDisplay, ordersDisplay, correctDisplay, timeCount, timeCounter,orderCount, orderCounter, correctCount, correctCounter, trayColors, leftWall,rightWall, bottomFloor, top, conveyorFloor, packingFloor, intro
 local trayWidth = 133
 local trayHeight = 44
 
-local font = "Helvetica"
 
 -- 'onRelease' event listener for return to main menu
 function onBtnRelease(event)
@@ -68,7 +67,8 @@ end
 
 --generate the list of questions in the list per the current condition
 function startSession(mode)
-	orderCount = 0
+	intro.alpha = 0
+	orderCount = 10
 	timeCount = levels[currLevel].timed*60
 	orderCounter.text = tostring(orderCount)
     _G.currNum = genQ()
@@ -201,7 +201,7 @@ function scene:createScene( event )
 	for i=1, levels[currLevel].digits do 
 		numDisplay[i] = {}
 		numDisplay[i].value = values[i]
-		numDisplay[i].text = display.newEmbossedText("0",digTextX,45,mainFont,36)
+		numDisplay[i].text = display.newEmbossedText("0",digTextX,45,_mainFont,36)
 		numDisplay[i].text:setTextColor(255)
 		digTextX = digTextX - trayWidth
 		trayGroup:insert(numDisplay[i].text)
@@ -227,7 +227,7 @@ function scene:createScene( event )
 	--1,000,000s
 	local millionsTray = display.newRect(0,0, trayWidth, 40)
 	millionsTray:setFillColor(trayColors[1000000][1],trayColors[1000000][2],trayColors[1000000][3])
-	local millionsText = display.newEmbossedText("millions",trayWidth+5,10,trayWidth-10,40,mainFont, 21)
+	local millionsText = display.newEmbossedText("millions",trayWidth+5,10,trayWidth-10,40,_mainFont, 21)
 	millionsText:setTextColor(255,255,255)
 	millionsText:setReferencePoint(display.CenterReferencePoint)
 	millionsText.x = 67
@@ -238,7 +238,7 @@ function scene:createScene( event )
 	--100,000s
 	local hundredThousandsTray = display.newRect(trayWidth,0, trayWidth, trayHeight)
 	hundredThousandsTray:setFillColor(trayColors[100000][1],trayColors[100000][2],trayColors[100000][3])
-	local hundredThousandsText = display.newEmbossedText("hundred thousands",trayWidth+5,0,trayWidth-10,40,mainFont, 21)
+	local hundredThousandsText = display.newEmbossedText("hundred thousands",trayWidth+5,0,trayWidth-10,40,_mainFont, 21)
 	hundredThousandsText:setTextColor(255,255,255)
 	hundredThousandsText:setReferencePoint(display.CenterReferencePoint)
 	hundredThousandsText.x = trayWidth+67
@@ -249,7 +249,7 @@ function scene:createScene( event )
 	--10,000s
 	local tenThousandsTray = display.newRect(trayWidth*2, 0, trayWidth, trayHeight)
 	tenThousandsTray:setFillColor(trayColors[10000][1],trayColors[10000][2],trayColors[10000][3])
-	local tenThousandsText = display.newEmbossedText("ten thousands",trayWidth*2+5,0,trayWidth-10,40,mainFont, 21)
+	local tenThousandsText = display.newEmbossedText("ten thousands",trayWidth*2+5,0,trayWidth-10,40,_mainFont, 21)
 	tenThousandsText:setTextColor(255,255,255)
 	tenThousandsText:setReferencePoint(display.CenterReferencePoint)
 	tenThousandsText.x = trayWidth*2+67
@@ -260,7 +260,7 @@ function scene:createScene( event )
 	--1,000s
 	local thousandsTray = display.newRect(trayWidth*3,0, trayWidth, trayHeight)
 	thousandsTray:setFillColor(trayColors[1000][1],trayColors[1000][2],trayColors[1000][3])
-	local thousandsText = display.newEmbossedText("thousands",trayWidth*3+5,10,mainFont, 21)
+	local thousandsText = display.newEmbossedText("thousands",trayWidth*3+5,10,_mainFont, 21)
 	thousandsText:setTextColor(255,255,255)
 	thousandsText:setReferencePoint(display.CenterReferencePoint)
 	thousandsText.x = trayWidth*3+67
@@ -271,7 +271,7 @@ function scene:createScene( event )
 	--100s
 	local hundredsTray = display.newRect(trayWidth*4, 0, trayWidth, trayHeight)
 	hundredsTray:setFillColor(trayColors[100][1],trayColors[100][2],trayColors[100][3])
-	local hundredsText = display.newEmbossedText("hundreds",trayWidth*4+5,10,mainFont, 21)
+	local hundredsText = display.newEmbossedText("hundreds",trayWidth*4+5,10,_mainFont, 21)
 	hundredsText:setTextColor(255,255,255)
 	hundredsText:setReferencePoint(display.CenterReferencePoint)
 	hundredsText.x = trayWidth*4+67
@@ -282,7 +282,7 @@ function scene:createScene( event )
 	--10s
 	local tensTray = display.newRect(trayWidth*5, 0, trayWidth*2, trayHeight)
 	tensTray:setFillColor(trayColors[10][1],trayColors[10][2],trayColors[10][3])
-	local tensText = display.newEmbossedText("tens",trayWidth*5+5,10,mainFont, 21)
+	local tensText = display.newEmbossedText("tens",trayWidth*5+5,10,_mainFont, 21)
 	tensText:setTextColor(255,255,255)
 	tensText:setReferencePoint(display.CenterReferencePoint)
 	tensText.x = trayWidth*5+67
@@ -293,7 +293,7 @@ function scene:createScene( event )
 	--1s
 	local onesTray = display.newRect(trayWidth*6, 0, trayWidth, trayHeight)
 	onesTray:setFillColor(trayColors[1][1],trayColors[1][2],trayColors[1][3])
-	local onesText = display.newEmbossedText("ones",trayWidth*6+5,10,mainFont, 21)
+	local onesText = display.newEmbossedText("ones",trayWidth*6+5,10,_mainFont, 21)
 	onesText:setTextColor(255,255,255)
 	onesText:setReferencePoint(display.CenterReferencePoint)
 	onesText.x = trayWidth*6+67
@@ -355,24 +355,37 @@ function scene:createScene( event )
 		{items[1], items[10],items[100], items[1], items[10], items[1], items[1000], items[10000]},
 	}
 	thisLevel = levelObjects[currLevel]
-		
+
 		--create an intro message
-		local intro = display.newGroup()
+		intro = display.newGroup()
 		local introBg = display.newRoundedRect(0,0,640,400,5)
 		introBg.strokeWidth = 6
 		introBg:setFillColor(200,100,50)
 		introBg:setStrokeColor(255)
+		local startBtn = widget.newButton{
+			width = 100,
+			height = 50,
+			label = "Start",
+			font = _mainFont,
+			fontSize = 30,
+			labelColor = {default = {255}, over = {0}},
+			strokeColor = {255},
+			defaultColor = {0,0,0,0},
+			strokeWidth = 5,
+			onRelease = function() return startSession(currMode) end
+		}
+		startBtn.x, startBtn.y = 550, 360
 		intro:insert(introBg)
+		intro:insert(startBtn)
 		local message = "Welcome to our factory. We need help packaging cookies for delivery, but someone seems to have forgotten to fill in one of the places in each order.  Please help us by combining cookies to the right amount.  After combining them, drag the cookie to the empty spot below and they'll be packaged and ready for shipping."
 		local introText = display.newRetinaText(message,20,20,600,400, "Helvetica", 30)
-		--
 		
 		intro:insert(introText)
 		intro:setReferencePoint(display.CenterReferencePoint)
 		intro.x = _W/2; intro.y = _H/2
 
 	 --marquee
-		lcdText = display.newRetinaText("",135, _H-30, mainFont, 28)
+		lcdText = display.newRetinaText("",135, _H-30, _mainFont, 28)
 		lcdText:setReferencePoint(display.TopRightReferencePoint)
 		lcdText:setTextColor(0,255,0)
 		
@@ -384,16 +397,16 @@ function scene:createScene( event )
 		--physics.addBody(chalkBoard, "static", {shape={-378, -40,  378,-40, 378, 40,  -378,40}})
 		
 		
-		timeDisplay = display.newText("Time: ",305,30, mainFont,38 )
+		timeDisplay = display.newText("Time: ",305,30, _mainFont,38 )
 		timeDisplay:setTextColor(255, 150)
 		
-		timeCounter = display.newRetinaText(tostring(timeCount),415,30,mainFont,38)
+		timeCounter = display.newRetinaText(tostring(timeCount),415,30,_mainFont,38)
 		timeCounter:setTextColor(255, 150)
 		
-		countDisplay = display.newText("Orders: ",505,30, mainFont,38)
+		countDisplay = display.newText("Orders: ",505,30, _mainFont,38)
 		countDisplay:setTextColor(255, 150)
 	
-		orderCounter = display.newRetinaText(tostring(orderCount).." / "..levels[currLevel].count,635,30,mainFont,38)
+		orderCounter = display.newRetinaText(tostring(orderCount).." / "..levels[currLevel].count,635,30,_mainFont,38)
 		orderCounter:setTextColor(255, 150)
 		
 		homeBtn=widget.newButton{
@@ -408,9 +421,9 @@ function scene:createScene( event )
 		homeBtn.scene="menu"
 		--insert them all into one group
 		feedbackGroup:insert(chalkBoard)
-		--feedbackGroup:insert(timeDisplay)
+		feedbackGroup:insert(timeDisplay)
 		feedbackGroup:insert(countDisplay)
-		--feedbackGroup:insert(timeCounter)
+		feedbackGroup:insert(timeCounter)
 		feedbackGroup:insert(orderCounter)
 		feedbackGroup:insert(homeBtn)
 		feedbackGroup.x = 104; feedbackGroup.y = 0
@@ -478,6 +491,8 @@ function scene:enterScene( event )
 	local group = self.view
 	physics.setGravity(0,10)
 
+	--show the intro message
+	intro.alpha = 1
 	--for some reason my physics objects will not be recreated if I put them in the createScene handler
 	leftWall = display.newRect(0,0, 100, .65*_H)
 	leftWall:setReferencePoint(display.TopRightReferencePoint)
@@ -567,7 +582,7 @@ function scene:enterScene( event )
 	-----------------------------------------------------------------------------
 	
 	--run the function right at the beginning so we don't have to wait for the first timer to go off
-	startSession(currMode)
+	--startSession(currMode)
 	
 	function reset()
 		timer.pause(spawnTimer)
