@@ -8107,6 +8107,28 @@ function M.physicsData(scale)
                     
 		}
 		
+		, 
+		["jelly300"] = {
+                    
+                    
+                    
+                    
+                    {
+                    pe_fixture_id = "", density = 2, friction = 0, bounce = 0, 
+                    filter = { categoryBits = 1, maskBits = 65535, groupIndex = 0 },
+                    shape = {   35.5, 64  ,  -158.5, 45  ,  -159.5, -87  ,  135.5, -87  ,  157.5, -77  ,  159.5, 64  }
+                    }
+                     ,
+                    {
+                    pe_fixture_id = "", density = 2, friction = 0, bounce = 0, 
+                    filter = { categoryBits = 1, maskBits = 65535, groupIndex = 0 },
+                    shape = {   -158.5, 45  ,  35.5, 64  ,  35.5, 87  ,  -112.5, 87  }
+                    }
+                    
+                    
+                    
+		}
+		
 	} }
 
         -- apply scale factor
