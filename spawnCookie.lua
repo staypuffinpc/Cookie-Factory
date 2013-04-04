@@ -40,7 +40,9 @@ local function inArray(array, value)
     local is = false
     for i, thisValue in ipairs(array) do
         if thisValue == value then 
-        	is = true; break end
+        	is = true; 
+        	break 
+    	end
     end
     return is
 end

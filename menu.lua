@@ -11,8 +11,7 @@ physics.setDrawMode("normal")
 
 --get required files
 local widget = require "widget"
-local scalefactor = .5
-local bodies = (require "shapes_all@2x").physicsData(scaleFactor)
+local shapes = (require "shapes_all@2x").physicsData(.5)
 
 --initialize all the cookie image sheets? (not sure if this is the best thing for memory consumption)
 local cookies = {"chocchip","oreo","jelly","pb"}
@@ -123,16 +122,14 @@ function scene:enterScene( event )
 	function spawnCookieDrop()
 		local index = math.random(1,#cookies)
 		local startX = math.random(0,_W)
-		local cookie = display.newGroup()
 		local name = cookies[index]
 		local obj = imageSheets[name]
-		local image = display.newImage(obj.sheet, obj.sheetData:getFrameIndex(name.."1"))
+		local cookie = display.newImage(obj.sheet, obj.sheetData:getFrameIndex(name.."1"))
 		cookie.x = startX; cookie.y = -50
-		local shape = bodies:get(name.."1")
+		local shape = shapes:get(name.."1")
 		print (name.."1")
 		physics.addBody(cookie,"dynamic",shape)
 		cookie.key = "cookie_"..math.random(1,1000000000)
-		cookie:insert(image)
 		
 		--insert into array for cleanup
 		cookieArray[cookie.key] = cookie
@@ -158,7 +155,7 @@ function scene:enterScene( event )
 		group:insert(cookie)
 	end
 	--rain decadent cookies from above
-	rainTimer = timer.performWithDelay(2500,rain,0)
+	rainTimer = timer.performWithDelay(500,rain,0)
 end
 
 -- Called when scene is about to move offscreen:
