@@ -29,11 +29,12 @@ local itemsCreated
 local newList
 local inArray
 local createKey
-local toggle=0
 local themePics, cookieInfo --vars to load the img sheet into
 local specificShape
 local touching = false
 local touchedTruck = {}
+local redGradient = graphics.newGradient( {255, 0,0}, {255, 0,0}, "down" )
+local greenGradient = graphics.newGradient( {0, 255,0}, {0, 255,0}, "down" )
 
 	--From generateNumInfo
 	local newList
@@ -95,17 +96,7 @@ function scene:createScene( event )
 			touching = true
 				touchedTruck.image:setSequence( "opening" )
 				touchedTruck.image:play()
-			if toggle==1 then 
-				return false
-			else 
-				toggle=1
-			print( self.myName.."collision BEGAN with" .. touchedTruck.myName )
-				if self.myName==touchedTruck.myName then
-					print("MATCH")
-				else 
-					print("No Match")
-				end
-			end
+
 		elseif ( event.phase == "ended" ) then
 			local function idle()
 				touchedTruck.image:setSequence( "idling" )
@@ -116,10 +107,8 @@ function scene:createScene( event )
 				touchedTruck.image:play()
 				timer.performWithDelay ( 300, idle )
 			end
-				close()
-			if toggle==1 then
-				toggle=0
-			end
+			close()
+
 			print( self.myName .. " ended a collision with " )--.. touchedTruck.myName )
 			touchedTruck = {}
 			touching = false
@@ -258,12 +247,12 @@ sequenceData =
 	end
 
 truckX=_W/2 --increase by 100
-truckY=250 --increase by 125
+truckY=200 --increase by 125
 
 	for i=1, numTrucksToCreate do
 		createTruck(truckX, truckY, newList[i])
 		truckX=truckX+90
-		truckY=truckY+190	
+		truckY=truckY+230	
 		
 	end
 		
@@ -323,6 +312,11 @@ function pallet:touch( event )
 	
 		elseif event.phase == "ended" or event.phase == "cancelled" then
 			print (touchedTruck.myName)
+			if self.value == touchedTruck.value then
+				touchedTruck.image:setFillColor( 0,255,00 )
+			else 
+				touchedTruck.image:setFillColor( 255,0,0 )
+			end
 			function moveTruck()
 				local end_x=display.contentWidth/2+800
 				touchedTruck.image:setSequence( "moving" )  
@@ -334,7 +328,7 @@ function pallet:touch( event )
 			function closeTruck()
 				touchedTruck.image:setSequence( "closing" )  
 				touchedTruck.image:play()
-				timer.performWithDelay ( 500, moveTruck )
+				timer.performWithDelay ( 300, moveTruck )
 			end
 			if touching == true then
 				transition.to (self, { time=200, delay=200, xScale=.01, yScale=.01, x=touchedTruck.x-touchedTruck.width/2.5, y=touchedTruck.y, onComplete=closeTruck} )				
@@ -350,19 +344,6 @@ end
 	end
 
 --create a target block (i.e. "dropzone") for delivering the packaged cookies
---EVENTUALLY OPEN THE BACK OF THE TRUCK AND ANIMATE IT...I've tried everything...I cannot figure out where to put the animation sequence function in this code to make it work. the closest i got was to have it only NOT work on the third truck. 
-
-
---check user's answer
-	function checkAnswer(self, event)	
-		--if the item is over a sensor
-		if event.phase == "began" then
-			spawn.touchingOnRelease = true
-		elseif event.phase == "ended" then	
-			spawn.touchingOnRelease = false
-		end	
-		return true
-	end
 
 	
 	
