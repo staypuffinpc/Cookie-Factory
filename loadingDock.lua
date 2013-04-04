@@ -257,7 +257,7 @@ sequenceData =
 		return truck
 	end
 
-truckX=_W/2+55 --increase by 100
+truckX=_W/2 --increase by 100
 truckY=250 --increase by 125
 
 	for i=1, numTrucksToCreate do
