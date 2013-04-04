@@ -1,7 +1,7 @@
 --
 -- created with TexturePacker (http://www.codeandweb.com/texturepacker)
 --
--- $TexturePacker:SmartUpdate:49711f427b1dc73da481bd96fcad94e9$
+-- $TexturePacker:SmartUpdate:51e45eb0b2d052bf8911e724f6aafbc3$
 --
 -- local sheetInfo = require("mysheet")
 -- local myImageSheet = graphics.newImageSheet( "mysheet.png", sheetInfo:getSheet() )
@@ -16,8 +16,8 @@ SheetInfo.sheet =
     
         {
             -- jelly1
-            x=164,
-            y=1932,
+            x=238,
+            y=1670,
             width=96,
             height=96,
 
@@ -28,8 +28,8 @@ SheetInfo.sheet =
         },
         {
             -- jelly10
-            x=768,
-            y=1680,
+            x=1054,
+            y=1178,
             width=108,
             height=200,
 
@@ -40,8 +40,8 @@ SheetInfo.sheet =
         },
         {
             -- jelly100
-            x=706,
-            y=1394,
+            x=4,
+            y=1410,
             width=152,
             height=136,
 
@@ -64,16 +64,16 @@ SheetInfo.sheet =
         },
         {
             -- jelly10000
-            x=1662,
-            y=1318,
+            x=1166,
+            y=1288,
             width=252,
             height=266,
 
         },
         {
             -- jelly2
-            x=352,
-            y=1288,
+            x=238,
+            y=1552,
             width=100,
             height=114,
 
@@ -84,8 +84,8 @@ SheetInfo.sheet =
         },
         {
             -- jelly20
-            x=690,
-            y=1190,
+            x=956,
+            y=1382,
             width=170,
             height=200,
 
@@ -96,8 +96,8 @@ SheetInfo.sheet =
         },
         {
             -- jelly200
-            x=1662,
-            y=1162,
+            x=728,
+            y=1178,
             width=322,
             height=152,
 
@@ -128,16 +128,16 @@ SheetInfo.sheet =
         },
         {
             -- jelly3
-            x=706,
-            y=1534,
+            x=238,
+            y=1410,
             width=108,
             height=138,
 
         },
         {
             -- jelly30
-            x=456,
-            y=1190,
+            x=4,
+            y=1604,
             width=230,
             height=200,
 
@@ -145,6 +145,14 @@ SheetInfo.sheet =
             sourceY = 0,
             sourceWidth = 229,
             sourceHeight = 199
+        },
+        {
+            -- jelly300
+            x=1662,
+            y=1162,
+            width=322,
+            height=176,
+
         },
         {
             -- jelly3000
@@ -168,8 +176,8 @@ SheetInfo.sheet =
         },
         {
             -- jelly4
-            x=1918,
-            y=1510,
+            x=584,
+            y=1604,
             width=116,
             height=166,
 
@@ -180,8 +188,8 @@ SheetInfo.sheet =
         },
         {
             -- jelly40
-            x=472,
-            y=1394,
+            x=4,
+            y=1810,
             width=230,
             height=226,
 
@@ -220,16 +228,16 @@ SheetInfo.sheet =
         },
         {
             -- jelly5
-            x=1918,
-            y=1318,
+            x=586,
+            y=1412,
             width=124,
             height=188,
 
         },
         {
             -- jelly50
-            x=398,
-            y=1680,
+            x=714,
+            y=1580,
             width=230,
             height=226,
 
@@ -268,8 +276,8 @@ SheetInfo.sheet =
         },
         {
             -- jelly6
-            x=632,
-            y=1680,
+            x=586,
+            y=1190,
             width=132,
             height=218,
 
@@ -280,8 +288,8 @@ SheetInfo.sheet =
         },
         {
             -- jelly60
-            x=864,
-            y=1178,
+            x=350,
+            y=1442,
             width=230,
             height=220,
 
@@ -324,8 +332,8 @@ SheetInfo.sheet =
         },
         {
             -- jelly70
-            x=164,
-            y=1680,
+            x=352,
+            y=1190,
             width=230,
             height=248,
 
@@ -380,8 +388,8 @@ SheetInfo.sheet =
         },
         {
             -- jelly80
-            x=4,
-            y=1410,
+            x=1422,
+            y=1320,
             width=230,
             height=248,
 
@@ -420,8 +428,8 @@ SheetInfo.sheet =
         },
         {
             -- jelly9
-            x=4,
-            y=1680,
+            x=342,
+            y=1666,
             width=156,
             height=288,
 
@@ -432,8 +440,8 @@ SheetInfo.sheet =
         },
         {
             -- jelly90
-            x=238,
-            y=1410,
+            x=722,
+            y=1334,
             width=230,
             height=242,
 
@@ -491,38 +499,39 @@ SheetInfo.frameIndex =
     ["jelly20000"] = 10,
     ["jelly3"] = 11,
     ["jelly30"] = 12,
-    ["jelly3000"] = 13,
-    ["jelly30000"] = 14,
-    ["jelly4"] = 15,
-    ["jelly40"] = 16,
-    ["jelly400"] = 17,
-    ["jelly4000"] = 18,
-    ["jelly40000"] = 19,
-    ["jelly5"] = 20,
-    ["jelly50"] = 21,
-    ["jelly500"] = 22,
-    ["jelly5000"] = 23,
-    ["jelly50000"] = 24,
-    ["jelly6"] = 25,
-    ["jelly60"] = 26,
-    ["jelly600"] = 27,
-    ["jelly6000"] = 28,
-    ["jelly60000"] = 29,
-    ["jelly7"] = 30,
-    ["jelly70"] = 31,
-    ["jelly700"] = 32,
-    ["jelly7000"] = 33,
-    ["jelly70000"] = 34,
-    ["jelly8"] = 35,
-    ["jelly80"] = 36,
-    ["jelly800"] = 37,
-    ["jelly8000"] = 38,
-    ["jelly80000"] = 39,
-    ["jelly9"] = 40,
-    ["jelly90"] = 41,
-    ["jelly900"] = 42,
-    ["jelly9000"] = 43,
-    ["jelly90000"] = 44,
+    ["jelly300"] = 13,
+    ["jelly3000"] = 14,
+    ["jelly30000"] = 15,
+    ["jelly4"] = 16,
+    ["jelly40"] = 17,
+    ["jelly400"] = 18,
+    ["jelly4000"] = 19,
+    ["jelly40000"] = 20,
+    ["jelly5"] = 21,
+    ["jelly50"] = 22,
+    ["jelly500"] = 23,
+    ["jelly5000"] = 24,
+    ["jelly50000"] = 25,
+    ["jelly6"] = 26,
+    ["jelly60"] = 27,
+    ["jelly600"] = 28,
+    ["jelly6000"] = 29,
+    ["jelly60000"] = 30,
+    ["jelly7"] = 31,
+    ["jelly70"] = 32,
+    ["jelly700"] = 33,
+    ["jelly7000"] = 34,
+    ["jelly70000"] = 35,
+    ["jelly8"] = 36,
+    ["jelly80"] = 37,
+    ["jelly800"] = 38,
+    ["jelly8000"] = 39,
+    ["jelly80000"] = 40,
+    ["jelly9"] = 41,
+    ["jelly90"] = 42,
+    ["jelly900"] = 43,
+    ["jelly9000"] = 44,
+    ["jelly90000"] = 45,
 }
 
 function SheetInfo:getSheet()

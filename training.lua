@@ -43,13 +43,7 @@ local currMode = "timed" -- or count; TO DO: switch this per user request
 
 
 
-local levels = {}
-levels[1] = { digits= 2, theme = "oreo", unlock = "next level", stars=1, starImg = "oreo_star.png", count = 3, timed = 3 }
-levels[2] = { digits = 3, theme= "pb", unlock = "next level", stars = 2, starImg = "pb_star.png", count = 5, timed = 3}
-levels[3] = { digits = 3, theme= "jelly", unlock = "multiplier", stars = 2, starImg = "jelly_star.png",  count = 5, timed = 3}
-levels[4] = { digits = 4, theme= "jelly", unlock= "next level", stars = 3,  starImg = "starTimesTen.png", count = 5, timed = 3}
-levels[5] = { digits = 5, theme= "chocchip", unlock= "divisor", stars = 4,  starImg = "chocchip_star.png", count = 5, timed = 3 }
-levels[6] = { digits = 5, theme= "chocchip", unlock = "next level", stars = 4,  starImg = "StarHammer.png", count = 5, timed = 3}
+
 
 --forward references
 local spawnCookie, onLocalCollision, itemHit, itemDisappear, itemCombo, generator, createItemsForThisLevel, spawnTimer, disappearTimer, onLocalCollisionTimer, itemHitTimer,onBtnRelease, factoryBG, homeBtn, levelBar, nextQuestion, lcdText, startSession, genQ, leftSlice,leftGroup, timeDisplay, countDisplay, numDisplay, trayGroup, genStars,generatedBlocks,spawnBlock,inArray,genKey, dropZone, itemSensor, cookieGroup, correct, attempted, timerDisplay, ordersDisplay, correctDisplay, timeCount, timeCounter,orderCount, orderCounter, correctCount, correctCounter, trayColors, leftWall,rightWall, bottomFloor, top, conveyorFloor, packingFloor, intro
@@ -456,7 +450,7 @@ function scene:createScene( event )
 			starY = starY-90
 			--check if this is the level they're currently working on.  If so, put a gradient on the image, or change it's opacity
 			if i == currLevel then
-				--star:setFillColor(gradient) -- for some reason I get an error "gradients cannot be applied to image objects"
+				star:setFillColor(100) -- for some reason I get an error "gradients cannot be applied to image objects"
 				star.alpha = .3
 			end
 			sideBar:insert(star)
