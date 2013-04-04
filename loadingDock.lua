@@ -87,7 +87,40 @@ end
 function scene:createScene( event )
 	local group = self.view
 
-
+	local sideBar = display.newGroup()
+	levelBar = display.newImageRect("images/levelbar.png",93,_H)
+	levelBar:setReferencePoint(display.TopRightReferencePoint)
+	levelBar.x = 0; levelBar.y=0
+	sideBar:insert(levelBar)
+	sideBar.x = _W; sideBar.y =0
+	
+	--generate stars on levelBar
+	function genStars()
+		local gradient = graphics.newGradient(
+			{134,10,200},{100, 0},"down"
+		)
+		-- first, put the black stars on the screen
+		local starY = _H - 50
+		for i=1, #levels do 
+			local star = display.newImageRect("images/black_star.png",66,67)
+			star.x = -41; star.y = starY;
+			starY = starY - 90
+			sideBar:insert(star)
+		end
+		starY = _H - 50 -- return and fill in the completed levels
+		--now, generate the levels the user has accomplished so far, greying out the last one
+		for i=1, currLevel do 
+			local star = display.newImageRect("images/"..levels[i].starImg,66,67)
+			star.x = -41; star.y = starY
+			starY = starY-90
+			--check if this is the level they're currently working on.  If so, put a gradient on the image, or change it's opacity
+			if i == currLevel then
+				star:setFillColor(100) -- for some reason I get an error "gradients cannot be applied to image objects"
+				star.alpha = .3
+			end
+			sideBar:insert(star)
+		end
+	end
 	
 	 
 	function onLocalCollision( self, event )
