@@ -35,6 +35,8 @@ local touching = false
 local touchedTruck = {}
 local redGradient = graphics.newGradient( {255, 0,0}, {255, 0,0}, "down" )
 local greenGradient = graphics.newGradient( {0, 255,0}, {0, 255,0}, "down" )
+local threeTrucks
+local onePallet
 
 	--From generateNumInfo
 	local newList
@@ -87,42 +89,6 @@ end
 function scene:createScene( event )
 	local group = self.view
 
-	local sideBar = display.newGroup()
-	levelBar = display.newImageRect("images/levelbar.png",93,_H)
-	levelBar:setReferencePoint(display.TopRightReferencePoint)
-	levelBar.x = 0; levelBar.y=0
-	sideBar:insert(levelBar)
-	sideBar.x = _W; sideBar.y =0
-	
-	--generate stars on levelBar
-	function genStars()
-		local gradient = graphics.newGradient(
-			{134,10,200},{100, 0},"down"
-		)
-		-- first, put the black stars on the screen
-		local starY = _H - 50
-		for i=1, #levels do 
-			local star = display.newImageRect("images/black_star.png",66,67)
-			star.x = -41; star.y = starY;
-			starY = starY - 90
-			sideBar:insert(star)
-		end
-		starY = _H - 50 -- return and fill in the completed levels
-		--now, generate the levels the user has accomplished so far, greying out the last one
-		for i=1, currLevel do 
-			local star = display.newImageRect("images/"..levels[i].starImg,66,67)
-			star.x = -41; star.y = starY
-			starY = starY-90
-			--check if this is the level they're currently working on.  If so, put a gradient on the image, or change it's opacity
-			if i == currLevel then
-				star:setFillColor(100) -- for some reason I get an error "gradients cannot be applied to image objects"
-				star.alpha = .3
-			end
-			sideBar:insert(star)
-		end
-	end
-	
-	 
 	function onLocalCollision( self, event )
 		if ( event.phase == "began" ) then
 			touchedTruck = event.other
@@ -148,7 +114,14 @@ function scene:createScene( event )
 			return true
 		end
 	end
- 
+
+	function recreate()
+		print ("yes ma'am")
+		local function onePallet()
+		end
+		local function threeTrucks()
+		end
+	end
 
 --Spawn cookies, which should be the #trucks-1
 --local themes= {"creme", "pb","jelly","chocchip"}
@@ -183,7 +156,7 @@ items=itemInfo.createItemsForThisLevel(theme)
 	
 	group:insert(factoryBG)
 	group:insert(homeBtn)
-		
+	
 	return true
 	-----------------------------------------------------------------------------
 		
@@ -199,6 +172,42 @@ end
 --
 function scene:enterScene( event )
 physics.start()
+recreate()
+
+local sideBar = display.newGroup()
+	levelBar = display.newImageRect("images/levelbar.png",93,_H)
+	levelBar:setReferencePoint(display.TopRightReferencePoint)
+	levelBar.x = 0; levelBar.y=0
+	sideBar:insert(levelBar)
+	sideBar.x = _W; sideBar.y =0
+	
+	--generate stars on levelBar
+	function genStars()
+		local gradient = graphics.newGradient(
+			{134,10,200},{100, 0},"down"
+		)
+		-- first, put the black stars on the screen
+		local starY = _H - 50
+		for i=1, #levels do 
+			local star = display.newImageRect("images/black_star.png",66,67)
+			star.x = -41; star.y = starY;
+			starY = starY - 90
+			sideBar:insert(star)
+		end
+		starY = _H - 50 -- return and fill in the completed levels
+		--now, generate the levels the user has accomplished so far, greying out the last one
+		for i=1, currLevel do 
+			local star = display.newImageRect("images/"..levels[i].starImg,66,67)
+			star.x = -41; star.y = starY
+			starY = starY-90
+			--check if this is the level they're currently working on.  If so, put a gradient on the image, or change it's opacity
+			if i == currLevel then
+				star:setFillColor(100) -- for some reason I get an error "gradients cannot be applied to image objects"
+				star.alpha = .3
+			end
+			sideBar:insert(star)
+		end
+	end
 
 	local group = self.view
 touching = false
@@ -276,19 +285,21 @@ sequenceData =
 		truck.y = truckY
 		specificShape = shapes:get("truck")
 		physics.addBody(truck, "dynamic", specificShape) --TO DO: GIVE A SHAPE FROM SHAPES ALL
+		group:insert(truck)
 		return truck
 	end
 
 truckX=_W/2 --increase by 100
 truckY=200 --increase by 125
 
+	function threeTrucks()
 	for i=1, numTrucksToCreate do
 		createTruck(truckX, truckY, newList[i])
 		truckX=truckX+90
 		truckY=truckY+230	
 		
 	end
-		
+	end	
 	--2 Generate 3 of the 4 cookie objects 		
 	function createPallet(palletY, numObj)
 		pallet=display.newGroup()
@@ -321,6 +332,7 @@ truckY=200 --increase by 125
 		pallet.isFixedRotation=true
 	end
 
+	function onePallet()
 	do 
 		local i=math.random(1,numTrucksToCreate)
 		createPallet(palletPositions[i], newList[i], items[i])
@@ -330,6 +342,8 @@ truckY=200 --increase by 125
 		pallet:addEventListener( "collision", pallet)
 		pallet:addEventListener("touch", pallet)
 			--DRAG FUNCTION	
+	end
+	
 function pallet:touch( event )
 --begin focus
 	if event.phase == "began" then
@@ -383,6 +397,7 @@ end
 --Create a new group of objects so they can collide with one another for the check function
 
 
+	group:insert(sideBar)
 
 
 
