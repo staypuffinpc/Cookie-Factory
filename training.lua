@@ -48,7 +48,7 @@ local currMode = "timed" -- or count; TO DO: switch this per user request
 --forward references
 local spawnCookie, onLocalCollision, itemHit, itemDisappear, itemCombo, generator, createItemsForThisLevel, spawnTimer, disappearTimer, onLocalCollisionTimer, itemHitTimer,onBtnRelease, factoryBG, homeBtn, levelBar, nextQuestion, lcdText, startSession, genQ, leftSlice,leftGroup, timeDisplay, countDisplay, numDisplay, trayGroup, genStars,generatedBlocks,spawnBlock,inArray,genKey, dropZone, itemSensor, cookieGroup, correct, attempted, timerDisplay, ordersDisplay, correctDisplay, timeCount, timeCounter,orderCount, orderCounter, correctCount, correctCounter, trayColors, leftWall,rightWall, bottomFloor, top, conveyorFloor, packingFloor, intro
 local trayWidth = 133
-local trayHeight = 44
+local trayHeight = 64
 
 
 -- 'onRelease' event listener for return to main menu
@@ -124,7 +124,8 @@ function genQ()
 	lcdText.align = "right"
 	lcdText.text = convert.convertNumToText(newNum.number)
 	lcdText:setReferencePoint(display.TopRightReferencePoint)
-	lcdText.x = _W-100; lcdText.y = _H-30
+	lcdText.x, lcdText.y = _W, _H-50
+	transition.to(lcdText, {time = 300, x=_W-100})
 	-- iterate over omitted # array (in itemInfo object) and create the trays
 	local reverseNumT = table.invert(newNum.numberT,1)
   --clear out all the old blocks
@@ -146,7 +147,7 @@ function genQ()
 				startingX = startingX - 13.3
 			else 	-- if the item value is "_" make the tray a sensor
 				dropZone.x = startingX 
-				dropZone.y = 595
+				dropZone.y = 555
 				cookieGroup:insert(dropZone)
 			end
 		end
@@ -159,11 +160,13 @@ end
 	function checkAnswer(self, event)	
 	--if the item is over a sensor
 	if event.phase == "began" then
-		dropZone.alpha = 1
-		spawn.touchingOnRelease = true
+		self:setStrokeColor(255,255,0)
+		print ("started touching "..event.other.name)
+		event.other.touchingOnRelease = true
 	elseif event.phase == "ended" then
-		dropZone.alpha = 0	
-		spawn.touchingOnRelease = false
+		self:setStrokeColor(255,0,0)		
+		print ("see you later " .. event.other.name)
+		event.other.touchingOnRelease = false
 	end	
 	return true
 end
@@ -180,7 +183,7 @@ function scene:createScene( event )
 	
 		
 	local bg = display.newImageRect("images/newBG.png",1024,768)
-	bg.x = _W/2; bg.y = _H/2
+	bg.x = _W/2; bg.y = _H/2-20
 	local conveyor = display.newImageRect("images/conveyor.png",932, 158)
 	conveyor:setReferencePoint(display.TopLeftReferencePoint)
 	conveyor.x = 35; conveyor.y = 180;
@@ -195,7 +198,7 @@ function scene:createScene( event )
 	for i=1, levels[currLevel].digits do 
 		numDisplay[i] = {}
 		numDisplay[i].value = values[i]
-		numDisplay[i].text = display.newEmbossedText("0",digTextX,45,_mainFont,36)
+		numDisplay[i].text = display.newEmbossedText("0",digTextX,67,_mainFont,36)
 		numDisplay[i].text:setTextColor(255)
 		digTextX = digTextX - trayWidth
 		trayGroup:insert(numDisplay[i].text)
@@ -219,9 +222,9 @@ function scene:createScene( event )
 	trayColors[1] = {54, 158,251}
 	
 	--1,000,000s
-	local millionsTray = display.newRect(0,0, trayWidth, 40)
+	local millionsTray = display.newRect(0,0, trayWidth, trayHeight)
 	millionsTray:setFillColor(trayColors[1000000][1],trayColors[1000000][2],trayColors[1000000][3])
-	local millionsText = display.newEmbossedText("millions",trayWidth+5,10,trayWidth-10,40,_mainFont, 21)
+	local millionsText = display.newEmbossedText("millions",trayWidth+5,10,trayWidth-10,trayHeight*.9,_mainFont, 21)
 	millionsText:setTextColor(255,255,255)
 	millionsText:setReferencePoint(display.CenterReferencePoint)
 	millionsText.x = 67
@@ -232,7 +235,7 @@ function scene:createScene( event )
 	--100,000s
 	local hundredThousandsTray = display.newRect(trayWidth,0, trayWidth, trayHeight)
 	hundredThousandsTray:setFillColor(trayColors[100000][1],trayColors[100000][2],trayColors[100000][3])
-	local hundredThousandsText = display.newEmbossedText("hundred thousands",trayWidth+5,0,trayWidth-10,40,_mainFont, 21)
+	local hundredThousandsText = display.newEmbossedText("hundred thousands",trayWidth+5,0,trayWidth-10,trayHeight*.9,_mainFont, 21)
 	hundredThousandsText:setTextColor(255,255,255)
 	hundredThousandsText:setReferencePoint(display.CenterReferencePoint)
 	hundredThousandsText.x = trayWidth+67
@@ -243,7 +246,7 @@ function scene:createScene( event )
 	--10,000s
 	local tenThousandsTray = display.newRect(trayWidth*2, 0, trayWidth, trayHeight)
 	tenThousandsTray:setFillColor(trayColors[10000][1],trayColors[10000][2],trayColors[10000][3])
-	local tenThousandsText = display.newEmbossedText("ten thousands",trayWidth*2+5,0,trayWidth-10,40,_mainFont, 21)
+	local tenThousandsText = display.newEmbossedText("ten thousands",trayWidth*2+5,0,trayWidth-10,trayHeight*.9,_mainFont, 21)
 	tenThousandsText:setTextColor(255,255,255)
 	tenThousandsText:setReferencePoint(display.CenterReferencePoint)
 	tenThousandsText.x = trayWidth*2+67
@@ -298,10 +301,10 @@ function scene:createScene( event )
 
  
 	--create a target block (i.e. "dropzone") for delivering the packaged cookies
-	dropZone = display.newRect(0,0, trayWidth-6,125)
-	dropZone:setFillColor(255,255,255,30)
-	dropZone.strokeWidth = 4
-	dropZone.alpha = 0 -- make invisible to begin with
+	dropZone = display.newRect(0,0, trayWidth,140)
+	dropZone:setFillColor(255)
+	dropZone.strokeWidth = 6
+	dropZone.alpha = .3 -- make invisible to begin with
 	dropZone:setStrokeColor(255,0,0)
 	dropZone:setReferencePoint(display.TopRightReferencePoint)
 	physics.addBody(dropZone, "static")
@@ -309,6 +312,8 @@ function scene:createScene( event )
 	dropZone.collision = checkAnswer
 	dropZone:addEventListener("collision",dropZone)
 	dropZone.y = -45
+	dropZone.x = 800
+	dropZone.name = "dropZone"
 	
 	--now put them all into a group so you can move the group around with ease
 	trayGroup:insert(millionsPalette)
@@ -333,7 +338,7 @@ function scene:createScene( event )
 	trayGroup:insert(tensText)
 	trayGroup:insert(onesText)
 	trayGroup:insert(dropZone)
-	trayGroup.x = 0;trayGroup.y = 640
+	trayGroup.x = 0;trayGroup.y = 600
 
 
 
@@ -529,40 +534,24 @@ function scene:enterScene( event )
 	physics.addBody(conveyorFloor, "static", {friction = 0})
 	cookieGroup:insert(conveyorFloor)
 	
-	packingFloor = display.newRect(0,600,_W*1.2,10)
+	packingFloor = display.newRect(0,600,_W*1.2,20)
 	packingFloor:setReferencePoint(display.TopLeftReferencePoint)
 	packingFloor.x = 0
-	packingFloor.y = 590
+	packingFloor.y = 540
 	packingFloor:setFillColor(140)
 	packingFloor.stroke = 0;
 	physics.addBody(packingFloor, "static")
 	cookieGroup:insert(packingFloor)
 	
---[[
-	--for testing purposes, I'm creating a physics body and placing it on the stage to see why kinematic bodies are affected by gravity
-	local testItem = display.newRect(_W/2,_H/2, 100,100)
-	testItem:setFillColor(0,0,255)
-	physics.addBody(testItem,"kinematic")
-	cookieGroup:insert(testItem)
-
-	function testItem:touch(event)
-		--set focus to the currently touched object
-		if event.phase == "began" then		
-			display.getCurrentStage():setFocus( self, event.id)
-			self.isFocus = true
-			self.markX = self.x 
-			self.markY = self.y 
-		elseif event.phase == "moved" then
-			self.x = event.x - event.xStart+self.markX
-			self.y = event.y - event.yStart+self.markY
-			return true
-		elseif event.phase == "ended" or event.phase == "cancelled" then
-			display.getCurrentStage():setFocus(self, nil)
-			self.isFocus = false
-		end
-	end
-	testItem:addEventListener("touch",testItem)
---]]
+	trayFloor = display.newRect(0,600,_W*1.2,20)
+	trayFloor:setReferencePoint(display.TopLeftReferencePoint)
+	trayFloor.x = 0
+	trayFloor.y = 700
+	trayFloor.alpha = 0
+	trayFloor:setFillColor(255,0,0)
+	trayFloor.stroke = 0;
+	physics.addBody(trayFloor, "static")
+	cookieGroup:insert(trayFloor)
 
 	--set up a timer to generate cookies (NOTE: allow users to increase the speed of the cookies across the screen and the rate at which cookies are generated)
 	function generator()
@@ -614,14 +603,13 @@ function scene:enterScene( event )
 			end
 			timer.performWithDelay(300,function()
 				_G.currNum = genQ()
-				dropZone.alpha = 0		
 				orderCount = orderCount+1
 				orderCounter.text = tostring(orderCount).." / "..levels[currLevel].count
 				
 				if orderCount >= levels[currLevel].count then -- reached limit, so advance a level
 					userInfoTable.data.trainingLevel = userInfoTable.data.trainingLevel +1
 					fileCheck.replaceContents("userData.json",userInfoTable)
-					storyboard.gotoScene("menu")
+					--storyboard.gotoScene("breakRoom")
 				end
 				
 				end, 1)

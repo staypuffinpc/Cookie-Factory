@@ -173,11 +173,16 @@ end
 
 function onLocalCollision(self, event)
 	if self.dragging == 1 then
+		print ("other:" .. event.other.name)
 		local hitX = self.x 
 		local hitY = self.y 
 		local obj1 = self
 		local obj2 = event.other
 		if event.phase == "began" then
+			--check to see if the other item is the dropZone
+			if event.other.name == "dropZone" then
+				self.touching = true
+			end			
 			if self.dragging == 1 then
 				if ((obj1.units == obj2.units) and (obj1.y > 300) and (obj2.y >300)) then--units are the same
 					--check to see if this is the 10,000 units hitting each other, b/c we don't have a graphic for that
@@ -200,6 +205,11 @@ function onLocalCollision(self, event)
 					--print ("sorry, these two objects are not from the same mother")
 					return false
 				end
+			end
+		
+		elseif event.phase == "ended" then
+			if event.other.name == "dropZone" then
+				self.touching = false
 			end
 		end
 	end
@@ -267,6 +277,7 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 	cookie.units = units
 	cookie.dragging = 0
 	cookie.copied = false
+	cookie.touching = false
 	physics.addBody(cookie, "dymamic", bodies:get(name..value))
 	--physics.addBody(invImg, "dymamic", {radius=radius, shape=shape})
 	--physics.newJoint("weld", cookie, invImg, image.x, invImg.y)
@@ -337,7 +348,8 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 	            --self.tempJoint:setTarget( event.x, event.y )
 	            
 				return true
-			elseif event.phase == "ended"  or event.phase == "cancelled" then
+			elseif event.phase == "ended" or event.phase == "cancelled" then
+				print ("touching?",self.touching)
 				self.isBodyActive = false
 				self.bodyType = "dynamic"
 				self.dragging = 0
@@ -349,9 +361,10 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 				--get rid of temporary physics joint: TO DO: turn this back on
 				--self.tempJoint:removeSelf()
 				--self.tempJoint = nil
-				if touchingOnRelease == true then
+				if self.touching == true then
 					--package is in the dropzone and ready to be delivered
 					--check the number against the current number
+					print ("cookie: " .. self.value,"answer: ".._G.currNum.omittedValue)
 					if _G.currNum.omittedValue ~= self.value then --values don't match
 						transition.to(self, {time = 500, y = 450})
 					else 
@@ -369,7 +382,7 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 						--send a notification to a runtime event that's listening for 
 						sendAnswer(checkedVal)
 					end
-					touchingOnRelease = false -- if you don't set this back to false, all future items get "sucked in"
+					--touchingOnRelease = false -- if you don't set this back to false, all future items get "sucked in" TO DO: Delete this.  I think I fixed it by creating a "touching" property on each cookie
 				end
 				return true
 			end
