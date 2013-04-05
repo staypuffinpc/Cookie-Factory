@@ -39,6 +39,7 @@ local currLevel = userInfoTable.data.trainingLevel
 
 local createRate = 2000 --how often a new cookie is spawned (in milliseconds)
 local thisLevel
+local maxLevel = 6
 local currMode = "timed" -- or count; TO DO: switch this per user request
 
 
@@ -62,13 +63,16 @@ end
 --generate the list of questions in the list per the current condition
 function startSession(mode)
 	intro.alpha = 0
-	orderCount = 10
-	timeCount = levels[currLevel].timed*60
-	orderCounter.text = tostring(orderCount)
+	orderCount = 0
+	timeCounter = "0"
+	--timeCount = levels[currLevel].timed*60 --NOTE: used for countdown method
+	orderCounter.text = tostring(orderCount.." / "..levels[currLevel].count)
     _G.currNum = genQ()
 	generator()
 	spawnTimer = timer.performWithDelay(createRate, generator,0)	
 end
+
+
 
 --check if a value is in an array (http://developer.anscamobile.com/forum/2011/08/21/urgent-custom-fonts-ios-31)
 function inArray(array, value)
@@ -155,18 +159,27 @@ function genQ()
 	return newNum
 end
 
+--set touching to true on the cookie that's about to touch a dropzone
+function setTouching(self,event)
+	event.other.touching = true
+	print (event.other.name)
+end
+
+function unsetTouching(self, event)
+	event.other.touching = false
+	print (event.other.name)
+end
+
 
 --check user's answer
 	function checkAnswer(self, event)	
 	--if the item is over a sensor
 	if event.phase == "began" then
-		self:setStrokeColor(255,255,0)
-		print ("started touching "..event.other.name)
-		event.other.touchingOnRelease = true
-	elseif event.phase == "ended" then
-		self:setStrokeColor(255,0,0)		
-		print ("see you later " .. event.other.name)
-		event.other.touchingOnRelease = false
+		self:setFillColor(255,255,0)
+		event.other.touching = true
+	else --must be "ended" or "cancelled" phase
+		self:setFillColor(255)	
+		event.other.touching = false	
 	end	
 	return true
 end
@@ -184,13 +197,35 @@ function scene:createScene( event )
 		
 	local bg = display.newImageRect("images/newBG.png",1024,768)
 	bg.x = _W/2; bg.y = _H/2-20
-	local conveyor = display.newImageRect("images/conveyor.png",932, 158)
+	local conveyor = display.newImageRect("images/conveyor.png",_W+100, 158)
 	conveyor:setReferencePoint(display.TopLeftReferencePoint)
-	conveyor.x = 35; conveyor.y = 180;
+	conveyor.x = -60; conveyor.y = 180;
 	--	physics.addBody(conveyor, "static", {shape=-360, 632,   360, 632,   456, 527,   456, 474,   -456, 474,   -456, 527})
 	
 	
+	--load the sounds
+	local sounds = {}
+	local sound_10x = audio.loadSound("Sounds/10x.wav")
+	local sound_1s = audio.loadSound("Sounds/1s.wav")
+	local sound_10s= audio.loadSound("Sounds/10s.wav")
+	local sound_100s = audio.loadSound("Sounds/100s.wav")
+	local sound_1000s = audio.loadSound("Sounds/1000s.wav")
+	local sound_10000s = audio.loadSound("Sounds/10000s.wav")
+	local sound_100000s = audio.loadSound("Sounds/100000s.wav")
 	
+	sounds["sound_10x"] = sound_10x
+	sounds["sound_1s"] = sound_1s
+	sounds["sound_10s"] = sound_10s
+	sounds["sound_100s"] = sound_100s
+	sounds["sound_1000s"] = sound_1000s
+	sounds["sound_10000s"] = sound_10000s
+	sounds["sound_100000s"] = sound_100000s
+	
+	
+	
+	local function playSound(handle)
+		audio.play(handle,{channel = 1, loops = 0})
+	end
 	---------------------------------------- Number BOXES ----------------------------------------
 	values = {1,10,100,1000,10000}
 	numDisplay = {}
@@ -232,6 +267,7 @@ function scene:createScene( event )
 	millionsPalette:setFillColor(paletteColor)
 	millionsPalette:setReferencePoint(display.TopLeftReferencePoint)
 	millionsPalette.x = 0; millionsPalette.y = -40;
+	millionsTray:addEventListener("tap", function() playSound(sound_1000000s) end)
 	--100,000s
 	local hundredThousandsTray = display.newRect(trayWidth,0, trayWidth, trayHeight)
 	hundredThousandsTray:setFillColor(trayColors[100000][1],trayColors[100000][2],trayColors[100000][3])
@@ -243,6 +279,7 @@ function scene:createScene( event )
 	hundredThousandsPalette:setFillColor(paletteColor)
 	hundredThousandsPalette:setReferencePoint(display.TopLeftReferencePoint)
 	hundredThousandsPalette.x = trayWidth; hundredThousandsPalette.y = -40;
+	hundredThousandsTray:addEventListener("tap", function() playSound(sound_100000s) end)
 	--10,000s
 	local tenThousandsTray = display.newRect(trayWidth*2, 0, trayWidth, trayHeight)
 	tenThousandsTray:setFillColor(trayColors[10000][1],trayColors[10000][2],trayColors[10000][3])
@@ -254,6 +291,8 @@ function scene:createScene( event )
 	tenThousandsPalette:setFillColor(paletteColor)
 	tenThousandsPalette:setReferencePoint(display.TopLeftReferencePoint)
 	tenThousandsPalette.x = trayWidth*2; tenThousandsPalette.y = -40;
+	tenThousandsTray:addEventListener("tap", function() playSound(sound_10000s) end)
+	
 	--1,000s
 	local thousandsTray = display.newRect(trayWidth*3,0, trayWidth, trayHeight)
 	thousandsTray:setFillColor(trayColors[1000][1],trayColors[1000][2],trayColors[1000][3])
@@ -265,6 +304,8 @@ function scene:createScene( event )
 	thousandsPalette:setFillColor(paletteColor)
 	thousandsPalette:setReferencePoint(display.TopLeftReferencePoint)
 	thousandsPalette.x = trayWidth*3; thousandsPalette.y = -40;
+	thousandsTray:addEventListener("tap", function() playSound(sound_1000s) end)
+	
 	--100s
 	local hundredsTray = display.newRect(trayWidth*4, 0, trayWidth, trayHeight)
 	hundredsTray:setFillColor(trayColors[100][1],trayColors[100][2],trayColors[100][3])
@@ -276,6 +317,8 @@ function scene:createScene( event )
 	hundredsPalette:setFillColor(paletteColor)
 	hundredsPalette:setReferencePoint(display.TopLeftReferencePoint)
 	hundredsPalette.x = trayWidth*4; hundredsPalette.y = -40;
+	hundredsTray:addEventListener("tap", function() playSound(sound_100s) end)
+	
 	--10s
 	local tensTray = display.newRect(trayWidth*5, 0, trayWidth*2, trayHeight)
 	tensTray:setFillColor(trayColors[10][1],trayColors[10][2],trayColors[10][3])
@@ -287,6 +330,7 @@ function scene:createScene( event )
 	tensPalette:setFillColor(paletteColor)
 	tensPalette:setReferencePoint(display.TopLeftReferencePoint)
 	tensPalette.x = trayWidth*5; tensPalette.y = -40;
+	tensTray:addEventListener("tap", function() playSound(sound_10s) end)
 	--1s
 	local onesTray = display.newRect(trayWidth*6, 0, trayWidth, trayHeight)
 	onesTray:setFillColor(trayColors[1][1],trayColors[1][2],trayColors[1][3])
@@ -298,7 +342,7 @@ function scene:createScene( event )
 	onesPalette:setFillColor(paletteColor)
 	onesPalette:setReferencePoint(display.TopLeftReferencePoint)
 	onesPalette.x = trayWidth*6; onesPalette.y = -40;
-
+	onesTray:addEventListener("tap", function() playSound(sound_1s) end)
  
 	--create a target block (i.e. "dropzone") for delivering the packaged cookies
 	dropZone = display.newRect(0,0, trayWidth,140)
@@ -396,16 +440,16 @@ function scene:createScene( event )
 		--physics.addBody(chalkBoard, "static", {shape={-378, -40,  378,-40, 378, 40,  -378,40}})
 		
 		
-		timeDisplay = display.newText("Time: ",305,30, _mainFont,38 )
+		timeDisplay = display.newText("Time: ",255,30, _mainFont,38 )
 		timeDisplay:setTextColor(255, 150)
 		
-		timeCounter = display.newRetinaText(tostring(timeCount),415,30,_mainFont,38)
+		timeCounter = display.newRetinaText(tostring(timeCount),355,30,_mainFont,38)
 		timeCounter:setTextColor(255, 150)
 		
-		countDisplay = display.newText("Orders: ",505,30, _mainFont,38)
+		countDisplay = display.newText("Orders: ",480,30, _mainFont,38)
 		countDisplay:setTextColor(255, 150)
 	
-		orderCounter = display.newRetinaText(tostring(orderCount).." / "..levels[currLevel].count,635,30,_mainFont,38)
+		orderCounter = display.newRetinaText("0/ "..levels[currLevel].count,615,30,_mainFont,38)
 		orderCounter:setTextColor(255, 150)
 		
 		homeBtn=widget.newButton{
@@ -476,11 +520,11 @@ function scene:createScene( event )
 	group:insert(bg)
 	group:insert(conveyor)
 	group:insert(feedbackGroup)
-	--group:insert(intro)
 	group:insert(trayGroup)
 	group:insert(cookieGroup)
 	group:insert(leftGroup)
 	group:insert(sideBar)
+	group:insert(intro)
 	--group:insert(testGroup)
 
 end
@@ -488,8 +532,9 @@ end
 -- Called immediately after scene has moved onscreen:
 function scene:enterScene( event )
 	local group = self.view
-	physics.setGravity(0,10)
-
+	physics.setGravity(0,0)
+	--set the # correct back to 0
+	correct = 0
 	--show the intro message
 	intro.alpha = 1
 	--for some reason my physics objects will not be recreated if I put them in the createScene handler
@@ -534,13 +579,13 @@ function scene:enterScene( event )
 	physics.addBody(conveyorFloor, "static", {friction = 0})
 	cookieGroup:insert(conveyorFloor)
 	
-	packingFloor = display.newRect(0,600,_W*1.2,20)
+	packingFloor = display.newRect(0,600,_W*1.2,30)
 	packingFloor:setReferencePoint(display.TopLeftReferencePoint)
 	packingFloor.x = 0
-	packingFloor.y = 540
+	packingFloor.y = 530
 	packingFloor:setFillColor(140)
 	packingFloor.stroke = 0;
-	physics.addBody(packingFloor, "static")
+	physics.addBody(packingFloor, "static", {friction = 5})
 	cookieGroup:insert(packingFloor)
 	
 	trayFloor = display.newRect(0,600,_W*1.2,20)
@@ -550,7 +595,7 @@ function scene:enterScene( event )
 	trayFloor.alpha = 0
 	trayFloor:setFillColor(255,0,0)
 	trayFloor.stroke = 0;
-	physics.addBody(trayFloor, "static")
+	physics.addBody(trayFloor, "static", {friction = 5})
 	cookieGroup:insert(trayFloor)
 
 	--set up a timer to generate cookies (NOTE: allow users to increase the speed of the cookies across the screen and the rate at which cookies are generated)
@@ -591,12 +636,8 @@ function scene:enterScene( event )
 				--check to see if they've reached the goal for this level
 				if correct == levels[currLevel].count then
 					currLevel = currLevel +1
-					if currLevel > #levels then 
+					if currLevel >= #levels then 
 						currLevel = #levels
-						correct = 0 -- set it back to 0 for this level so they can never finish.  Mwah ha aha a ha ha ha ha!
-					else 
-						--reload page?
-						storyboard.reload(storyboard.getScene())
 					end
 				end
 				
@@ -607,9 +648,13 @@ function scene:enterScene( event )
 				orderCounter.text = tostring(orderCount).." / "..levels[currLevel].count
 				
 				if orderCount >= levels[currLevel].count then -- reached limit, so advance a level
-					userInfoTable.data.trainingLevel = userInfoTable.data.trainingLevel +1
+					if currLevel >= userInfoTable.data.trainingLevel then
+						userInfoTable.data.trainingLevel = currLevel
+					else 
+						userInfoTable.data.trainingLevel = currLevel+1
+					end
 					fileCheck.replaceContents("userData.json",userInfoTable)
-					--storyboard.gotoScene("breakRoom")
+					storyboard.gotoScene("breakRoom")
 				end
 				
 				end, 1)
@@ -639,7 +684,9 @@ function scene:exitScene( event )
 	physics.removeBody(conveyorFloor)
 	physics.pause()
 	--	INSERT code here (e.g. stop timers, remove listeners, unload sounds, etc.)
-	timer.cancel(spawnTimer)
+	if (spawnTimer) then
+		timer.cancel(spawnTimer)
+	end
 	Runtime:removeEventListener("enterFrame",enterFrame)
 	-----------------------------------------------------------------------------
 	--storyboard.purgeScene(storyboard.currentScene)

@@ -35,6 +35,8 @@ for i=1, #cookies do
     imageSheets[v].sheet = graphics.newImageSheet(v.."_sheet.png",imageSheets[v].sheetData:getSheet())
 end
 
+
+
 --fcn to check if an item is already in an array
 local function inArray(array, value)
     local is = false
@@ -51,7 +53,6 @@ end
 local function sendAnswer(value)
 	sentValue = value
 	answerSent = true
-	touchingOnRelease = false --just to be safe
 end
 	
 --handler for making a new item appear
@@ -172,17 +173,11 @@ end
 
 
 function onLocalCollision(self, event)
-	if self.dragging == 1 then
-		print ("other:" .. event.other.name)
-		local hitX = self.x 
-		local hitY = self.y 
-		local obj1 = self
-		local obj2 = event.other
 		if event.phase == "began" then
-			--check to see if the other item is the dropZone
-			if event.other.name == "dropZone" then
-				self.touching = true
-			end			
+			local hitX = self.x 
+			local hitY = self.y 
+			local obj1 = self
+			local obj2 = event.other
 			if self.dragging == 1 then
 				if ((obj1.units == obj2.units) and (obj1.y > 300) and (obj2.y >300)) then--units are the same
 					--check to see if this is the 10,000 units hitting each other, b/c we don't have a graphic for that
@@ -197,8 +192,8 @@ function onLocalCollision(self, event)
 						print ("collision began")
 						--local closure = function() return itemHit(hitX,hitY,obj1, obj2) end
 						onLocalCollisionTimer = timer.performWithDelay(100, function()
-							return itemHit(hitX,hitY, obj1, obj2)
-						end, 1)
+								return itemHit(hitX,hitY, obj1, obj2)
+							end, 1)
 						return true;
 					end
 				else --units are different, so play sound and exit fcn
@@ -206,13 +201,7 @@ function onLocalCollision(self, event)
 					return false
 				end
 			end
-		
-		elseif event.phase == "ended" then
-			if event.other.name == "dropZone" then
-				self.touching = false
-			end
 		end
-	end
 	return true
 end
 
@@ -233,19 +222,18 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 	--This is for when I figure out how to set the keys of one array to be the values of another:
 	local obj = imageSheets[name]
 	local image = display.newImage(obj.sheet, obj.sheetData:getFrameIndex(name..value))
-	
 	image.x = 0; image.y = 0;
+		
 	cookie:insert(image)
 	
-	
-	--[[TODO: look into this
+	--[[ TO Do: figure out how to make a weld joint properly
 	--generate an invisible shape with the same body that is dynamic so that it can interact with sensors at all times
 	local invImg = display.newImage(obj.sheet, obj.sheetData:getFrameIndex(name..value))
-	invImg.x, invImg.y = image.x,image.y
-	invImg.alpha = .8
+	invImg.x, invImg.y = cookie.x,cookie.y
+	invImg.alpha = .8 --TO DO: make this .01 once it works
+	
 	cookie:insert(invImg)
 	]]
-	
 	--cookie badge (needs text and a rounded rectangle grouped together)
 	local badge = display.newGroup()
 	local badgeText = display.newRetinaText(value,5,-2,"Arial",24)
@@ -267,22 +255,30 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 	--cookie properties
 	cookie.dragNumDisp = dragNumDisp
 	cookie.image = image
+	cookie.invImg = invImg
 	cookie.badgeText = badgeText
 	cookie.badgeRect = badgeRect
 	cookie:setReferencePoint(display.BottomRightReferencePoint)
 	cookie.name = name
 	cookie.value = value or 1
 	cookie.x = x or(_W+100)
-	cookie.y = y or 240
+	cookie.y = y or 260
 	cookie.units = units
 	cookie.dragging = 0
 	cookie.copied = false
 	cookie.touching = false
-	physics.addBody(cookie, "dymamic", bodies:get(name..value))
-	--physics.addBody(invImg, "dymamic", {radius=radius, shape=shape})
-	--physics.newJoint("weld", cookie, invImg, image.x, invImg.y)
 	cookie.isFixedRotation = true
 	cookie.linearDamping = 1
+	image.isFixedRotation = true
+	--invImg.isFixedRotation = true
+	image:setReferencePoint(display.BottomRightReferencePoint)
+	--invImg:setReferencePoint(display.BottomRightReferencePoint)
+	--physics.addBody(image, "kinematic", bodies:get(name..value))
+	physics.addBody(cookie, "dymamic", bodies:get(name..value))
+	--physics.addBody(invImg, "kinematic", bodies:get(name..value))
+	--weld the two bodies together so that you have a combined dymamic + kinematic body type
+	--physics.newJoint("weld", cookie, invImg, 0,0)
+
 	cookie.collision = onLocalCollision
 	cookie:addEventListener("collision",cookie)
 	--generate a unique key to refer to this cookie
@@ -320,8 +316,6 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 			cookie:setReferencePoint(display.CenterReferencePoint)
 			offset = self.height/2 + 20
 			self.isFixedRotation = true
-			self.isBodyActive = false
-			self.bodyType = "kinematic"
 			--show the value of the cookie on top of the cookie
 			self.dragNumDisp.alpha = 1
 			
@@ -329,14 +323,10 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 			self.isFocus = true
 			self.markX = self.x 
 			self.markY = self.y 
-			
-			-- Create a temporary touch joint and store it in the object for later reference
-            --self.tempJoint = physics.newJoint( "touch", self, event.x, event.y )
             
-			--return true
+			return true
 		elseif self.isFocus then
 			if event.phase == "moved" then
-				self.isBodyActive = true
 				self.dragging = 1 --only make new cookies if this is 1
 				--set a variable to know that the cookie has been moved and should no longer move across the screen
 				self.moved = "yes"
@@ -344,16 +334,9 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 				self.x = event.x-event.xStart+self.markX 
 				self.y = event.y - event.yStart+self.markY
 
-				 -- Update the joint to track the touch
-	            --self.tempJoint:setTarget( event.x, event.y )
-	            
 				return true
 			elseif event.phase == "ended" or event.phase == "cancelled" then
-				print ("touching?",self.touching)
-				self.isBodyActive = false
-				self.bodyType = "dynamic"
 				self.dragging = 0
-				self.isBodyActive = true
 				--hide the item's value
 				self.dragNumDisp.alpha = 0
 				display.getCurrentStage():setFocus(self,nil)
@@ -399,9 +382,8 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 		if cookie.y < 275-cookie.height/3 then --cookie is in conveyor area, so start it moving again
 			cookie.moved = "no"
 			self.isFixedRotation = false
-			self.isBodyActive = false
 			self.bodyType = "dynamic"
-			self.isBodyActive = true			
+--			self.isBodyActive = true			
 		end
 		if self.y > 275 and cookie.y < 600 then
 			self.rotation = 0
@@ -423,6 +405,7 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 	return cookie
 end
 
+
 --method to destroy all the cookies in generated items array
 function cleanUp()
 	for k, v in pairs(generatedItems) do 
@@ -438,4 +421,6 @@ function cleanUp()
 	end	
 	--generatedItems = nil
 	--generatedItems = {}
+	
+
 end

@@ -2,13 +2,13 @@
 -- PURPOSE: To practice generating a random #, converting it to text, and remove one digit, at random
 -----------------------------------------------------------------------------------------
 module(..., package.seeall)
-
-function convertNumToText(num)
     --create arrays of word equivalents for the numbers
     local ones = {"one","two","three","four","five","six","seven","eight","nine"}
     local teens = {"eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"}
     local  tens = {"ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"}
     local tripletUnits = {"","thousand","million","billion","trillion","quadrillion","quintillion","sextillion","septillion","octillion","nonillion","decillion", "undecillion","duodecillion"}
+    
+function convertNumToText(num)
    
     local revNum = string.reverse(num)
    
@@ -66,5 +66,8 @@ function convertNumToText(num)
             finalName = finalName..", "
         end
     end
-    return finalName
+    for k, v in pairs(fullName) do 
+	    print (k,v)
+    end 
+    return finalName, fullName
 end

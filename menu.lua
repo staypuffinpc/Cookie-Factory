@@ -43,7 +43,6 @@ function onBtnRelease(event)
 	timer.cancel(rainTimer)
 	-- go to scene1.lua scene
 	storyboard.gotoScene( event.target.scene)
-	print ("width:".._W, "height:".._H)
 	return true	-- indicates successful touch
 end
 
@@ -127,21 +126,22 @@ function scene:enterScene( event )
 		local cookie = display.newImage(obj.sheet, obj.sheetData:getFrameIndex(name.."1"))
 		cookie.x = startX; cookie.y = -50
 		local shape = shapes:get(name.."1")
-		print (name.."1")
 		physics.addBody(cookie,"dynamic",shape)
 		cookie.key = "cookie_"..math.random(1,1000000000)
 		
 		--insert into array for cleanup
 		cookieArray[cookie.key] = cookie
 		function cookie:enterFrame(event)
-			if self.x < -50 or self.x > _W+50 then
-				--destroy cookie
-				--print ("destroying cookie "..self.key)
-				physics.removeBody(cookieArray[self.key])
-				cookieArray[self.key]= nil
-				Runtime:removeEventListener("enterFrame",self)
-				self:removeSelf()
-				self = nil
+			if self.x then
+				if self.x < -50 or self.x > _W+50 then
+					--destroy cookie
+					--print ("destroying cookie "..self.key)
+					physics.removeBody(cookieArray[self.key])
+					cookieArray[self.key]= nil
+					Runtime:removeEventListener("enterFrame",self)
+					self:removeSelf()
+					self = nil
+				end
 			end
 		end
 		
