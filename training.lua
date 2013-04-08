@@ -18,7 +18,6 @@ storyboard.currentScene = "training"
 ---------------------------------------------------------------------------------
 display.setStatusBar( display.HiddenStatusBar )  -- hide the status bar
 --import physics,  gameUI, activate multitouch
-local proxy = require "proxy"
 local convert = require ("convertNumToText")
 local fileCheck = require("fileCheck")
 local generate = require ("generateNumInfo")

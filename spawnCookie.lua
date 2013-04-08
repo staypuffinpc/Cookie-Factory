@@ -285,7 +285,8 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 	cookie.key = genKey(generatedItems)
 	generatedItems[cookie.key] = cookie
 	cookie:addEventListener("tap",cookie)
-	
+
+		
 	--for double taps (so we can multiply the cookie x10
 	function cookie:tap(event)
 		if (self.lastTapped) then

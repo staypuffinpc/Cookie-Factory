@@ -1,3 +1,0 @@
---Enable multi-touch
---Pinch (decrease distance between 2 touches)
---Zoom (increase distance between 2 touches)

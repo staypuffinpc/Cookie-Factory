@@ -128,6 +128,7 @@ function scene:enterScene( event )
 		local shape = shapes:get(name.."1")
 		physics.addBody(cookie,"dynamic",shape)
 		cookie.key = "cookie_"..math.random(1,1000000000)
+		cookie.type = "cookie"
 		
 		--insert into array for cleanup
 		cookieArray[cookie.key] = cookie
@@ -155,7 +156,7 @@ function scene:enterScene( event )
 		group:insert(cookie)
 	end
 	--rain decadent cookies from above
-	rainTimer = timer.performWithDelay(500,rain,0)
+	rainTimer = timer.performWithDelay(1000,rain,0)
 end
 
 -- Called when scene is about to move offscreen:

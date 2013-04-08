@@ -6,7 +6,8 @@
 --globals
 _W=display.contentWidth
 _H=display.contentHeight
-_mainFont = "Bell Gothic Std Black"
+--_mainFont = "Bell Gothic Std Black" --TO DO: get this working on the iPad and turn back on
+_mainFont = "Helvetica"
 _size = 20
 levels = {}
 levels[1] = { digits= 2, theme = "oreo", unlock = "next level", stars=1, starImg = "oreo_star.png", count = 3, timed = 3 }
