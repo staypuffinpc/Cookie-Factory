@@ -149,9 +149,28 @@ function scene:createScene( event )
    { name = "closing", frames = { 19,18,17,16,15,14,12,7,2,3}, time = 300, loopCount = 1 },
    { name = "moving", frames = { 5,6,8,9,10,11,13}, time = 250, loopCount = 0 }
  }
-	
+	--call to create new items
+	function recreate()
+		for k,v in pairs(createdItems) do
+			print("now I'm: "..v.myName)
+		end
+		--first, delete everything in the old list
+		for key,value in pairs (createdItems) do
+			print ( value.myName )
+			value.removeSelf()
+			value = nil
+			createdItems[key]=nil
+		end
+		--then, get a new list of trucks
+		newList = generate.generateNumInfos(numTrucksToCreate,level)
+		--now make the objects
+		--audio.play(idleSound,{channel=1,loops=-1})
+		onePallet()
+		threeTrucks()
+	end
+ 
 	function createTruck(truckX,truckY, numObj)
-		truck = display.newGroup()
+		local truck = display.newGroup()
 		--truck:setReferencePoint(display.TopRightReferencePoint) --TO DO: REPLACE LINE 235-237 WITH TRUCK SPRITE
 		local image = display.newSprite( truckImageSheet , sequenceData )
 		image:setSequence("idling")
@@ -249,8 +268,6 @@ function scene:createScene( event )
 						touchedTruck.image:setSequence( "moving" )  
 						touchedTruck.image:play()
 						transition.to( touchedTruck, { time=1500, alpha=1, x=end_x, onComplete=recreate } )
-						self:removeSelf() 
-						self=nil
 					end
 					function closeTruck()
 						touchedTruck.image:setSequence( "closing" )  
@@ -276,20 +293,7 @@ function scene:createScene( event )
 		print("pallet Y: "..palletPositions[1])
 	end
 
-	--call to create new items
-	function recreate()
-		--first, delete everything in the old list
-		for i=#createdItems, -1 do --have to go backwards, or we'll skip every other #
-			createdItems[i].removeSelf()
-			createdItems[i] = nil
-		end
-		--then, get a new list of trucks
-		newList = generate.generateNumInfos(numTrucksToCreate,level)
-		--now make the objects
-		--audio.play(idleSound,{channel=1,loops=-1})
-		onePallet()
-		threeTrucks()
-	end
+
 	-------------------General Scene Images-----------------
 
 	factoryBG= display.newImageRect("images/TruckBG.png", _W, _H)
