@@ -214,8 +214,8 @@ function scene:createScene( event )
 		local pallet=display.newGroup()
 		pallet:setReferencePoint(display.TopRightReferencePoint)
 		local num = numObj.omittedValue
-		local imagePallet=display.newImageRect("images/pallet.png", 213, 79)
-			pallet:insert(imagePallet)
+		--local imagePallet=display.newImageRect("images/pallet.png", 213, 79)
+			--pallet:insert(imagePallet)
 		local itemImage=display.newImage(themePics, cookieInfo:getFrameIndex(theme..num))
 			itemImage:setReferencePoint(display.BottomCenterReferencePoint)
 			itemImage.x=-10
