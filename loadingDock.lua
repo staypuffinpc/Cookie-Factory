@@ -151,12 +151,11 @@ function scene:createScene( event )
  }
 	--call to create new items
 	function recreate()
-		for k,v in pairs(createdItems) do
-			print("now I'm: "..v.myName)
-		end
+		print ("there are "..#createdItems.." in createdItems.")
+		
 		--first, delete everything in the old list
 		for key,value in pairs (createdItems) do
-			print ( value.myName )
+			print ( value.type )
 			value.removeSelf()
 			value = nil
 			createdItems[key]=nil
@@ -167,6 +166,9 @@ function scene:createScene( event )
 		--audio.play(idleSound,{channel=1,loops=-1})
 		onePallet()
 		threeTrucks()
+		for k,v in pairs(createdItems) do
+			print("now I'm: "..v.myName)
+		end
 	end
  
 	function createTruck(truckX,truckY, numObj)
@@ -366,7 +368,7 @@ function scene:enterScene( event )
 
 	touching = false
     --empty the list of items already created
-    createdItems={}
+    --createdItems={}
     usedPositions={}
     
     --start  your engines!! (i.e., sounds)
