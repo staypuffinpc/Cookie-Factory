@@ -13,7 +13,7 @@ local scene = storyboard.newScene()
 physics.setGravity(0,0)
 local sheetInfo = require "trucks"
 local shapes = (require "shapes_all@2x").physicsData(.5)
-themes = {"oreo", "pb","jelly","chocchip"}
+
 
 _H = display.contentHeight
 _W = display.contentWidth
@@ -107,11 +107,10 @@ function scene:createScene( event )
 	level = userInfoTable.data.testingLevel
 	    
 	newList = generate.generateNumInfos(numTrucksToCreate,level)
-    theme = themes[level]
+    local theme = levels[level].theme
     --create the appropriate image sheet for this level
 	cookieInfo = require (theme.."_sheet")
 	themePics = graphics.newImageSheet(theme.."_sheet.png",cookieInfo:getSheet())
-    items = itemInfo.createItemsForThisLevel(theme)
     
     --create the right sounds
     idleSound = audio.loadSound("Sounds/truck_idling.wav")
@@ -150,8 +149,7 @@ function scene:createScene( event )
 		end --truck check
 	end -- touch
 
-	local theme = levels[level].theme
-	items=itemInfo.createItemsForThisLevel(theme)
+	
 
 	--the omitted# from the trucks (with the exception of 1) will determine the cookie to appear
 
@@ -248,8 +246,8 @@ function scene:createScene( event )
 		local pallet=display.newGroup()
 		pallet:setReferencePoint(display.TopRightReferencePoint)
 		local num = numObj.omittedValue
-		--local imagePallet=display.newImageRect("images/pallet.png", 213, 79)
-			--pallet:insert(imagePallet)
+		local imagePallet=display.newImageRect("images/pallet.png", 213, 79)
+			pallet:insert(imagePallet)
 		local itemImage=display.newImage(themePics, cookieInfo:getFrameIndex(theme..num))
 			itemImage:setReferencePoint(display.BottomCenterReferencePoint)
 			itemImage.x=-10
