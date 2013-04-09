@@ -40,6 +40,7 @@ local greenGradient = graphics.newGradient( {0, 255,0}, {0, 255,0}, "down" )
 local threeTrucks
 local onePallet
 local idleSound, hornSound, closingSound, movingSound
+local intro
 
 --From generateNumInfo
 local value
@@ -50,6 +51,38 @@ local items
 
 
 -- Called when the scene's view does not exist:
+		local function start()
+			intro.alpha = 0
+			recreate()
+		end
+		--create an intro message
+		intro = display.newGroup()
+		local introBg = display.newRoundedRect(0,0,640,400,5)
+		introBg.strokeWidth = 6
+		introBg:setFillColor(200,100,50)
+		introBg:setStrokeColor(255)
+		local startBtn = widget.newButton{
+			width = 100,
+			height = 50,
+			label = "Start",
+			font = _mainFont,
+			fontSize = 30,
+			labelColor = {default = {255}, over = {0}},
+			strokeColor = {255},
+			defaultColor = {0,0,0,0},
+			strokeWidth = 5,
+			onRelease = start
+		}
+		startBtn.x, startBtn.y = 550, 360
+		intro:insert(introBg)
+		intro:insert(startBtn)
+		local message = "Welcome to the loading dock! We need help filling orders with the cookies that have been packaged, but the trucks are not quite ready for shipping. Each truck needs a different number of cookies before it can drive away. You can help us by dragging the pallet of cookies into the back of the truck with the matching missing number on the side. If the truck turns red, it was not a match. If the truck turns green, you got it right!"
+		local introText = display.newRetinaText(message,20,20,600,400, "Helvetica", 30)
+		
+		intro:insert(introText)
+		intro:setReferencePoint(display.CenterReferencePoint)
+		intro.x = _W/2; intro.y = _H/2
+
 function scene:createScene( event )
 	local group = self.view
 	
@@ -96,10 +129,12 @@ function scene:createScene( event )
 					touchedTruck.image:setSequence( "opening" )
 					touchedTruck.image:play()
 	
-			elseif ( event.phase == "ended" ) then
+			elseif ( event.phase == "ended" or event.phase == "cancelled" ) then
 				local function idle()
 					touchedTruck.image:setSequence( "idling" )
 					touchedTruck.image:play()
+					--touchedTruck = {}
+					touching = false
 				end
 				local function close()
 					touchedTruck.image:setSequence( "closing" )
@@ -109,8 +144,7 @@ function scene:createScene( event )
 				close()
 	
 				print( self.myName .. " ended a collision with " )--.. touchedTruck.myName )
-				touchedTruck = {}
-				touching = false
+
 				return true
 			end -- touch phases
 		end --truck check
@@ -156,10 +190,12 @@ function scene:createScene( event )
 		--first, delete everything in the old list
 		for key,value in pairs (createdItems) do
 			print ( value.type )
-			value.removeSelf()
+			value:removeSelf()
 			value = nil
 			createdItems[key]=nil
 		end
+		truckX=_W/2 --increase by 100
+		truckY=200 --increase by 125
 		--then, get a new list of trucks
 		newList = generate.generateNumInfos(numTrucksToCreate,level)
 		--now make the objects
@@ -198,9 +234,7 @@ function scene:createScene( event )
 		return truck
 	end
 
-	truckX=_W/2 --increase by 100
-	truckY=200 --increase by 125
-
+	
 	threeTrucks = function()
 		for i=1, numTrucksToCreate do
 			createTruck(truckX, truckY, newList[i])
@@ -258,26 +292,27 @@ function scene:createScene( event )
 					self.y = event.y - event.yStart + self.markY
 			
 				elseif event.phase == "ended" or event.phase == "cancelled" then
-					print (touchedTruck.myName)
-					if self.value == touchedTruck.value then
-						touchedTruck.image:setFillColor( 0,255,00 )
-					else 
-						touchedTruck.image:setFillColor( 255,0,0 )
-						--audio.play(hornSound, {channel=1, loops=0})
-					end
-					function moveTruck()
-						local end_x=display.contentWidth/2+800
-						touchedTruck.image:setSequence( "moving" )  
-						touchedTruck.image:play()
-						transition.to( touchedTruck, { time=1500, alpha=1, x=end_x, onComplete=recreate } )
-					end
-					function closeTruck()
-						touchedTruck.image:setSequence( "closing" )  
-						touchedTruck.image:play()
-						timer.performWithDelay ( 300, moveTruck )
-					end
 					if touching == true then
-						transition.to (self, { time=200, delay=200, xScale=.01, yScale=.01, x=touchedTruck.x-touchedTruck.width/2.5, y=touchedTruck.y, onComplete=closeTruck} )				
+						print (touchedTruck.myName)
+						if self.value == touchedTruck.value then
+							touchedTruck.image:setFillColor( 0,255,00 )
+						else 
+							touchedTruck.image:setFillColor( 255,0,0 )
+							--audio.play(hornSound, {channel=1, loops=0})
+						end
+						function moveTruck()
+							local end_x=display.contentWidth/2+800
+							touchedTruck.image:setSequence( "moving" )  
+							touchedTruck.image:play()
+							transition.to( touchedTruck, { time=1500, alpha=1, x=end_x, onComplete=recreate } )
+						end
+						function closeTruck()
+							touchedTruck.image:setSequence( "closing" )  
+							touchedTruck.image:play()
+							timer.performWithDelay ( 300, moveTruck )
+						end
+						--if touching == true then
+							transition.to (self, { time=200, delay=200, xScale=.01, yScale=.01, x=touchedTruck.x-touchedTruck.width/2.5, y=touchedTruck.y, onComplete=closeTruck} )				
 					end
 			--end focus
 					display.getCurrentStage():setFocus( self, nil )
@@ -327,7 +362,7 @@ end --create scene
 -------ENTER SCENE----------
 function scene:enterScene( event )
 	physics.start()
-	recreate()
+	--recreate()
 
 	local sideBar = display.newGroup()
 	local group = self.view

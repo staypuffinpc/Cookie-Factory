@@ -7,7 +7,7 @@
 
 local scene = storyboard.newScene()
 physics.start()
-physics.setDrawMode("normal")
+physics.setDrawMode("hybrid")
 
 --get required files
 local widget = require "widget"
