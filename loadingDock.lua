@@ -39,7 +39,7 @@ local redGradient = graphics.newGradient( {255, 0,0}, {255, 0,0}, "down" )
 local greenGradient = graphics.newGradient( {0, 255,0}, {0, 255,0}, "down" )
 local threeTrucks
 local onePallet
-local idleSound, hornSound, closingSound, movingSound
+local idleSound, hornSound, closingSound, movingSound, folleyChannel
 local intro
 
 --From generateNumInfo
@@ -51,41 +51,41 @@ local items
 
 
 -- Called when the scene's view does not exist:
-		local function start()
-			intro.alpha = 0
-			recreate()
-		end
-		--create an intro message
-		intro = display.newGroup()
-		local introBg = display.newRoundedRect(0,0,640,400,5)
-		introBg.strokeWidth = 6
-		introBg:setFillColor(200,100,50)
-		introBg:setStrokeColor(255)
-		local startBtn = widget.newButton{
-			width = 100,
-			height = 50,
-			label = "Start",
-			font = _mainFont,
-			fontSize = 30,
-			labelColor = {default = {255}, over = {0}},
-			strokeColor = {255},
-			defaultColor = {0,0,0,0},
-			strokeWidth = 5,
-			onRelease = start
-		}
-		startBtn.x, startBtn.y = 550, 360
-		intro:insert(introBg)
-		intro:insert(startBtn)
-		local message = "Welcome to the loading dock! We need help filling orders with the cookies that have been packaged, but the trucks are not quite ready for shipping. Each truck needs a different number of cookies before it can drive away. You can help us by dragging the pallet of cookies into the back of the truck with the matching missing number on the side. If the truck turns red, it was not a match. If the truck turns green, you got it right!"
-		local introText = display.newRetinaText(message,20,20,600,400, "Helvetica", 30)
-		
-		intro:insert(introText)
-		intro:setReferencePoint(display.CenterReferencePoint)
-		intro.x = _W/2; intro.y = _H/2
-
 function scene:createScene( event )
 	local group = self.view
 	
+
+	local function start()
+		intro.alpha = 0
+		recreate()
+	end
+	--create an intro message
+	intro = display.newGroup()
+	local introBg = display.newRoundedRect(0,0,640,400,5)
+	introBg.strokeWidth = 6
+	introBg:setFillColor(200,100,50)
+	introBg:setStrokeColor(255)
+	local startBtn = widget.newButton{
+		width = 100,
+		height = 50,
+		label = "Start",
+		font = _mainFont,
+		fontSize = 30,
+		labelColor = {default = {255}, over = {0}},
+		onRelease = start
+	}
+	
+	startBtn.x, startBtn.y = 550, 360
+	startBtn:setFillColor(0,200,0)	
+	intro:insert(introBg)
+	intro:insert(startBtn)
+	local message = "Welcome to the loading dock! We need help filling orders with the cookies that have been packaged, but the trucks are not quite ready for shipping. Each truck needs a different number of cookies before it can drive away. You can help us by dragging the pallet of cookies into the back of the truck with the matching missing number on the side.  Will you help us?"
+	local introText = display.newRetinaText(message,20,20,600,400, "Helvetica", 30)
+	
+	intro:insert(introText)
+	intro:setReferencePoint(display.CenterReferencePoint)
+	intro.x = _W/2; intro.y = _H/2
+		
 	local palletPositions={330, 500, 670}
 	print(palletPositions[1])
 	local numTrucksToCreate = 3
@@ -106,7 +106,6 @@ function scene:createScene( event )
 	print ("Welcome: "..userInfoTable.userName, "level: "..userInfoTable.data.testingLevel)	
 	level = userInfoTable.data.testingLevel
 	    
-	newList = generate.generateNumInfos(numTrucksToCreate,level)
     local theme = levels[level].theme
     --create the appropriate image sheet for this level
 	cookieInfo = require (theme.."_sheet")
@@ -183,6 +182,9 @@ function scene:createScene( event )
  }
 	--call to create new items
 	function recreate()
+		    --start  your engines!! (i.e., sounds)
+	    audio.setVolume( .25, {channel = 1})
+	    folleyChannel = audio.play(idleSound,{channel = 1, loops = -1})
 		print ("there are "..#createdItems.." in createdItems.")
 		
 		--first, delete everything in the old list
@@ -195,7 +197,7 @@ function scene:createScene( event )
 		truckX=_W/2 --increase by 100
 		truckY=200 --increase by 125
 		--then, get a new list of trucks
-		newList = generate.generateNumInfos(numTrucksToCreate,level)
+		newList = generate.generateNumInfos(numTrucksToCreate,levels[level].digits)
 		--now make the objects
 		--audio.play(idleSound,{channel=1,loops=-1})
 		onePallet()
@@ -338,7 +340,7 @@ function scene:createScene( event )
 	factoryBG.scene="menu"
 	
 	homeBtn=widget.newButton{
-		default="images/btnHome.png",
+		defaultFile="images/btnHome.png",
 		width=80,
 		height=80,
 		onRelease = onBtnRelease	-- event listener function
@@ -351,7 +353,7 @@ function scene:createScene( event )
 	
 	group:insert(factoryBG)
 	group:insert(homeBtn)
-	
+	group:insert(intro)
 	return true --scene creation successful
 
 end --create scene
@@ -360,7 +362,7 @@ end --create scene
 -------ENTER SCENE----------
 function scene:enterScene( event )
 	physics.start()
-	--recreate()
+	intro.alpha = 1
 
 	local sideBar = display.newGroup()
 	local group = self.view
@@ -403,17 +405,15 @@ function scene:enterScene( event )
     --empty the list of items already created
     --createdItems={}
     usedPositions={}
-    
-    --start  your engines!! (i.e., sounds)
-    --audio.play(idleSound,{channel = 1, loops = -1})
+   
 	group:insert(sideBar)
 end --create scene
 
 -- Called when scene is about to move offscreen:
 function scene:exitScene( event )
 	local group = self.view
+		audio.pause(folleyChannel)
 		--[[ --TO DO: get the sounds working
-		audio.pause()
 		--turn off all the sounds
 		audio.dispose(idleSound)
 		idleSound = nil
@@ -424,6 +424,7 @@ function scene:exitScene( event )
 		audio.dispose(closingSound)
 		closingSound = nil
 		]]
+
 		function cleanUp()
 		 for key, value in pairs(createdItems) do
 			  --first, remove the item from the array

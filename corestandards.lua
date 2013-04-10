@@ -50,15 +50,15 @@ function scene:createScene( event )
 	factoryBG.scene="menu"
 	
 	homeBtn=widget.newButton{
-		default="images/btnHome.png",
+		defaultFile="images/btnHome.png",
 		width=80,
 		height=80,
 		onRelease = onBtnRelease	-- event listener function
 		}
-	homeBtn:setReferencePoint(display.CenterReferencePoint)
-	homeBtn.x = _W*.06
-	homeBtn.y = _H*.07
-	homeBtn.scene="menu"
+		homeBtn:setReferencePoint(display.CenterReferencePoint)
+		homeBtn.x = 60
+		homeBtn.y = 40
+		homeBtn.scene="menu"
 
 	local coreTitle=display.newText("Common Core Standards - Mathematics", 0, 0, native.systemFontBold, 53)
 	coreTitle:setTextColor(255)

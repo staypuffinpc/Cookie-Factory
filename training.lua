@@ -46,7 +46,7 @@ local currMode = "timed" -- or count; TO DO: switch this per user request
 
 
 --forward references
-local spawnCookie, onLocalCollision, itemHit, itemDisappear, itemCombo, generator, createItemsForThisLevel, spawnTimer, disappearTimer, onLocalCollisionTimer, itemHitTimer,onBtnRelease, factoryBG, homeBtn, levelBar, nextQuestion, lcdText, startSession, genQ, leftSlice,leftGroup, timeDisplay, countDisplay, numDisplay, trayGroup, genStars,generatedBlocks,spawnBlock,inArray,genKey, dropZone, itemSensor, cookieGroup, correct, attempted, timerDisplay, ordersDisplay, correctDisplay, timeCount, timeCounter,orderCount, orderCounter, correctCount, correctCounter, trayColors, leftWall,rightWall, bottomFloor, top, conveyorFloor, packingFloor, intro
+local spawnCookie, onLocalCollision, itemHit, itemDisappear, itemCombo, generator, createItemsForThisLevel, spawnTimer, disappearTimer, onLocalCollisionTimer, itemHitTimer,onBtnRelease, factoryBG, homeBtn, levelBar, nextQuestion, lcdText, startSession, genQ, leftSlice,leftGroup, timeDisplay, countDisplay, numDisplay, trayGroup, genStars,generatedBlocks,spawnBlock,inArray,genKey, dropZone, itemSensor, cookieGroup, correct, attempted, timerDisplay, ordersDisplay, correctDisplay, timeCount, timeCounter,orderCount, orderCounter, correctCount, correctCounter, trayColors, leftWall,rightWall, bottomFloor, top, conveyorFloor, packingFloor, intro, nameDisplay
 local trayWidth = 133
 local trayHeight = 64
 
@@ -411,12 +411,10 @@ function scene:createScene( event )
 			font = _mainFont,
 			fontSize = 30,
 			labelColor = {default = {255}, over = {0}},
-			strokeColor = {255},
-			defaultColor = {0,0,0,0},
-			strokeWidth = 5,
 			onRelease = function() return startSession(currMode) end
 		}
 		startBtn.x, startBtn.y = 550, 360
+		startBtn:setFillColor(0,200,0)
 		intro:insert(introBg)
 		intro:insert(startBtn)
 		local message = "Welcome to our factory. We need help packaging cookies for delivery, but someone seems to have forgotten to fill in one of the places in each order.  Please help us by combining cookies to the right amount.  After combining them, drag the cookie to the empty spot below and they'll be packaged and ready for shipping."
@@ -438,21 +436,24 @@ function scene:createScene( event )
 		chalkBoard.x = 0; chalkBoard.y = 0;
 		--physics.addBody(chalkBoard, "static", {shape={-378, -40,  378,-40, 378, 40,  -378,40}})
 		
-		
+		--[[ TO DO: turn this back on if you ever want to time people
 		timeDisplay = display.newText("Time: ",255,30, _mainFont,38 )
 		timeDisplay:setTextColor(255, 150)
 		
 		timeCounter = display.newRetinaText(tostring(timeCount),355,30,_mainFont,38)
 		timeCounter:setTextColor(255, 150)
+		--]]
+		nameDisplay = display.newText("Name",100,20, _mainFont,38 )
+		nameDisplay:setTextColor(255, 150)
 		
-		countDisplay = display.newText("Orders: ",480,30, _mainFont,38)
+		countDisplay = display.newText("Orders: ",480,20, _mainFont,38)
 		countDisplay:setTextColor(255, 150)
 	
-		orderCounter = display.newRetinaText("0/ "..levels[currLevel].count,615,30,_mainFont,38)
+		orderCounter = display.newRetinaText("0/ "..levels[currLevel].count,615,20,_mainFont,38)
 		orderCounter:setTextColor(255, 150)
 		
 		homeBtn=widget.newButton{
-		default="images/btnHome.png",
+		defaultFile="images/btnHome.png",
 		width=60,
 		height=54,
 		onRelease = onBtnRelease	-- event listener function
@@ -463,9 +464,10 @@ function scene:createScene( event )
 		homeBtn.scene="menu"
 		--insert them all into one group
 		feedbackGroup:insert(chalkBoard)
-		feedbackGroup:insert(timeDisplay)
+--		feedbackGroup:insert(timeDisplay) TO DO: turn timers back on if you want to time users
+--		feedbackGroup:insert(timeCounter)
+		feedbackGroup:insert(nameDisplay)
 		feedbackGroup:insert(countDisplay)
-		feedbackGroup:insert(timeCounter)
 		feedbackGroup:insert(orderCounter)
 		feedbackGroup:insert(homeBtn)
 		feedbackGroup.x = 104; feedbackGroup.y = 0
@@ -534,6 +536,12 @@ function scene:enterScene( event )
 	physics.setGravity(0,0)
 	--set the # correct back to 0
 	correct = 0
+	--update the userInfo
+	userInfo = fileCheck.copyContents("userData.json")
+	userInfoTable = json.decode(userInfo)
+	nameDisplay.text = userInfoTable.userName
+	currLevel = userInfoTable.data.trainingLevel
+
 	--show the intro message
 	intro.alpha = 1
 	--for some reason my physics objects will not be recreated if I put them in the createScene handler
@@ -647,13 +655,11 @@ function scene:enterScene( event )
 				orderCounter.text = tostring(orderCount).." / "..levels[currLevel].count
 				
 				if orderCount >= levels[currLevel].count then -- reached limit, so advance a level
-					if currLevel >= userInfoTable.data.trainingLevel then
-						userInfoTable.data.trainingLevel = currLevel
-					else 
+					if currLevel < #levels then --only advance if already not on highest level
 						userInfoTable.data.trainingLevel = currLevel+1
 					end
 					fileCheck.replaceContents("userData.json",userInfoTable)
-					storyboard.gotoScene("breakRoom")
+					storyboard.gotoScene("breakRoom-2")
 				end
 				
 				end, 1)

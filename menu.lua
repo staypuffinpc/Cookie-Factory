@@ -7,7 +7,7 @@
 
 local scene = storyboard.newScene()
 physics.start()
-physics.setDrawMode("hybrid")
+physics.setDrawMode("normal")
 
 --get required files
 local widget = require "widget"
@@ -60,7 +60,6 @@ end
 function scene:createScene( event )
 	local group = self.view
 
-	
 	-- display a background image
 	local background = display.newImageRect( "images/Splash-background.png", _W, _H)
 	background:setReferencePoint( display.CenterReferencePoint )
@@ -70,7 +69,7 @@ function scene:createScene( event )
 	
 	-- create a widget button (which will loads scene1.lua on release)
 	packagingBtn = widget.newButton{
-		default="images/btnPacking.png",
+		defaultFile = "images/btnPacking.png",
 		onRelease = onBtnRelease	-- event listener function
 		}
 	packagingBtn:setReferencePoint( display.CenterReferencePoint )
@@ -80,7 +79,7 @@ function scene:createScene( event )
 
 
 	loadingDockBtn = widget.newButton{
-		default="images/btnLoading.png",
+		defaultFile="images/btnLoading.png",
 		onRelease = onBtnRelease	-- event listener function
 	}
 	loadingDockBtn:setReferencePoint( display.CenterReferencePoint )
@@ -90,7 +89,7 @@ function scene:createScene( event )
 	
 	
 	standardsBtn = widget.newButton{
-		default="images/btnStandards.png",
+		defaultFile="images/btnStandards.png",
 		onRelease = onBtnRelease	-- event listener function
 	}
 	standardsBtn:setReferencePoint( display.CenterReferencePoint )

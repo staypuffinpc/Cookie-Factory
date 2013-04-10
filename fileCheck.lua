@@ -32,7 +32,7 @@ function checkForFile(file)
 end
 
 function copyContents(file)
-	local path = system.pathForFile(file,system,DocumentsDirectory)
+	local path = system.pathForFile(file,system.DocumentsDirectory)
 	local readFile = io.open(path,"r")
 	local contents = readFile:read("*a")
 	io.close(readFile)
@@ -43,7 +43,7 @@ end
 
 function replaceContents(file,newContents)
 	local encodedContents = json.encode(newContents)
-	local path = system.pathForFile(file,system,DocumentsDirectory)
+	local path = system.pathForFile(file,system.DocumentsDirectory)
 	local writeFile = io.open(path,"w")
 	writeFile:write(encodedContents)
 	io.close(writeFile)

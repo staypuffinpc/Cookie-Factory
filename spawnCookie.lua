@@ -356,7 +356,7 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 						--store item info to check if it's right or not
 						local checkedVal = self.value
 						print(checkedVal)
-						timer.performWithDelay(500, function()  
+						timer.performWithDelay(200, function()  
 								Runtime:removeEventListener("enterFrame",self)
 								generatedItems[self.key] = nil
 								collectgarbage("collect")

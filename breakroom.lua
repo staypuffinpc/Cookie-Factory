@@ -39,7 +39,7 @@ function scene:createScene( event )
 		
 		--create the necessary buttons
 		homeBtn=widget.newButton{
-		default="images/btnHome.png",
+		defaultFile="images/btnHome.png",
 		width=60,
 		height=54,
 		onRelease = onBtnRelease	-- event listener function
