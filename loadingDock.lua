@@ -295,7 +295,7 @@ function scene:createScene( event )
 					if touching == true then
 						print (touchedTruck.myName)
 						if self.value == touchedTruck.value then
-							touchedTruck.image:setFillColor( 0,255,00 )
+							touchedTruck.image:setFillColor( 0,255,0 )
 						else 
 							touchedTruck.image:setFillColor( 255,0,0 )
 							--audio.play(hornSound, {channel=1, loops=0})
@@ -311,7 +311,6 @@ function scene:createScene( event )
 							touchedTruck.image:play()
 							timer.performWithDelay ( 300, moveTruck )
 						end
-						--if touching == true then
 							transition.to (self, { time=200, delay=200, xScale=.01, yScale=.01, x=touchedTruck.x-touchedTruck.width/2.5, y=touchedTruck.y, onComplete=closeTruck} )				
 					end
 			--end focus
