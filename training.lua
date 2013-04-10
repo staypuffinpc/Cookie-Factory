@@ -418,14 +418,14 @@ function scene:createScene( event )
 		intro:insert(introBg)
 		intro:insert(startBtn)
 		local message = "Welcome to our factory. We need help packaging cookies for delivery, but someone seems to have forgotten to fill in one of the places in each order.  Please help us by combining cookies to the right amount.  After combining them, drag the cookie to the empty spot below and they'll be packaged and ready for shipping."
-		local introText = display.newRetinaText(message,20,20,600,400, "Helvetica", 30)
+		local introText = display.newText(message,20,20,600,400, "Helvetica", 30)
 		
 		intro:insert(introText)
 		intro:setReferencePoint(display.CenterReferencePoint)
 		intro.x = _W/2; intro.y = _H/2
 
 	 --marquee
-		lcdText = display.newRetinaText("",135, _H-30, _mainFont, 28)
+		lcdText = display.newText("",135, _H-30, _mainFont, 28)
 		lcdText:setReferencePoint(display.TopRightReferencePoint)
 		lcdText:setTextColor(0,255,0)
 		
@@ -440,7 +440,7 @@ function scene:createScene( event )
 		timeDisplay = display.newText("Time: ",255,30, _mainFont,38 )
 		timeDisplay:setTextColor(255, 150)
 		
-		timeCounter = display.newRetinaText(tostring(timeCount),355,30,_mainFont,38)
+		timeCounter = display.newText(tostring(timeCount),355,30,_mainFont,38)
 		timeCounter:setTextColor(255, 150)
 		--]]
 		nameDisplay = display.newText("Name",100,20, _mainFont,38 )
@@ -449,7 +449,7 @@ function scene:createScene( event )
 		countDisplay = display.newText("Orders: ",480,20, _mainFont,38)
 		countDisplay:setTextColor(255, 150)
 	
-		orderCounter = display.newRetinaText("0/ "..levels[currLevel].count,615,20,_mainFont,38)
+		orderCounter = display.newText("0/ "..levels[currLevel].count,615,20,_mainFont,38)
 		orderCounter:setTextColor(255, 150)
 		
 		homeBtn=widget.newButton{

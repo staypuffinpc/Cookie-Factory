@@ -80,7 +80,7 @@ function scene:createScene( event )
 	intro:insert(introBg)
 	intro:insert(startBtn)
 	local message = "Welcome to the loading dock! We need help filling orders with the cookies that have been packaged, but the trucks are not quite ready for shipping. Each truck needs a different number of cookies before it can drive away. You can help us by dragging the pallet of cookies into the back of the truck with the matching missing number on the side.  Will you help us?"
-	local introText = display.newRetinaText(message,20,20,600,400, "Helvetica", 30)
+	local introText = display.newText(message,20,20,600,400, "Helvetica", 30)
 	
 	intro:insert(introText)
 	intro:setReferencePoint(display.CenterReferencePoint)
@@ -139,7 +139,9 @@ function scene:createScene( event )
 					touchedTruck.image:play()
 					timer.performWithDelay ( 300, idle )
 				end
-				close()
+				if touching == false then
+					close()
+				end
 	
 				print( self.myName .. " ended a collision with " )--.. touchedTruck.myName )
 
@@ -257,7 +259,7 @@ function scene:createScene( event )
 			pallet:insert(itemImage)
 		numberText=tostring(num)
 		print("numberText:"..numberText)
-		local numberText=display.newRetinaText(numberText, 0,0, native.systemFontBold, 30)
+		local numberText=display.newText(numberText, 0,0, native.systemFontBold, 30)
 			numberText:setReferencePoint(TopLeftReferencePoint)
 			numberText:setTextColor(50)
 			numberText.x=-20 
