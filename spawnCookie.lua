@@ -236,7 +236,7 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 	]]
 	--cookie badge (needs text and a rounded rectangle grouped together)
 	local badge = display.newGroup()
-	local badgeText = display.newRetinaText(value,5,-2,"Arial",24)
+	local badgeText = display.newText(value,5,-2,"Arial",24)
 	badgeText:setTextColor(255,255,255)
 	local badgeRect = display.newRoundedRect(0,0,badgeText.width+10,badgeText.height, 8)
 	badgeRect:setReferencePoint(display.TopLeftReferencePoint)
@@ -250,7 +250,7 @@ function spawnCookie(name, value, units, radius, shape,x,y)
 	badge.x=-25; badge.y = image.height*.3
 	
 	--create num to be displayed above cookie when dragged
-	local dragNumDisp = display.newRetinaText(cookie,value,-image.width/4,-image.height,"Arial",48)
+	local dragNumDisp = display.newText(cookie,value,-image.width/4,-image.height,"Arial",48)
 	dragNumDisp.alpha = 0
 	--cookie properties
 	cookie.dragNumDisp = dragNumDisp
